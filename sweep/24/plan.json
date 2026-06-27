@@ -1,0 +1,48 @@
+{
+  "apiOrSchemaChanges" : [
+    "New schema: Capabilities { maxTextLength: integer|null, supportsInstructions: boolean, supportsStreaming: boolean, outputFormats: [string] }",
+    "New enum: SynthesisJobStatus — values TBD (e.g. queued|processing|completed|failed|cancelled)",
+    "Provider schema gains optional `capabilities` : Capabilities",
+    "Voice schema gains optional `capabilities` : Capabilities",
+    "\/providers.json and \/api\/v1\/voices.json responses gain capabilities blocks per record"
+  ],
+  "confidence" : 0.75,
+  "failingTest" : "No explicit test yet — this is a feature request. The \"failure\" is that downstream consumers cannot programmatically discover per-provider\/voice capabilities, limits, or the job status enum from the catalog contract.",
+  "fileMap" : [
+    "openapi.yaml (or openapi.json) — modify — add Capabilities schema, SynthesisJobStatus enum, extend Provider\/Voice schemas",
+    "Sources\/...\/Provider.swift (or equivalent model) — modify — add capabilities property to provider model",
+    "Sources\/...\/Voice.swift (or equivalent model) — modify — add capabilities property to voice model",
+    "Sources\/...\/provider-catalog-handler (or equivalent) — modify — include capabilities in \/providers.json response",
+    "Sources\/...\/voice-catalog-handler (or equivalent) — modify — include capabilities in \/api\/v1\/voices.json response",
+    "Tests\/...\/CatalogTests (or equivalent) — modify — add assertions for capabilities presence and shape",
+    "Sources\/...\/provider-data (seed\/config) — modify — annotate each provider with its capabilities"
+  ],
+  "fixApproach" : "Add a new `Capabilities` schema object (maxTextLength, supportsInstructions, supportsStreaming, outputFormats) and a `SynthesisJobStatus` enum to the OpenAPI spec. Extend the Provider and Voice schemas with an optional `capabilities` field. Populate capabilities data in the catalog endpoints (\/providers.json, \/api\/v1\/voices.json) and the underlying data layer. This is purely additive — no existing fields change, no breaking API changes.",
+  "openQuestions" : [
+    "What language\/framework is Vokda built with? (affects file paths and test command)",
+    "Where exactly is the OpenAPI spec located in the repo?",
+    "What are the exact status values for the synthesis job enum? (need to inventory current code)",
+    "Are provider capabilities hardcoded seed data, config-driven, or introspected live from provider APIs?",
+    "Should voice capabilities inherit from provider by default, or be independently specified? What override semantics?",
+    "What are the real maxTextLength values for each provider? (4096 for OpenAI is noted; others need research)",
+    "Is there a staging or integration environment to validate the catalog changes before merging?"
+  ],
+  "steps" : [
+    "1. Identify and read the existing OpenAPI spec file, Provider model, Voice model, catalog handler(s), and any seed\/static data files to understand current shapes.",
+    "2. Design the Capabilities schema: { maxTextLength: integer|null, supportsInstructions: boolean, supportsStreaming: boolean, outputFormats: [string] } and the SynthesisJobStatus enum values.",
+    "3. Add the Capabilities schema and SynthesisJobStatus enum to the OpenAPI spec; extend Provider and Voice components\/schemas with optional `capabilities: Capabilities`.",
+    "4. Update the Provider model (struct\/class) to include an optional `capabilities` property matching the schema.",
+    "5. Update the Voice model (struct\/class) to include an optional `capabilities` property; decide inheritance rule (voice inherits provider unless overridden).",
+    "6. Populate capabilities data in provider seed\/config — at minimum for `openai`, and for every other active provider.",
+    "7. Update the \/providers.json catalog handler to serialize capabilities in the response.",
+    "8. Update the \/api\/v1\/voices.json catalog handler to serialize capabilities (inherited or per-voice) in the response.",
+    "9. Add or update tests: verify each provider\/voice response includes a well-formed capabilities block, verify the OpenAPI spec validates, verify status enum values round-trip.",
+    "10. Run the full test suite and confirm no regressions."
+  ],
+  "stopsForOperatorApproval" : false,
+  "summary" : "Add a capabilities + limits block to each provider and voice record in the public catalog and OpenAPI schemas, plus document the synthesis job status enum.",
+  "uiStateNotes" : [
+
+  ],
+  "verificationCommand" : "swift test"
+}
