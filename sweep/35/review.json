@@ -1,0 +1,22 @@
+{
+  "committed" : true,
+  "confidence" : 0,
+  "correlationId" : "sweep-build-35",
+  "dimensions" : [
+
+  ],
+  "evidenceReceiptIds" : [
+    "rcpt-build-implement-sweep-build-35",
+    "rcpt-build-verify-sweep-build-35",
+    "rcpt-build-commit-sweep-build-35"
+  ],
+  "failureReasons" : [
+
+  ],
+  "filesReviewed" : [
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts"
+  ],
+  "outcome" : "blocked",
+  "rubricId" : "",
+  "rubricVersion" : 0
+}
