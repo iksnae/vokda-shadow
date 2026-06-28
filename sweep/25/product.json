@@ -1,0 +1,22 @@
+{
+  "acceptanceCriteria" : [
+    "A publicly accessible, documented list of canonical provider IDs exists that consumers can treat as a stable contract",
+    "A stability\/deprecation policy is published: provider ID renames must go through a formal deprecation window where both old and new IDs are served, and changes are announced in a changelog",
+    "The `\/providers.json` endpoint returns a `version` field whose value changes if and only if the provider catalog content changes",
+    "The `\/data\/voices.json` static artifact includes a `version` field whose value changes if and only if the voices catalog content changes",
+    "The `\/api\/v1\/voices.json` live endpoint includes a `version` field whose value changes if and only if the voices catalog content changes",
+    "The version stamps on `\/data\/voices.json` and `\/api\/v1\/voices.json` are identical when they derive from the same underlying source data, giving consumers confidence that both endpoints reflect the same catalog"
+  ],
+  "outOfScope" : [
+    "How the version identifier is generated (hash, timestamp, ETag) — this is an implementation detail",
+    "Renaming or normalizing any existing provider IDs — the current IDs remain as-is",
+    "Changing the dispatch mechanism or alias-resolution logic",
+    "Backward compatibility beyond the deprecation window (once a deprecated ID's window closes, it may be removed)",
+    "Consumer-side conformance tooling or diffing utilities — that belongs in the consumer's codebase",
+    "Versioning any catalog artifact not listed above",
+    "Guarantees about voice data payload stability — only provider identity and catalog versioning are in scope"
+  ],
+  "priority" : "medium",
+  "problemStatement" : "Downstream consumers that depend on Vokda's provider IDs have no way to detect when those IDs change between releases. Provider IDs can shift silently — renamed, added, or removed — and the current passthrough-by-default alias behavior means a renamed ID causes synthesis failures with zero advance warning. Consumers must either blindly re-fetch and deep-diff catalog artifacts on every release, or discover breakage only when their users hit it.",
+  "userValue" : "Gives integration owners (especially BYOK consumers like Khaos Machine) a reliable, low-noise drift signal. Instead of manual diffing or silent breakage, they can cheaply poll a version stamp, know the provider surface changed, and re-run their conformance checks with confidence. The stability contract also means renames won't surprise anyone — they'll be announced, documented, and served in parallel during a deprecation window."
+}
