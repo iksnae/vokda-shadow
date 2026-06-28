@@ -1,0 +1,17 @@
+{
+  "acceptanceCriteria" : [
+    "getAttrDef is exported from apps\/web\/src\/lib\/ssml\/tags.ts",
+    "Case-insensitive on both tag name and attribute name (consistent with existing getTagDef behavior)",
+    "Returns the matching SsmlAttrDef when found; returns undefined when the tag is unknown or the attribute does not exist on that tag",
+    "Unit tests in apps\/web\/src\/lib\/ssml\/tags.test.ts cover: a known attribute (e.g., break\/time), a case-insensitive match (e.g., BREAK\/TIME), an unknown tag, and a known tag with an unknown attribute",
+    "npm run test passes with no regressions"
+  ],
+  "outOfScope" : [
+    "UI wiring or toolbar\/validator integration",
+    "Changes to existing tag definitions, SsmlAttrDef type, or any module other than tags.ts and tags.test.ts",
+    "Performance optimization or caching beyond the simple lookup pattern already used by getTagDef"
+  ],
+  "priority" : "medium",
+  "problemStatement" : "The SSML tag registry provides case-insensitive tag lookup (getTagDef) but has no equivalent for resolving an individual attribute definition within a tag. Every call site that needs a specific attribute — such as break's time or say-as's interpret-as — must hand-walk the attributes array with its own case-folding logic, leading to scattered, inconsistent, and error-prone access patterns across the codebase.",
+  "userValue" : "Developers building SSML tooling (validator, toolbar, inspectors) no longer need to manually scan def.attributes arrays at every call site. A single, consistent lookup function reduces duplication, eliminates off-by-one errors and case-sensitivity bugs, and mirrors the existing getTagDef pattern developers already know and trust."
+}
