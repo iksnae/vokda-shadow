@@ -15,5 +15,5 @@
   "risks" : [
 
   ],
-  "summary" : "Single-point fix in getTagDef() via dual .toLowerCase() is the canonical pattern for case-insensitive key lookup — localized, zero regression risk, and downstream consumers inherit the fix transparently."
+  "summary" : "Normalizing both lookup key and stored tag name to lowercase in getTagDef() is a correct, minimal fix with zero structural risk; the cascading fix to isTagSupportedByProvider() is automatic and the test coverage is adequate."
 }
