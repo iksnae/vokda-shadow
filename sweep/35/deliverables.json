@@ -1,14 +1,14 @@
 [
   {
     "nonGoals" : [
-      "Do not change any other function in tags.ts",
-      "Do not modify isTagSupportedByProvider() — it inherits the fix via delegation to getTagDef()",
-      "Do not rename, add, or remove tag definitions",
-      "Do not change the public API signature of getTagDef()"
+      "Do not change any other functions in tags.ts",
+      "Do not alter SSML provider-specific logic or tag definitions",
+      "Do not modify isTagSupportedByProvider except indirectly via getTagDef fix",
+      "Do not add new tags or remove existing ones"
     ],
-    "objective" : "Make SSML tag lookup case-insensitive in getTagDef() by lowercasing both sides of the comparison, and add corresponding test coverage.",
+    "objective" : "Make getTagDef() case-insensitive and add test coverage for uppercase, mixed-case, lowercase, and nonexistent tag lookups",
     "orderIndex" : 0,
-    "planText" : "In apps\/web\/src\/lib\/ssml\/tags.ts, modify getTagDef() to compare t.tag.toLowerCase() === tagName.toLowerCase() instead of t.tag === tagName. In apps\/web\/src\/lib\/ssml\/tags.test.ts, add test cases for uppercase ('PROSODY'), mixed-case ('Break'), and lowercase ('emphasis') lookups, plus a negative case ('nonexistent'). Run npm run test to confirm all tests pass.",
+    "planText" : "In apps\/web\/src\/lib\/ssml\/tags.ts, locate the getTagDef function and change the tag-name comparison from t.tag === tagName to t.tag.toLowerCase() === tagName.toLowerCase(). This makes lookups case-insensitive, which also fixes isTagSupportedByProvider() since it calls getTagDef(). Then in apps\/web\/src\/lib\/ssml\/tags.test.ts, add test cases covering: getTagDef('PROSODY') returns prosody def, getTagDef('Break') returns break def, getTagDef('emphasis') (already lowercase) still returns emphasis def, getTagDef('nonexistent') returns undefined, and isTagSupportedByProvider('PROSODY', provider) === isTagSupportedByProvider('prosody', provider). Run npm run test to confirm all pass.",
     "riskClass" : "low",
     "size" : "xs",
     "targetFiles" : [
