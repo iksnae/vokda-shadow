@@ -1,0 +1,11 @@
+{
+  "acceptanceCriteria" : [
+
+  ],
+  "outOfScope" : [
+
+  ],
+  "priority" : "medium",
+  "problemStatement" : "SSML tag lookup should be case-insensitive",
+  "userValue" : "Single-function case-insensitive fix correctly aligns getTagDef() with SSML's case-insensitive semantics, with adequate test coverage for all casing scenarios."
+}
