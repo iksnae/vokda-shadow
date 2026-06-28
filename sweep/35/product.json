@@ -7,5 +7,5 @@
   ],
   "priority" : "medium",
   "problemStatement" : "SSML tag lookup should be case-insensitive",
-  "userValue" : "SSML element names are case-insensitive per spec; lowercasing the lookup key is the minimal, correct fix that serves any user passing tags in non-lowercase."
+  "userValue" : "SSML element names are case-insensitive per spec; normalizing to lowercase in getTagDef() correctly handles any casing while preserving existing behavior and fixes isTagSupportedByProvider() for free."
 }
