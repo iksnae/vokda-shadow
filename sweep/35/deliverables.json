@@ -1,33 +1,18 @@
 [
   {
     "nonGoals" : [
-      "Do not change KNOWN_TAGS case sensitivity in validate.ts",
-      "Do not modify isTagSupportedByProvider() directly (it benefits automatically)",
-      "Do not alter SSML_TAGS array entries",
-      "Do not touch any other lookup function"
+      "Do NOT fix KNOWN_TAGS case-sensitivity in validate.ts",
+      "Do NOT change serialize.ts or validate.ts",
+      "Do NOT normalize tag names stored in SSML_TAGS array itself",
+      "Do NOT add case-insensitive handling beyond getTagDef lookup"
     ],
-    "objective" : "Normalize tag name comparison in getTagDef() to be case-insensitive by lowercasing both the lookup key and the definition's tag property",
+    "objective" : "Make getTagDef() case-insensitive by lowercasing the lookup argument, and add test coverage for uppercase, mixed-case, lowercase, unknown-tag, and isTagSupportedByProvider parity.",
     "orderIndex" : 0,
-    "planText" : "In apps\/web\/src\/lib\/ssml\/tags.ts, change the getTagDef() comparison from `t.tag === tagName` to `t.tag.toLowerCase() === tagName.toLowerCase()`. This is a single-line change on approximately line 163. Existing tests must continue to pass — all 16 current tests exercise lowercase lookups and will confirm no regression. isTagSupportedByProvider() delegates to getTagDef() so it inherits the fix for free.",
+    "planText" : "1. In apps\/web\/src\/lib\/ssml\/tags.ts, change getTagDef() line from `t.tag === tagName` to `t.tag === tagName.toLowerCase()`.\n2. In apps\/web\/src\/lib\/ssml\/tags.test.ts, add test cases:\n   - getTagDef('PROSODY') returns prosody definition\n   - getTagDef('Break') returns break definition\n   - getTagDef('emphasis') returns emphasis definition (lowercase still works)\n   - getTagDef('nonexistent') returns undefined\n   - isTagSupportedByProvider('PROSODY', provider) equals isTagSupportedByProvider('prosody', provider)\n3. Run npm run test — all existing and new tests must pass.",
     "riskClass" : "low",
     "size" : "xs",
     "targetFiles" : [
-      "apps\/web\/src\/lib\/ssml\/tags.ts"
-    ],
-    "verificationCommand" : "npm run test"
-  },
-  {
-    "nonGoals" : [
-      "Do not add tests for validate.ts behavior",
-      "Do not modify existing describe blocks",
-      "Do not add provider-specific integration tests beyond the isTagSupportedByProvider casing parity check"
-    ],
-    "objective" : "Add a describe block in tags.test.ts covering uppercase, mixed-case, and lowercase lookups plus a nonexistent-tag guard",
-    "orderIndex" : 1,
-    "planText" : "In apps\/web\/src\/lib\/ssml\/tags.test.ts, add a new `describe('case-insensitive lookup')` block with these test cases: (1) getTagDef('PROSODY') returns the prosody definition, (2) getTagDef('Break') returns the break definition, (3) getTagDef('emphasis') returns the emphasis definition (existing lowercase behavior preserved), (4) getTagDef('eMpHaSiS') returns the emphasis definition (mixed-case), (5) getTagDef('nonexistent') returns undefined (no false positives), (6) isTagSupportedByProvider('PROSODY', 'aws-polly') equals isTagSupportedByProvider('prosody', 'aws-polly'). Use vitest's expect().toEqual() and expect().toBeUndefined() assertions consistent with the existing test style.",
-    "riskClass" : "low",
-    "size" : "xs",
-    "targetFiles" : [
+      "apps\/web\/src\/lib\/ssml\/tags.ts",
       "apps\/web\/src\/lib\/ssml\/tags.test.ts"
     ],
     "verificationCommand" : "npm run test"
