@@ -15,5 +15,5 @@
   "risks" : [
 
   ],
-  "summary" : "Single-line lowercased comparison in getTagDef() is the correct and minimal fix; all dependent functions benefit transitively, test coverage is adequate, and there is no architectural risk."
+  "summary" : "Single-line change normalizing tagName to lowercase is correct and minimal; SSML spec mandates case-insensitive tag names; test coverage validates uppercase, mixed-case, and regression cases."
 }
