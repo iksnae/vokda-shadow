@@ -7,5 +7,5 @@
   ],
   "priority" : "medium",
   "problemStatement" : "SSML tag lookup should be case-insensitive",
-  "userValue" : "Single-line lowercasing of tag comparison correctly implements SSML case-insensitivity with minimal change and proper test coverage."
+  "userValue" : "Make getTagDef() case-insensitive via a single toLowerCase() call, fixing SSML tag lookup for any casing while preserving all existing behavior."
 }
