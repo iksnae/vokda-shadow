@@ -15,5 +15,5 @@
   "risks" : [
 
   ],
-  "summary" : "Lowercasing input tagName before comparison is a correct, minimal fix; SSML tags are case-insensitive per spec and all stored definitions are already lowercase."
+  "summary" : "Single-point fix in getTagDef() via dual .toLowerCase() is the canonical pattern for case-insensitive key lookup — localized, zero regression risk, and downstream consumers inherit the fix transparently."
 }
