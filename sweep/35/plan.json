@@ -3,22 +3,22 @@
 
   ],
   "confidence" : 0.98,
-  "failingTest" : "getTagDef('PROSODY') returns undefined instead of the prosody definition",
+  "failingTest" : "getTagDef('PROSODY') returns undefined instead of the prosody definition; getTagDef('Break') returns undefined instead of the break definition",
   "fileMap" : [
-    "apps\/web\/src\/lib\/ssml\/tags.ts — modify — make getTagDef() case-insensitive",
+    "apps\/web\/src\/lib\/ssml\/tags.ts — modify — change getTagDef comparison to case-insensitive",
     "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — add uppercase and mixed-case test cases"
   ],
-  "fixApproach" : "In getTagDef(), lowercase both the input tagName and the definition's t.tag before comparing. This single change fixes both getTagDef() and isTagSupportedByProvider() (which delegates to getTagDef).",
+  "fixApproach" : "In getTagDef(), normalize the comparison by lowercasing both the input tagName and the definition's tag property: `t.tag.toLowerCase() === tagName.toLowerCase()`. This single-line change makes all lookups case-insensitive. isTagSupportedByProvider() benefits automatically since it delegates to getTagDef(). Add test cases for uppercase ('PROSODY'), mixed-case ('Break'), and already-lowercase ('emphasis') lookups, plus a guard that nonexistent tags still return undefined.",
   "openQuestions" : [
 
   ],
   "steps" : [
-    "In apps\/web\/src\/lib\/ssml\/tags.ts, modify getTagDef() to compare tagName.toLowerCase() against t.tag.toLowerCase()",
-    "In apps\/web\/src\/lib\/ssml\/tags.test.ts, add test cases for uppercase ('PROSODY'), mixed-case ('Break'), and lowercase ('emphasis') lookups, plus a negative case ('nonexistent')",
-    "Run npm run test to verify all tests pass"
+    "1. In apps\/web\/src\/lib\/ssml\/tags.ts, change the getTagDef comparison from `t.tag === tagName` to `t.tag.toLowerCase() === tagName.toLowerCase()`",
+    "2. In apps\/web\/src\/lib\/ssml\/tags.test.ts, add test cases: getTagDef('PROSODY') returns prosody def, getTagDef('Break') returns break def, getTagDef('emphasis') returns emphasis def, getTagDef('nonexistent') returns undefined, and isTagSupportedByProvider('PROSODY', provider) matches isTagSupportedByProvider('prosody', provider)",
+    "3. Run `npm run test` to verify all existing and new tests pass"
   ],
   "stopsForOperatorApproval" : false,
-  "summary" : "Make getTagDef() case-insensitive so SSML tag lookups work regardless of casing",
+  "summary" : "Make getTagDef() case-insensitive so SSML tag lookups work regardless of casing (PROSODY, Break, emphasis all resolve correctly).",
   "uiStateNotes" : [
 
   ],
