@@ -1,0 +1,27 @@
+{
+  "apiOrSchemaChanges" : [
+    "+ export function getAttrDef(tagName: string, attrName: string): SsmlAttrDef | undefined"
+  ],
+  "confidence" : 0.98,
+  "failingTest" : "No existing failing test; the work adds a new function and its tests.",
+  "fileMap" : [
+    "apps\/web\/src\/lib\/ssml\/tags.ts — modify — add the getAttrDef function and export it",
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — import getAttrDef, add four test cases covering known attribute, case-insensitive match, unknown tag, and known tag with unknown attribute"
+  ],
+  "fixApproach" : "Add a new exported function `getAttrDef(tagName, attrName)` to tags.ts that first delegates to the existing `getTagDef` for case-insensitive tag resolution, then does a case-insensitive `.find` on the tag's `attributes` array by `a.name`. Returns the matching `SsmlAttrDef` or `undefined`. No caching or other modules touched.",
+  "openQuestions" : [
+
+  ],
+  "steps" : [
+    "1. In `apps\/web\/src\/lib\/ssml\/tags.ts`, add the `getAttrDef` function after `getTagDef`: call `getTagDef(tagName)`, if falsy return `undefined`, otherwise `def.attributes.find((a) => a.name.toLowerCase() === attrName.toLowerCase())` and return the result (or `undefined`). Ensure it is exported.",
+    "2. In `apps\/web\/src\/lib\/ssml\/tags.test.ts`, add `getAttrDef` to the existing import from `.\/tags`.",
+    "3. In the same test file, inside the existing top-level `describe('SSML Tag Registry', ...)`, add a new nested `describe('getAttrDef', ...)` block with four it-cases: (a) known attribute (`break`\/`time`) returns the correct `SsmlAttrDef`, (b) case-insensitive match (`BREAK`\/`TIME`) returns the same result, (c) unknown tag returns `undefined`, (d) known tag with unknown attribute returns `undefined`.",
+    "4. Run `npm run test` from the repo root and confirm all tests pass."
+  ],
+  "stopsForOperatorApproval" : false,
+  "summary" : "Add getAttrDef(tagName, attrName) case-insensitive attribute lookup to the SSML tag registry with four vitest test cases.",
+  "uiStateNotes" : [
+
+  ],
+  "verificationCommand" : "npm run test"
+}
