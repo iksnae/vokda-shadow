@@ -1,0 +1,19 @@
+{
+  "components" : [
+
+  ],
+  "confidence" : 0.8,
+  "constraints" : [
+
+  ],
+  "contractChanges" : [
+
+  ],
+  "openQuestions" : [
+
+  ],
+  "risks" : [
+
+  ],
+  "summary" : "Simple, zero-dependency addition that correctly reuses existing getTagDef for case-insensitive tag resolution, then applies the same case-insensitive pattern to attribute lookup on the tag's attributes array. No structural risk."
+}
