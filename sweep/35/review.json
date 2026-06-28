@@ -1,26 +1,26 @@
 {
   "committed" : true,
-  "confidence" : 0.95,
+  "confidence" : 0.98,
   "correlationId" : "sweep-build-35",
   "dimensions" : [
     {
       "dimension" : "implements-the-approved-plan",
-      "evidence" : "The production change exactly lowercases the input tagName before comparison, implementing case-insensitive lookup as specified. All acceptance criteria are covered: uppercase, mixed-case, lowercase lookups, nonexistent tags, and isTagSupportedByProvider parity are all tested.",
+      "evidence" : "The change makes getTagDef case-insensitive via toLowerCase() on both sides, exactly as the plan prescribed. Tests cover uppercase, mixed-case, lowercase, and nonexistent lookups, matching the acceptance criteria.",
       "score" : 1
     },
     {
       "dimension" : "minimal-and-scoped",
-      "evidence" : "Only the two files named in the plan were touched. tags.ts has a one-line diff; tags.test.ts adds only the planned test cases. No unrelated refactoring, formatting, or collateral changes.",
+      "evidence" : "Only the two files named in the plan were touched: a one-line logic change in tags.ts and new test cases in tags.test.ts. No unrelated churn.",
       "score" : 1
     },
     {
       "dimension" : "no-fake-or-test-gaming",
-      "evidence" : "The fix is genuine — it lowercases the input to match against lowercase tag definitions. No tests were deleted or weakened. The existing 'nonexistent' test remains, and new tests exercise uppercase\/mixed-case inputs with real assertions on the returned definition object (not just toBeDefined). The cross-provider parity test verifies both casings return the same boolean.",
+      "evidence" : "The fix is genuine — normalizing both sides for comparison. Existing tests are untouched, and new tests exercise real case-insensitive resolution; they would fail without the fix.",
       "score" : 1
     },
     {
       "dimension" : "safe-to-advance",
-      "evidence" : "Single-line change with no control-flow or type-safety regressions. Stored tag names are already lowercase, so the comparison is correct in both directions. No security, correctness, or regression risk apparent. The change is purely additive in behavior (uppercase\/mixed-case now works) and backward-compatible.",
+      "evidence" : "Low-risk single-line change: toLowerCase comparison preserves existing lowercase behavior perfectly. No security, correctness, or regression concerns. SSML tag names are case-insensitive by spec; all defined tags are lowercase, so no collision risk.",
       "score" : 1
     }
   ],
@@ -33,8 +33,8 @@
 
   ],
   "filesReviewed" : [
-    "apps\/web\/src\/lib\/ssml\/tags.ts",
-    "apps\/web\/src\/lib\/ssml\/tags.test.ts"
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts",
+    "apps\/web\/src\/lib\/ssml\/tags.ts"
   ],
   "outcome" : "pass",
   "rubricId" : "build-review",
