@@ -1,18 +1,31 @@
 [
   {
     "nonGoals" : [
-      "Do not change any other functions in tags.ts",
-      "Do not alter SSML provider-specific logic or tag definitions",
-      "Do not modify isTagSupportedByProvider except indirectly via getTagDef fix",
-      "Do not add new tags or remove existing ones"
+      "Do NOT change KNOWN_TAGS or validate.ts tag casing handling — that's a separate concern",
+      "Do NOT add tests — that's deliverable B",
+      "Do NOT change any other function in tags.ts"
     ],
-    "objective" : "Make getTagDef() case-insensitive and add test coverage for uppercase, mixed-case, lowercase, and nonexistent tag lookups",
+    "objective" : "Make getTagDef() case-insensitive by comparing lowercased tag names",
     "orderIndex" : 0,
-    "planText" : "In apps\/web\/src\/lib\/ssml\/tags.ts, locate the getTagDef function and change the tag-name comparison from t.tag === tagName to t.tag.toLowerCase() === tagName.toLowerCase(). This makes lookups case-insensitive, which also fixes isTagSupportedByProvider() since it calls getTagDef(). Then in apps\/web\/src\/lib\/ssml\/tags.test.ts, add test cases covering: getTagDef('PROSODY') returns prosody def, getTagDef('Break') returns break def, getTagDef('emphasis') (already lowercase) still returns emphasis def, getTagDef('nonexistent') returns undefined, and isTagSupportedByProvider('PROSODY', provider) === isTagSupportedByProvider('prosody', provider). Run npm run test to confirm all pass.",
+    "planText" : "In apps\/web\/src\/lib\/ssml\/tags.ts, change the getTagDef() function's find predicate from `t.tag === tagName` to `t.tag.toLowerCase() === tagName.toLowerCase()`. This single-line change makes tag lookup case-insensitive so 'PROSODY', 'Break', 'emphasis' all resolve to their correct definitions. Existing lowercase-only tests continue to pass unchanged.",
     "riskClass" : "low",
     "size" : "xs",
     "targetFiles" : [
-      "apps\/web\/src\/lib\/ssml\/tags.ts",
+      "apps\/web\/src\/lib\/ssml\/tags.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT modify source code or any other test file",
+      "Do NOT add tests for KNOWN_TAGS casing (out of scope for this issue)"
+    ],
+    "objective" : "Add 5 test cases for case-insensitive tag lookup and regression coverage",
+    "orderIndex" : 1,
+    "planText" : "In apps\/web\/src\/lib\/ssml\/tags.test.ts, within the existing `describe('SSML Tag Registry', ...)` block, add 5 test cases: (1) getTagDef with all-uppercase 'PROSODY' returns the prosody definition, (2) getTagDef with mixed-case 'Break' returns the break definition, (3) getTagDef with lowercase 'emphasis' returns emphasis definition (regression), (4) getTagDef with unknown tag 'nonexistent' returns undefined (regression), (5) isTagSupportedByProvider('PROSODY', 'aws-polly') equals isTagSupportedByProvider('prosody', 'aws-polly') — validating the case-insensitive cascade through isTagSupportedByProvider.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
       "apps\/web\/src\/lib\/ssml\/tags.test.ts"
     ],
     "verificationCommand" : "npm run test"
