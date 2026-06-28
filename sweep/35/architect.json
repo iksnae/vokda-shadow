@@ -15,5 +15,5 @@
   "risks" : [
 
   ],
-  "summary" : "Minimal, correct change: lowercasing both sides of the comparison in getTagDef() aligns with SSML's case-insensitive semantics and cascades properly to isTagSupportedByProvider()."
+  "summary" : "Single-line lowercased comparison in getTagDef() is the correct and minimal fix; all dependent functions benefit transitively, test coverage is adequate, and there is no architectural risk."
 }
