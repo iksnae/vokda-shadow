@@ -3,22 +3,22 @@
 
   ],
   "confidence" : 0.98,
-  "failingTest" : "getTagDef('PROSODY') returns undefined instead of the prosody definition",
+  "failingTest" : "getTagDef('PROSODY') returns undefined instead of prosody definition",
   "fileMap" : [
-    "apps\/web\/src\/lib\/ssml\/tags.ts — modify — add .toLowerCase() in getTagDef comparison",
-    "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — add case-insensitivity test block for getTagDef and isTagSupportedByProvider"
+    "apps\/web\/src\/lib\/ssml\/tags.ts — modify — case-insensitive comparison in getTagDef()",
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — add case-insensitive lookup tests"
   ],
-  "fixApproach" : "In getTagDef, lowercase the incoming tagName before comparing against SSML_TAGS entries (which are already lowercase). This is a one-line change. isTagSupportedByProvider inherits the fix automatically since it calls getTagDef. Add a describe block in the test file covering uppercase, mixed-case, lowercase-regression, and unknown-uppercase cases, plus a cross-check on isTagSupportedByProvider.",
+  "fixApproach" : "In getTagDef(), normalize the input tagName to lowercase before comparing against the tag definitions (all stored lowercase). Change line 195 from `t.tag === tagName` to `t.tag === tagName.toLowerCase()`. This fixes isTagSupportedByProvider() automatically. Add 6 new test cases covering uppercase, mixed-case, lowercase, nonexistent, and cross-provider parity.",
   "openQuestions" : [
 
   ],
   "steps" : [
-    "Modify getTagDef in apps\/web\/src\/lib\/ssml\/tags.ts: normalize tagName with .toLowerCase() before comparing against SSML_TAGS entries",
-    "Add a describe('case-insensitive tag lookup') block in apps\/web\/src\/lib\/ssml\/tags.test.ts covering: uppercase 'PROSODY', mixed-case 'Break', lowercase 'emphasis' (regression), uppercase 'NONEXISTENT' → undefined, and isTagSupportedByProvider('PROSODY', provider) === isTagSupportedByProvider('prosody', provider)",
-    "Run npm run test to confirm all existing and new tests pass"
+    "Add case-insensitive lookup tests to apps\/web\/src\/lib\/ssml\/tags.test.ts (uppercase, mixed-case, lowercase, nonexistent, and isTagSupportedByProvider parity checks)",
+    "Change getTagDef() in apps\/web\/src\/lib\/ssml\/tags.ts to compare lowercased tag names (tagName.toLowerCase())",
+    "Run npm run test to verify all existing and new tests pass"
   ],
   "stopsForOperatorApproval" : false,
-  "summary" : "Make getTagDef normalization case-insensitive by lowercasing, and add uppercase \/ mixed-case test coverage.",
+  "summary" : "Make getTagDef() case-insensitive by lowercasing input tagName before comparison",
   "uiStateNotes" : [
 
   ],
