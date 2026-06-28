@@ -15,5 +15,5 @@
   "risks" : [
 
   ],
-  "summary" : "Normalizing both lookup key and stored tag name to lowercase in getTagDef() is a correct, minimal fix with zero structural risk; the cascading fix to isTagSupportedByProvider() is automatic and the test coverage is adequate."
+  "summary" : "Single-point fix in getTagDef() via toLowerCase() is correct, minimal, and cascades to all callers; SSML tags are ASCII so no Unicode risks."
 }
