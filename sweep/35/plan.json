@@ -3,22 +3,22 @@
 
   ],
   "confidence" : 0.98,
-  "failingTest" : "getTagDef('PROSODY') returns undefined instead of the prosody definition (case-sensitive comparison bug)",
+  "failingTest" : "getTagDef('PROSODY') returns undefined instead of the prosody definition",
   "fileMap" : [
-    "apps\/web\/src\/lib\/ssml\/tags.ts — modify — normalize tag name comparison to lowercase in getTagDef()",
-    "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — add uppercase and mixed-case test cases for getTagDef and isTagSupportedByProvider"
+    "apps\/web\/src\/lib\/ssml\/tags.ts — modify — add .toLowerCase() in getTagDef comparison",
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — add case-insensitivity test block for getTagDef and isTagSupportedByProvider"
   ],
-  "fixApproach" : "In `apps\/web\/src\/lib\/ssml\/tags.ts`, change `getTagDef` from `SSML_TAGS.find((t) => t.tag === tagName)` to `SSML_TAGS.find((t) => t.tag === tagName.toLowerCase())`. This single-line change fixes both `getTagDef` and the transitive `isTagSupportedByProvider`. Then add 5 new test cases in `tags.test.ts`: uppercase lookup, mixed-case lookup, confirming lowercase still works, nonexistent still returns undefined, and that `isTagSupportedByProvider` returns the same result for uppercase and lowercase variants of the same tag.",
+  "fixApproach" : "In getTagDef, lowercase the incoming tagName before comparing against SSML_TAGS entries (which are already lowercase). This is a one-line change. isTagSupportedByProvider inherits the fix automatically since it calls getTagDef. Add a describe block in the test file covering uppercase, mixed-case, lowercase-regression, and unknown-uppercase cases, plus a cross-check on isTagSupportedByProvider.",
   "openQuestions" : [
 
   ],
   "steps" : [
-    "Modify `getTagDef()` in `apps\/web\/src\/lib\/ssml\/tags.ts`: change `t.tag === tagName` to `t.tag === tagName.toLowerCase()`",
-    "Add test cases in `apps\/web\/src\/lib\/ssml\/tags.test.ts`: uppercase (`'PROSODY'`), mixed-case (`'Break'`), confirm lowercase still works (`'emphasis'`), confirm nonexistent still returns undefined, and assert `isTagSupportedByProvider('PROSODY', p)` equals `isTagSupportedByProvider('prosody', p)`",
-    "Run `npm run test` to verify all existing and new tests pass"
+    "Modify getTagDef in apps\/web\/src\/lib\/ssml\/tags.ts: normalize tagName with .toLowerCase() before comparing against SSML_TAGS entries",
+    "Add a describe('case-insensitive tag lookup') block in apps\/web\/src\/lib\/ssml\/tags.test.ts covering: uppercase 'PROSODY', mixed-case 'Break', lowercase 'emphasis' (regression), uppercase 'NONEXISTENT' → undefined, and isTagSupportedByProvider('PROSODY', provider) === isTagSupportedByProvider('prosody', provider)",
+    "Run npm run test to confirm all existing and new tests pass"
   ],
   "stopsForOperatorApproval" : false,
-  "summary" : "Make getTagDef() case-insensitive by normalizing both sides to lowercase, fixing SSML tag lookup for uppercase\/mixed-case tag names.",
+  "summary" : "Make getTagDef normalization case-insensitive by lowercasing, and add uppercase \/ mixed-case test coverage.",
   "uiStateNotes" : [
 
   ],
