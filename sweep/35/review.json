@@ -1,9 +1,28 @@
 {
   "committed" : true,
-  "confidence" : 0,
+  "confidence" : 0.97,
   "correlationId" : "sweep-build-35",
   "dimensions" : [
-
+    {
+      "dimension" : "implements-the-approved-plan",
+      "evidence" : "getTagDef() now lowercases the input before comparing, achieving case-insensitive lookup. All acceptance criteria covered: uppercase ('PROSODY'), mixed-case ('Break'), lowercase regression ('emphasis'), unknown tags return undefined, and isTagSupportedByProvider cross-check works. The plan said 'normalize both sides' but lowercasing only the input is equivalent since all known tag definitions are lowercase — a reasonable implementation choice.",
+      "score" : 1
+    },
+    {
+      "dimension" : "minimal-and-scoped",
+      "evidence" : "Only the two files listed in the plan were touched: tags.ts (one-line comparison change) and tags.test.ts (only new test cases added, no existing tests altered). No out-of-scope churn.",
+      "score" : 1
+    },
+    {
+      "dimension" : "no-fake-or-test-gaming",
+      "evidence" : "The fix is a genuine logic change — lowercasing the input probe. New tests exercise real case-insensitive paths that would legitimately fail on the old code. No test was deleted or weakened. No hard-coded expected values to force green.",
+      "score" : 1
+    },
+    {
+      "dimension" : "safe-to-advance",
+      "evidence" : "Single-line change to a pure-function lookup; no side effects, no API surface change. Existing lowercase lookups are regression-tested and behave identically. The asymmetry (lowercasing only input, not definition tags) is benign because all tag definitions are already lowercase, though normalizing both sides would be slightly more defensive against future data changes.",
+      "score" : 0.95
+    }
   ],
   "evidenceReceiptIds" : [
     "rcpt-build-implement-sweep-build-35",
@@ -14,9 +33,10 @@
 
   ],
   "filesReviewed" : [
-    "apps\/web\/src\/lib\/ssml\/tags.ts"
+    "apps\/web\/src\/lib\/ssml\/tags.ts",
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts"
   ],
-  "outcome" : "blocked",
-  "rubricId" : "",
-  "rubricVersion" : 0
+  "outcome" : "pass",
+  "rubricId" : "build-review",
+  "rubricVersion" : 1
 }
