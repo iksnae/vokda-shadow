@@ -1,14 +1,14 @@
 [
   {
     "nonGoals" : [
-      "Do NOT fix KNOWN_TAGS case-sensitivity in validate.ts",
-      "Do NOT change serialize.ts or validate.ts",
-      "Do NOT normalize tag names stored in SSML_TAGS array itself",
-      "Do NOT add case-insensitive handling beyond getTagDef lookup"
+      "Do not change SSML_TAGS entries or their casing",
+      "Do not modify validate.ts, serialize.ts, or any other consumer",
+      "Do not add new tag definitions",
+      "Do not change isTagSupportedByProvider signature or logic"
     ],
-    "objective" : "Make getTagDef() case-insensitive by lowercasing the lookup argument, and add test coverage for uppercase, mixed-case, lowercase, unknown-tag, and isTagSupportedByProvider parity.",
+    "objective" : "Normalize tagName to lowercase in getTagDef so SSML tag lookup is case-insensitive, and add test coverage for uppercase, mixed-case, lowercase-regression, and unknown-uppercase inputs including isTagSupportedByProvider cross-check.",
     "orderIndex" : 0,
-    "planText" : "1. In apps\/web\/src\/lib\/ssml\/tags.ts, change getTagDef() line from `t.tag === tagName` to `t.tag === tagName.toLowerCase()`.\n2. In apps\/web\/src\/lib\/ssml\/tags.test.ts, add test cases:\n   - getTagDef('PROSODY') returns prosody definition\n   - getTagDef('Break') returns break definition\n   - getTagDef('emphasis') returns emphasis definition (lowercase still works)\n   - getTagDef('nonexistent') returns undefined\n   - isTagSupportedByProvider('PROSODY', provider) equals isTagSupportedByProvider('prosody', provider)\n3. Run npm run test — all existing and new tests must pass.",
+    "planText" : "## Deliverable: Case-insensitive SSML tag lookup\n\n### Step 1 — Fix getTagDef in `apps\/web\/src\/lib\/ssml\/tags.ts`\n\nLocate `getTagDef` (currently `SSML_TAGS.find((t) => t.tag === tagName)`). Change the comparison to normalize `tagName` via `.toLowerCase()`:\n\n```ts\nexport function getTagDef(tagName: string): SsmlTagDef | undefined {\n  return SSML_TAGS.find((t) => t.tag === tagName.toLowerCase());\n}\n```\n\nAll entries in `SSML_TAGS` are already lowercase, so normalizing only the input is safe and sufficient. `isTagSupportedByProvider` inherits the fix automatically since it delegates to `getTagDef`.\n\n### Step 2 — Add tests in `apps\/web\/src\/lib\/ssml\/tags.test.ts`\n\nAdd a `describe('case-insensitive tag lookup')` block with these cases:\n\n1. **Uppercase known tag**: `getTagDef('PROSODY')` → returns the prosody definition (verify `.tag === 'prosody'`)\n2. **Mixed-case known tag**: `getTagDef('Break')` → returns the break definition (verify `.tag === 'break'`)\n3. **Lowercase regression**: `getTagDef('emphasis')` → still returns the emphasis definition\n4. **Uppercase unknown tag**: `getTagDef('NONEXISTENT')` → `undefined`\n5. **Mixed-case unknown tag**: `getTagDef('FakeTag')` → `undefined`\n6. **isTagSupportedByProvider cross-check**: Pick a provider that supports prosody. Assert `isTagSupportedByProvider('PROSODY', provider)` strictly equals `isTagSupportedByProvider('prosody', provider)`.\n\n### Step 3 — Verify\n\nRun `npm run test`. All existing tests must pass, and the new case-insensitivity block must pass (6 new assertions minimum).",
     "riskClass" : "low",
     "size" : "xs",
     "targetFiles" : [
