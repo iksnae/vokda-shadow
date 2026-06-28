@@ -3,22 +3,22 @@
 
   ],
   "confidence" : 0.98,
-  "failingTest" : "getTagDef('PROSODY') returns undefined instead of prosody definition",
+  "failingTest" : "getTagDef should match case-insensitively (to be added in tags.test.ts)",
   "fileMap" : [
     "apps\/web\/src\/lib\/ssml\/tags.ts — modify — case-insensitive comparison in getTagDef()",
-    "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — add case-insensitive lookup tests"
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — add uppercase and mixed-case test cases"
   ],
-  "fixApproach" : "In getTagDef(), normalize the input tagName to lowercase before comparing against the tag definitions (all stored lowercase). Change line 195 from `t.tag === tagName` to `t.tag === tagName.toLowerCase()`. This fixes isTagSupportedByProvider() automatically. Add 6 new test cases covering uppercase, mixed-case, lowercase, nonexistent, and cross-provider parity.",
+  "fixApproach" : "In getTagDef(), normalize both the lookup key and the stored tag name via .toLowerCase() before comparing. This makes all lookups case-insensitive in one place. Since isTagSupportedByProvider() delegates to getTagDef(), it inherits the fix for free. Existing lowercase lookups are unaffected since lowercasing an already-lowercase string is a no-op.",
   "openQuestions" : [
 
   ],
   "steps" : [
-    "Add case-insensitive lookup tests to apps\/web\/src\/lib\/ssml\/tags.test.ts (uppercase, mixed-case, lowercase, nonexistent, and isTagSupportedByProvider parity checks)",
-    "Change getTagDef() in apps\/web\/src\/lib\/ssml\/tags.ts to compare lowercased tag names (tagName.toLowerCase())",
-    "Run npm run test to verify all existing and new tests pass"
+    "In apps\/web\/src\/lib\/ssml\/tags.ts, modify getTagDef() to compare t.tag.toLowerCase() === tagName.toLowerCase() instead of t.tag === tagName",
+    "In apps\/web\/src\/lib\/ssml\/tags.test.ts, add test cases for uppercase ('PROSODY'), mixed-case ('Break'), and lowercase ('emphasis') lookups, plus a negative case ('nonexistent')",
+    "Run npm run test to confirm all tests pass"
   ],
   "stopsForOperatorApproval" : false,
-  "summary" : "Make getTagDef() case-insensitive by lowercasing input tagName before comparison",
+  "summary" : "Make getTagDef() case-insensitive so SSML tags like 'PROSODY' and 'Break' resolve correctly.",
   "uiStateNotes" : [
 
   ],
