@@ -7,5 +7,5 @@
   ],
   "priority" : "medium",
   "problemStatement" : "SSML tag lookup should be case-insensitive",
-  "userValue" : "Straightforward case-insensitive fix that matches SSML spec behavior — minimal, isolated, and fully covered by the proposed tests."
+  "userValue" : "The plan correctly addresses the SSML case-insensitivity requirement with a minimal, isolated change that makes all callers (getTagDef, isTagSupportedByProvider, validate.ts) behave correctly for any casing."
 }
