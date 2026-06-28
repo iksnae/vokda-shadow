@@ -1,0 +1,16 @@
+{
+  "commitRef" : "1058e39075b4a5024da07653cb4f1762d7171d77",
+  "committed" : true,
+  "correlationId" : "sweep-build-25",
+  "filesChanged" : [
+    "apps\/web\/static\/api\/v1\/voices.json"
+  ],
+  "implementCompleted" : false,
+  "receiptIds" : [
+    "rcpt-build-implement-sweep-build-25",
+    "rcpt-build-verify-sweep-build-25",
+    "rcpt-build-commit-sweep-build-25"
+  ],
+  "rounds" : 24,
+  "verifyPassed" : true
+}
