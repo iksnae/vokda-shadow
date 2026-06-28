@@ -1,0 +1,22 @@
+{
+  "committed" : true,
+  "confidence" : 0,
+  "correlationId" : "sweep-build-25",
+  "dimensions" : [
+
+  ],
+  "evidenceReceiptIds" : [
+    "rcpt-build-implement-sweep-build-25",
+    "rcpt-build-verify-sweep-build-25",
+    "rcpt-build-commit-sweep-build-25"
+  ],
+  "failureReasons" : [
+
+  ],
+  "filesReviewed" : [
+    "apps\/web\/static\/api\/v1\/voices.json"
+  ],
+  "outcome" : "blocked",
+  "rubricId" : "",
+  "rubricVersion" : 0
+}
