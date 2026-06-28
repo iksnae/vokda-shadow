@@ -15,5 +15,5 @@
   "risks" : [
 
   ],
-  "summary" : "Single-line change normalizing tagName to lowercase is correct and minimal; SSML spec mandates case-insensitive tag names; test coverage validates uppercase, mixed-case, and regression cases."
+  "summary" : "Minimal one-line `.toLowerCase()` normalization in `getTagDef` correctly implements case-insensitive SSML tag lookup without side effects; test coverage is comprehensive."
 }
