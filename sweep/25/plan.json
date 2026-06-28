@@ -1,0 +1,41 @@
+{
+  "apiOrSchemaChanges" : [
+    "\/providers.json: add top-level `version`, `generatedAt`, `contentHash` fields",
+    "\/data\/voices.json: add top-level `version`, `generatedAt`, `contentHash` fields",
+    "\/api\/v1\/voices: response shape adds top-level `version`, `generatedAt`, `contentHash` fields (backward-compatible addition)"
+  ],
+  "confidence" : 0.85,
+  "failingTest" : "N\/A — this is an additive feature request, not a bug fix; no pre-existing failing test",
+  "fileMap" : [
+    "docs\/PROVIDER_IDS.md — create — stability contract and deprecation policy for provider IDs",
+    "packages\/shared\/src\/catalog-version.ts — create — shared CatalogVersion type\/schema",
+    "apps\/web\/src\/lib\/data\/providers.json (or equivalent) — modify — add version stamp at build time",
+    "apps\/web\/static\/data\/voices.json (or generation script) — modify — add version stamp at build time",
+    "apps\/api\/src\/routes\/v1\/voices.ts (or equivalent) — modify — include version field in response",
+    "apps\/web\/src\/lib\/build-catalog.ts (or equivalent generation script) — modify — compute and inject version stamp",
+    "CHANGELOG.md — modify — record provider-id stability contract and version-stamp addition"
+  ],
+  "fixApproach" : "Purely additive: (1) author a PROVIDER_IDS.md stability contract in docs\/ listing canonical provider IDs with a deprecation policy (renames get a deprecation window, both old and new IDs served, announced in CHANGELOG). (2) Add a `version` field (semver-ish, e.g. ISO timestamp + content hash) to three JSON artifacts: static `\/providers.json`, static `\/data\/voices.json`, and the `\/api\/v1\/voices` endpoint — all stamped from a single build-time source of truth so consumers can cheaply detect drift. (3) Ensure the static voices.json and API voices endpoint derive from the same catalog source and carry the same version, confirming the bonus reconciliation concern.",
+  "openQuestions" : [
+    "Where exactly does the canonical provider-id list live today (which file generates \/providers.json)? Need to confirm the source-of-truth path.",
+    "Is \/data\/voices.json currently a hand-maintained static file or generated at build time from the same catalog source as \/api\/v1\/voices? The bonus reconciliation requirement hinges on this.",
+    "What versioning scheme do downstream consumers prefer — semver string, ISO timestamp, or content hash? The issue suggests `version` or `generatedAt` + content hash; need to pick one or combine all three.",
+    "Does the API have an existing response envelope that the version field should nest inside, or is it a flat JSON object today?"
+  ],
+  "steps" : [
+    "Create docs\/PROVIDER_IDS.md documenting the canonical provider-id list, stability guarantees, and deprecation policy (renames served dual-id for one release cycle, announced in CHANGELOG).",
+    "Define a shared version-stamp type\/schema in packages\/shared (e.g. `CatalogVersion` with `version`, `generatedAt`, `contentHash` fields).",
+    "Add a build-time script (or extend existing catalog generation) that computes a version stamp (ISO timestamp + SHA-256 content hash) for the canonical catalog data.",
+    "Stamp static \/providers.json with the version object alongside its existing provider list.",
+    "Stamp static \/data\/voices.json with the same version object (confirming it derives from the same catalog source as the API).",
+    "Stamp the \/api\/v1\/voices response with the same version object (add the field to the response shape).",
+    "Add a CHANGELOG.md entry (or section) recording this contract and any future provider-id changes per the deprecation policy.",
+    "Verify: `npm run build:web` succeeds with stamped artifacts; `npm run test` passes; manually spot-check the three JSON endpoints for presence and consistency of the version field."
+  ],
+  "stopsForOperatorApproval" : false,
+  "summary" : "Add provider-id stability contract docs + version stamps to catalog artifacts for drift detection",
+  "uiStateNotes" : [
+
+  ],
+  "verificationCommand" : "npm run test && npm run build:web"
+}
