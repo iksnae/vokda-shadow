@@ -1,0 +1,88 @@
+[
+  {
+    "nonGoals" : [
+      "Do NOT change any provider ID strings in source code",
+      "Do NOT modify apps\/web\/src\/lib\/providers.ts",
+      "Do NOT alter API endpoints or data files",
+      "Do NOT add provider registration logic"
+    ],
+    "objective" : "Author docs\/PROVIDER_IDS.md listing all 26 canonical provider IDs from apps\/web\/src\/lib\/providers.ts, declaring them stable, and specifying a deprecation policy (renames get a one-release dual-ID window, announced in CHANGELOG)",
+    "orderIndex" : 0,
+    "planText" : "Create docs\/PROVIDER_IDS.md with three sections: (1) Canonical Provider IDs — a markdown table of all 26 providers (id, name, type) sourced from the DEFAULT_PROVIDERS array in apps\/web\/src\/lib\/providers.ts, (2) Stability Guarantees — provider IDs are stable, will not be removed without a deprecation window, consumers can rely on them as opaque string keys, (3) Deprecation Policy — renames are served under both old and new IDs for one release cycle, all renames\/deprecations are announced in CHANGELOG.md before removal. Document is purely additive and requires no code changes.",
+    "riskClass" : "low",
+    "size" : "s",
+    "targetFiles" : [
+      "docs\/PROVIDER_IDS.md"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT change runtime behavior or API responses",
+      "Do NOT add new source files or packages",
+      "Do NOT modify apps\/web\/src\/lib\/types.ts",
+      "Do NOT change how types are consumed by the web app"
+    ],
+    "objective" : "Update packages\/sdk\/src\/types.ts: expand ProviderId union type from 9 cloud-only providers to all 26 canonical providers, and add generatedAt + optional contentHash fields to the VoiceCatalog type",
+    "orderIndex" : 1,
+    "planText" : "In packages\/sdk\/src\/types.ts: (a) Extend the existing ProviderId string union from the current 9 cloud providers to all 26 canonical IDs (aws-polly, azure-speech, gcp-tts, elevenlabs, openai, gemini-tts, deepgram, cartesia, lmnt, edge-tts, kokoro, qwen3-tts, dia, bark, kittentts, marvis, vibevoice, orpheus, soprano, pocket-tts, spark-tts, chatterbox, chatterbox-turbo, outetts, voxcpm, huggingface). (b) Add generatedAt (ISO 8601 string) and contentHash (optional SHA-256 hex string) fields to the VoiceCatalog interface so downstream consumers can detect drift. Verify with npm run test (which includes typecheck).",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "packages\/sdk\/src\/types.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT change voice entry data or provider data",
+      "Do NOT modify the Lambda endpoint (handled in next deliverable)",
+      "Do NOT alter artifact output paths or filenames",
+      "Do NOT change the check-catalog-fresh.mjs CI guard logic",
+      "Do NOT introduce new runtime dependencies beyond Node.js crypto"
+    ],
+    "objective" : "Add generatedAt and contentHash version stamp to apps\/web\/static\/data\/voices.json and extend scripts\/publish-catalog.mjs to compute and inject consistent stamps into all catalog artifacts",
+    "orderIndex" : 2,
+    "planText" : "In scripts\/publish-catalog.mjs: (a) After reading voices.json, compute a SHA-256 content hash of the canonical JSON-sorted voices array (use Node.js crypto.createHash('sha256')). (b) Set a shared CATALOG_VERSION object { generatedAt: ISO timestamp, contentHash: hex digest }. (c) When writing back to apps\/web\/static\/data\/voices.json (the --from-db path already writes; extend to also write-back in local mode), inject { generatedAt, contentHash } as top-level fields alongside the voices array. (d) Ensure the existing static API artifact generation (static\/api\/v1\/voices.json, static\/api\/v1\/providers.json) also carries these fields — replacing the current generatedAt-only stamp with the full CATALOG_VERSION object. (e) Verify with npm run build:web that stamped artifacts are valid JSON and with npm run test.",
+    "riskClass" : "medium",
+    "size" : "m",
+    "targetFiles" : [
+      "apps\/web\/static\/data\/voices.json",
+      "scripts\/publish-catalog.mjs"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT modify static files or publish-catalog.mjs",
+      "Do NOT change voice querying, filtering, or pagination logic",
+      "Do NOT alter the Lambda handler signature or route registration",
+      "Do NOT add contentHash to the Lambda response (generatedAt only, matching scope of static artifact parity)"
+    ],
+    "objective" : "Add generatedAt field to the live GET \/v1\/voices Lambda response in infra\/functions\/synthesis-router\/lib\/voices.mjs so the live endpoint matches the static \/api\/v1\/voices.json shape",
+    "orderIndex" : 3,
+    "planText" : "In infra\/functions\/synthesis-router\/lib\/voices.mjs: the queryVoices() function currently returns { voices, total, limit, offset }. Read the generatedAt stamp from the source-of-truth data\/voices.json (already loaded by the function) and include it in the return object as { voices, total, limit, offset, generatedAt }. If voices.json carries contentHash, it can be included too but the minimum is generatedAt. Ensure the synthesis-router route handler that calls queryVoices() passes the field through unchanged. This aligns the live API surface with the static \/api\/v1\/voices.json artifact. Verify with npm run test.",
+    "riskClass" : "medium",
+    "size" : "s",
+    "targetFiles" : [
+      "infra\/functions\/synthesis-router\/lib\/voices.mjs"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT modify any source code or data files",
+      "Do NOT change docs\/PROVIDER_IDS.md",
+      "Do NOT record historical changes prior to this issue"
+    ],
+    "objective" : "Create CHANGELOG.md recording the provider-id stability contract introduction and version-stamp addition for consumer drift detection",
+    "orderIndex" : 4,
+    "planText" : "Create CHANGELOG.md at the repo root with a single entry under today's date: (1) Added docs\/PROVIDER_IDS.md — stability contract for all 26 provider IDs with deprecation policy (old IDs served alongside new IDs for one release cycle, announced here). (2) Added version stamps (generatedAt + contentHash) to \/data\/voices.json, static \/api\/v1\/voices.json, static \/api\/v1\/providers.json, and the live \/v1\/voices endpoint — consumers can cheaply detect catalog drift by comparing stamps. Include a brief note that future provider-id changes will be logged here per the deprecation policy.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "CHANGELOG.md"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]
