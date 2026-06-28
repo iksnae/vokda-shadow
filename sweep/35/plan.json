@@ -3,25 +3,22 @@
 
   ],
   "confidence" : 0.98,
-  "failingTest" : "getTagDef does not match uppercase\/mixed-case SSML tag names",
+  "failingTest" : "getTagDef('PROSODY') returns undefined instead of the prosody definition (case-sensitive match bug)",
   "fileMap" : [
-    "apps\/web\/src\/lib\/ssml\/tags.ts — modify — change exact comparison to lowercase-normalized comparison in getTagDef",
-    "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — add uppercase and mixed-case test cases for getTagDef and isTagSupportedByProvider"
+    "apps\/web\/src\/lib\/ssml\/tags.ts — modify — normalize tag lookup to be case-insensitive in getTagDef()",
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — add uppercase, mixed-case, and case-insensitive isTagSupportedByProvider test cases"
   ],
-  "fixApproach" : "In getTagDef(), lowercase both the input tagName and the candidate t.tag before comparing. This is a one-line change: `tagName.toLowerCase() === t.tag.toLowerCase()`. The existing `isTagSupportedByProvider` function calls `getTagDef` internally and needs no changes. Add test cases in tags.test.ts for uppercase ('PROSODY') and mixed-case ('Break') lookups, plus a negative case ('nonexistent') to confirm undefined is still returned.",
+  "fixApproach" : "In getTagDef(), lowercase both the input tagName and each candidate t.tag before the equality check, so the comparison becomes case-insensitive. isTagSupportedByProvider() calls getTagDef() internally and benefits automatically. New tests cover uppercase, mixed-case, already-lowercase, nonexistent, and provider-support case-insensitivity paths.",
   "openQuestions" : [
 
   ],
   "steps" : [
-    "Open apps\/web\/src\/lib\/ssml\/tags.ts and locate getTagDef function",
-    "Change the comparison from `t.tag === tagName` to `t.tag.toLowerCase() === tagName.toLowerCase()`",
-    "Open apps\/web\/src\/lib\/ssml\/tags.test.ts",
-    "Add test cases: getTagDef('PROSODY') returns prosody def, getTagDef('Break') returns break def, getTagDef('emphasis') returns emphasis def, getTagDef('nonexistent') returns undefined",
-    "Add test cases: isTagSupportedByProvider with uppercase\/mixed-case tag names matches the lowercase equivalent",
-    "Run `npm run test` to verify all existing and new tests pass"
+    "Modify getTagDef() in apps\/web\/src\/lib\/ssml\/tags.ts: normalize both tagName and t.tag to lower-case before comparing (e.g. const key = tagName.toLowerCase(); return tagDefs.find(t => t.tag.toLowerCase() === key))",
+    "Add test cases to apps\/web\/src\/lib\/ssml\/tags.test.ts covering: uppercase lookup ('PROSODY'), mixed-case lookup ('Break'), already-lowercase lookup ('emphasis') returns correct def, nonexistent tag returns undefined, and isTagSupportedByProvider case-insensitivity",
+    "Run npm run test to verify all existing and new tests pass"
   ],
   "stopsForOperatorApproval" : false,
-  "summary" : "Make getTagDef() case-insensitive so SSML tag lookups work regardless of casing",
+  "summary" : "Make getTagDef() case-insensitive by lowercasing both sides of the tag name comparison",
   "uiStateNotes" : [
 
   ],
