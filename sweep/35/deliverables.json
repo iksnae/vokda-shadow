@@ -1,13 +1,14 @@
 [
   {
     "nonGoals" : [
-      "Do not change validate.ts KNOWN_TAGS behaviour (case-sensitive XML validation warnings are out of scope)",
-      "Do not modify any other file",
-      "Do not change the SSML_TAGS constant"
+      "Do not change any other function in tags.ts",
+      "Do not modify isTagSupportedByProvider() — it inherits the fix via delegation to getTagDef()",
+      "Do not rename, add, or remove tag definitions",
+      "Do not change the public API signature of getTagDef()"
     ],
-    "objective" : "Make getTagDef() case-insensitive so that uppercase, mixed-case, and lowercase tag lookups all resolve correctly. Add corresponding vitest cases covering uppercase, mixed-case, lowercase, nonexistent, and cross-provider parity.",
+    "objective" : "Make SSML tag lookup case-insensitive in getTagDef() by lowercasing both sides of the comparison, and add corresponding test coverage.",
     "orderIndex" : 0,
-    "planText" : "1. In apps\/web\/src\/lib\/ssml\/tags.ts, change line ~252 from `SSML_TAGS.find((t) => t.tag === tagName);` to `SSML_TAGS.find((t) => t.tag === tagName.toLowerCase());`.\n2. In apps\/web\/src\/lib\/ssml\/tags.test.ts, add six new test cases inside the existing `getTagDef` and `isTagSupportedByProvider` describe blocks:\n   - `getTagDef('PROSODY')` returns the prosody definition (`.tag === 'prosody'`)\n   - `getTagDef('Break')` returns the break definition (`.tag === 'break'`)\n   - `getTagDef('emphasis')` still returns the emphasis definition (lowercase parity)\n   - `getTagDef('EmPhAsIs')` returns the emphasis definition (mixed-case)\n   - `getTagDef('NONEXISTENT')` returns undefined (uppercase unknown)\n   - `isTagSupportedByProvider('PROSODY', 'aws-polly') === isTagSupportedByProvider('prosody', 'aws-polly')` (both true, cross-provider parity)\n3. Run `npm run test` — all existing and new tests must pass.",
+    "planText" : "In apps\/web\/src\/lib\/ssml\/tags.ts, modify getTagDef() to compare t.tag.toLowerCase() === tagName.toLowerCase() instead of t.tag === tagName. In apps\/web\/src\/lib\/ssml\/tags.test.ts, add test cases for uppercase ('PROSODY'), mixed-case ('Break'), and lowercase ('emphasis') lookups, plus a negative case ('nonexistent'). Run npm run test to confirm all tests pass.",
     "riskClass" : "low",
     "size" : "xs",
     "targetFiles" : [
