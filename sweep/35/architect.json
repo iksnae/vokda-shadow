@@ -1,0 +1,19 @@
+{
+  "components" : [
+
+  ],
+  "confidence" : 0.8,
+  "constraints" : [
+
+  ],
+  "contractChanges" : [
+
+  ],
+  "openQuestions" : [
+
+  ],
+  "risks" : [
+
+  ],
+  "summary" : "Minimal, correct change: lowercasing both sides of the comparison in getTagDef() aligns with SSML's case-insensitive semantics and cascades properly to isTagSupportedByProvider()."
+}
