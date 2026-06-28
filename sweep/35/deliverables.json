@@ -1,0 +1,20 @@
+[
+  {
+    "nonGoals" : [
+      "Do not change any other function in tags.ts",
+      "Do not modify SSML tag definitions themselves",
+      "Do not alter how tags are rendered or processed downstream",
+      "Do not add new SSML tags"
+    ],
+    "objective" : "Make getTagDef() case-insensitive so SSML tag lookups work regardless of casing, and add tests for uppercase, mixed-case, and lowercase inputs",
+    "orderIndex" : 0,
+    "planText" : "In apps\/web\/src\/lib\/ssml\/tags.ts, modify getTagDef() to compare tagName.toLowerCase() against t.tag.toLowerCase(). In apps\/web\/src\/lib\/ssml\/tags.test.ts, add test cases for uppercase ('PROSODY'), mixed-case ('Break'), lowercase ('emphasis'), and a negative case ('nonexistent'). Run npm run test to verify all tests pass.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/ssml\/tags.ts",
+      "apps\/web\/src\/lib\/ssml\/tags.test.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]
