@@ -2,24 +2,26 @@
   "apiOrSchemaChanges" : [
 
   ],
-  "confidence" : 0.99,
-  "failingTest" : "`getTagDef('PROSODY')` returns `undefined` instead of the prosody definition; `getTagDef('Break')` returns `undefined` instead of the break definition (case-sensitive comparison bug).",
+  "confidence" : 0.98,
+  "failingTest" : "getTagDef does not match uppercase\/mixed-case SSML tag names",
   "fileMap" : [
-    "apps\/web\/src\/lib\/ssml\/tags.ts — modify — make getTagDef() comparison case-insensitive",
-    "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — add uppercase\/mixed-case lookup test cases"
+    "apps\/web\/src\/lib\/ssml\/tags.ts — modify — change exact comparison to lowercase-normalized comparison in getTagDef",
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts — modify — add uppercase and mixed-case test cases for getTagDef and isTagSupportedByProvider"
   ],
-  "fixApproach" : "In `getTagDef()` (tags.ts), normalize both the lookup key and each tag's name to lowercase before comparing: change `t.tag === tagName` to `t.tag.toLowerCase() === tagName.toLowerCase()`. This automatically fixes `isTagSupportedByProvider()` since it calls `getTagDef()`. Then add test cases in tags.test.ts covering uppercase (`'PROSODY'`), mixed-case (`'Break'`), already-lowercase (`'emphasis'`), and a nonexistent tag (`'nonexistent'`) to confirm the fix.",
+  "fixApproach" : "In getTagDef(), lowercase both the input tagName and the candidate t.tag before comparing. This is a one-line change: `tagName.toLowerCase() === t.tag.toLowerCase()`. The existing `isTagSupportedByProvider` function calls `getTagDef` internally and needs no changes. Add test cases in tags.test.ts for uppercase ('PROSODY') and mixed-case ('Break') lookups, plus a negative case ('nonexistent') to confirm undefined is still returned.",
   "openQuestions" : [
 
   ],
   "steps" : [
-    "Open `apps\/web\/src\/lib\/ssml\/tags.ts` and locate the `getTagDef` function.",
-    "Change the tag-name comparison from `t.tag === tagName` to `t.tag.toLowerCase() === tagName.toLowerCase()`.",
-    "Open `apps\/web\/src\/lib\/ssml\/tags.test.ts` and add test cases: `getTagDef('PROSODY')` returns prosody def, `getTagDef('Break')` returns break def, `getTagDef('emphasis')` (already lowercase) still returns emphasis def, `getTagDef('nonexistent')` returns undefined, and `isTagSupportedByProvider('PROSODY', provider)` equals `isTagSupportedByProvider('prosody', provider)`.",
-    "Run `npm run test` and confirm all tests pass."
+    "Open apps\/web\/src\/lib\/ssml\/tags.ts and locate getTagDef function",
+    "Change the comparison from `t.tag === tagName` to `t.tag.toLowerCase() === tagName.toLowerCase()`",
+    "Open apps\/web\/src\/lib\/ssml\/tags.test.ts",
+    "Add test cases: getTagDef('PROSODY') returns prosody def, getTagDef('Break') returns break def, getTagDef('emphasis') returns emphasis def, getTagDef('nonexistent') returns undefined",
+    "Add test cases: isTagSupportedByProvider with uppercase\/mixed-case tag names matches the lowercase equivalent",
+    "Run `npm run test` to verify all existing and new tests pass"
   ],
   "stopsForOperatorApproval" : false,
-  "summary" : "Make `getTagDef()` case-insensitive so SSML tag lookups work regardless of casing (e.g. `PROSODY`, `Break`, `prosody` all resolve).",
+  "summary" : "Make getTagDef() case-insensitive so SSML tag lookups work regardless of casing",
   "uiStateNotes" : [
 
   ],
