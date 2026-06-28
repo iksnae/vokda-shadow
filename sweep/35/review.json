@@ -1,28 +1,9 @@
 {
   "committed" : true,
-  "confidence" : 0.95,
+  "confidence" : 0,
   "correlationId" : "sweep-build-35",
   "dimensions" : [
-    {
-      "dimension" : "implements-the-approved-plan",
-      "evidence" : "The plan explicitly requires modifying getTagDef() in apps\/web\/src\/lib\/ssml\/tags.ts to use case-insensitive comparison (e.g., lowercasing both sides). Only apps\/web\/src\/lib\/ssml\/tags.test.ts was changed; tags.ts was never touched. The core fix is entirely absent.",
-      "score" : 0
-    },
-    {
-      "dimension" : "minimal-and-scoped",
-      "evidence" : "The test file change is within the planned files, but the required change to tags.ts is missing. Additionally, the test diff introduces a helper block for isTagSupportedByProvider rather than the direct getTagDef tests the plan's acceptance criteria call for (getTagDef('PROSODY'), getTagDef('Break')). Incomplete scope.",
-      "score" : 0.3
-    },
-    {
-      "dimension" : "no-fake-or-test-gaming",
-      "evidence" : "The new test only asserts that isTagSupportedByProvider('PROSODY', ...) equals isTagSupportedByProvider('prosody', ...). If the provider does not support those tags, both calls return false regardless of whether getTagDef resolves the tag, so the test passes without the fix. This is a false green. No direct getTagDef test for case-insensitive resolution was added.",
-      "score" : 0
-    },
-    {
-      "dimension" : "safe-to-advance",
-      "evidence" : "Cannot advance: the actual defect (case-sensitive tag lookup in getTagDef) is completely unfixed. The build passes green only because the new test is inadequate. Advancing would leave the bug in production code.",
-      "score" : 0
-    }
+
   ],
   "evidenceReceiptIds" : [
     "rcpt-build-implement-sweep-build-35",
@@ -30,15 +11,12 @@
     "rcpt-build-commit-sweep-build-35"
   ],
   "failureReasons" : [
-    "Core fix not implemented: apps\/web\/src\/lib\/ssml\/tags.ts was never modified to make getTagDef() case-insensitive, which is the entire point of the approved plan.",
-    "Inadequate test: the new test only compares isTagSupportedByProvider() return values which can coincidentally match (both false) when the provider doesn't support the tag, producing a false green.",
-    "Missing acceptance tests: no direct tests for getTagDef('PROSODY'), getTagDef('Break'), or mixed-case lookups returning correct tag definitions as specified in the plan.",
-    "aggregate score 0.075 below threshold 0.600"
+
   ],
   "filesReviewed" : [
-    "apps\/web\/src\/lib\/ssml\/tags.test.ts"
+
   ],
-  "outcome" : "needsFix",
-  "rubricId" : "build-review",
-  "rubricVersion" : 1
+  "outcome" : "blocked",
+  "rubricId" : "",
+  "rubricVersion" : 0
 }
