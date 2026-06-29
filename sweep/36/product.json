@@ -7,5 +7,5 @@
   ],
   "priority" : "medium",
   "problemStatement" : "Add getAttrDef(tagName, attrName) lookup to the SSML tag registry",
-  "userValue" : "Clean, minimal helper that removes boilerplate from call sites and stays consistent with existing case-insensitive lookup conventions."
+  "userValue" : "Adds a straightforward case-insensitive getAttrDef lookup consistent with existing getTagDef; covers all acceptance criteria with four focused test cases."
 }
