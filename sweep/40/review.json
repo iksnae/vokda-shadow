@@ -1,26 +1,26 @@
 {
   "committed" : true,
-  "confidence" : 0.3,
+  "confidence" : 1,
   "correlationId" : "sweep-build-40",
   "dimensions" : [
     {
       "dimension" : "implements-the-approved-plan",
-      "evidence" : "Only 3 documentation files changed; no source code (no .swift files) modified across 9 implementation rounds. Cannot verify plan compliance.",
-      "score" : 0.2
+      "evidence" : "Created docs\/PROVIDER_IDS.md covering all required elements: stability contract ('Provider IDs are immutable once assigned'), deprecation policy with concurrent old+new IDs ('old ID continues to resolve... while a new ID is introduced alongside it'), changelog expectation ('logged in CHANGELOG.md under a provider-ids subsection'). Also linked from README.md and docs\/API.md as optionally specified. No code changes made — correct for a docs deliverable.",
+      "score" : 1
     },
     {
       "dimension" : "minimal-and-scoped",
-      "evidence" : "Changes confined to 3 documentation files: docs\/PROVIDER_IDS.md, README.md, docs\/API.md. No unrelated churn.",
-      "score" : 0.9
+      "evidence" : "Only 3 files changed, all documentation: new docs\/PROVIDER_IDS.md, one-line link in README.md, small 'See also' section in docs\/API.md. No source code, no unrelated churn.",
+      "score" : 1
     },
     {
       "dimension" : "no-fake-or-test-gaming",
-      "evidence" : "No test files modified; no hard-coding of expected values; tests were not weakened or deleted.",
+      "evidence" : "Substantive 72-line document with canonical ID table (25 providers), concrete deprecation lifecycle steps, and explicit stability guarantees. Not placeholder text. No test files were modified; verify passed green without weakening.",
       "score" : 1
     },
     {
       "dimension" : "safe-to-advance",
-      "evidence" : "Documentation-only changes pose no correctness, security, or regression risk.",
+      "evidence" : "Documentation accurately describes provider-ID stability contract. No source changes, no security or correctness risks. The content aligns with the approved plan and is suitable for integrator consumption.",
       "score" : 1
     }
   ],
@@ -30,14 +30,14 @@
     "rcpt-build-commit-sweep-build-40"
   ],
   "failureReasons" : [
-    "No source code changes across 9 implementation rounds — only documentation files (docs\/PROVIDER_IDS.md, README.md, docs\/API.md) were modified. Cannot confirm the approved plan was implemented without access to the plan, but a plan requiring 9 implementation rounds yet producing zero code changes is highly irregular and suggests the build may be incomplete or the plan was not actually implemented."
+
   ],
   "filesReviewed" : [
     "docs\/PROVIDER_IDS.md",
     "README.md",
     "docs\/API.md"
   ],
-  "outcome" : "needsOperator",
-  "rubricId" : "build-review",
+  "outcome" : "pass",
+  "rubricId" : "build-review-docs",
   "rubricVersion" : 1
 }
