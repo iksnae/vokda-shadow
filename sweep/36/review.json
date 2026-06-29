@@ -1,28 +1,9 @@
 {
   "committed" : true,
-  "confidence" : 0.9,
+  "confidence" : 0,
   "correlationId" : "sweep-build-36",
   "dimensions" : [
-    {
-      "dimension" : "implements-the-approved-plan",
-      "evidence" : "Adds getAttrDef function exported from tags.ts with case-insensitive tag and attribute lookup, plus 4 tests covering happy path, case-insensitivity, and both unknown-tag and unknown-attribute edge cases. Clean, coherent addition consistent with what a plan for this utility would specify.",
-      "score" : 0.95
-    },
-    {
-      "dimension" : "minimal-and-scoped",
-      "evidence" : "Only 2 files changed: tags.ts (5-line function) and tags.test.ts (23-line test addition + 1 import). No reformatting, no unrelated churn, no collateral edits.",
-      "score" : 1
-    },
-    {
-      "dimension" : "no-fake-or-test-gaming",
-      "evidence" : "All 4 tests exercise real logic: known attribute lookup, case-insensitive match via comparison of upper\/lower results, unknown tag returns undefined, known-tag\/unknown-attr returns undefined. No tests were deleted or weakened; no hard-coded expected values.",
-      "score" : 1
-    },
-    {
-      "dimension" : "safe-to-advance",
-      "evidence" : "Function is trivial: delegates to existing getTagDef for tag lookup, then Array.find with toLowerCase() for attribute matching. Returns undefined on miss, consistent with codebase patterns. No security, correctness, or regression risk.",
-      "score" : 1
-    }
+
   ],
   "evidenceReceiptIds" : [
     "rcpt-build-implement-sweep-build-36",
@@ -30,13 +11,12 @@
     "rcpt-build-commit-sweep-build-36"
   ],
   "failureReasons" : [
-
+    "No files were changed."
   ],
   "filesReviewed" : [
-    "apps\/web\/src\/lib\/ssml\/tags.test.ts",
-    "apps\/web\/src\/lib\/ssml\/tags.ts"
+
   ],
-  "outcome" : "pass",
-  "rubricId" : "build-review",
-  "rubricVersion" : 1
+  "outcome" : "blocked",
+  "rubricId" : "",
+  "rubricVersion" : 0
 }
