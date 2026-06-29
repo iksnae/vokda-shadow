@@ -1,0 +1,18 @@
+{
+  "commitRef" : "1185b7980b7916571bf070b7ea507d0041b42eb0",
+  "committed" : true,
+  "correlationId" : "sweep-build-40",
+  "filesChanged" : [
+    "docs\/PROVIDER_IDS.md",
+    "README.md",
+    "docs\/API.md"
+  ],
+  "implementCompleted" : true,
+  "receiptIds" : [
+    "rcpt-build-implement-sweep-build-40",
+    "rcpt-build-verify-sweep-build-40",
+    "rcpt-build-commit-sweep-build-40"
+  ],
+  "rounds" : 9,
+  "verifyPassed" : true
+}
