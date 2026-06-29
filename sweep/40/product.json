@@ -1,0 +1,11 @@
+{
+  "acceptanceCriteria" : [
+
+  ],
+  "outOfScope" : [
+
+  ],
+  "priority" : "medium",
+  "problemStatement" : "Documented provider-id stability & deprecation policy (docs\/PROVIDER_IDS.md)",
+  "userValue" : "Polish the nearly-complete docs\/PROVIDER_IDS.md for integrator readability and add discoverability cross-links from README and API docs — minimal, high-signal work that closes the last ~10%."
+}
