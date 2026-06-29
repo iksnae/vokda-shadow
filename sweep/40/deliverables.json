@@ -1,0 +1,54 @@
+[
+  {
+    "nonGoals" : [
+      "No new files",
+      "No code or SDK type changes",
+      "No changes to provider catalog JSON",
+      "No changes to CHANGELOG.md",
+      "No version-stamp changes"
+    ],
+    "objective" : "Polish docs\/PROVIDER_IDS.md — remove stale huggingface row, fix provider count 26→25, and refine preamble\/tone for integrator readability.",
+    "orderIndex" : 0,
+    "planText" : "In docs\/PROVIDER_IDS.md: (1) Remove the huggingface row from the provider table (the canonical providers.json has 25 providers, not 26). (2) Update the count on line 5 from 26 to 25. (3) Polish the preamble\/opening paragraph(s) to be crisp, confidence-inspiring, and tuned for an integrator audience — keep it non-normative but authoritative. The deprecation policy, changelog expectation, and stability contract sections below the table need no changes; they are already solid.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "docs\/PROVIDER_IDS.md"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "No changes to docs\/PROVIDER_IDS.md",
+      "No new files",
+      "No code changes",
+      "No README restructuring beyond adding the link"
+    ],
+    "objective" : "Add cross-link to docs\/PROVIDER_IDS.md in README.md Product Docs list.",
+    "orderIndex" : 1,
+    "planText" : "In README.md, locate the 'Product Docs' section (which already lists PRD.md, docs\/ARCHITECTURE.md, docs\/ROADMAP.md, docs\/API.md, docs\/SCHEMA.md, docs\/AMPLIFY_BACKEND_GEN2.md). Add a new bullet: 'Provider ID stability & deprecation policy: docs\/PROVIDER_IDS.md'. Ensure the link renders correctly in GitHub-flavored Markdown.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "README.md"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "No changes to docs\/PROVIDER_IDS.md",
+      "No new files",
+      "No code changes",
+      "No restructuring of docs\/API.md beyond adding the pointer"
+    ],
+    "objective" : "Add cross-link to docs\/PROVIDER_IDS.md in docs\/API.md as a related-docs pointer.",
+    "orderIndex" : 2,
+    "planText" : "In docs\/API.md, add a 'See also' or related-docs bullet\/link pointing to docs\/PROVIDER_IDS.md for the provider-id stability contract and deprecation policy. Place it near the provider-ids section or at the bottom of the file as a related-docs pointer. Ensure the link resolves relative to docs\/ (e.g., `[Provider ID stability & deprecation policy](.\/PROVIDER_IDS.md)`).",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "docs\/API.md"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]
