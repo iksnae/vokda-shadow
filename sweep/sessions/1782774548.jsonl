@@ -1,2 +1,4 @@
 {"detail":"working new","at":804467352.384386,"phase":"new","outcome":{"running":{}},"ticketId":"36","id":"36-1"}
 {"outcome":{"advanced":{"to":"product"}},"detail":"advanced to product","id":"36-2","ticketId":"36","phase":"new","at":804467361.061841}
+{"outcome":{"running":{}},"id":"36-3","phase":"product","detail":"working product","at":804467395.879897,"ticketId":"36"}
+{"outcome":{"advanced":{"to":"planning"}},"detail":"advanced to planning","id":"36-4","ticketId":"36","phase":"product","at":804467407.356859}
