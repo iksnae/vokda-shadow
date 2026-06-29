@@ -1,0 +1,28 @@
+{
+  "apiOrSchemaChanges" : [
+
+  ],
+  "confidence" : 0.95,
+  "failingTest" : "N\/A — documentation-only change, no failing test",
+  "fileMap" : [
+    "docs\/PROVIDER_IDS.md — modify — polish preamble and tone",
+    "README.md — modify — add cross-link to docs\/PROVIDER_IDS.md",
+    "docs\/API.md — modify — add cross-link to docs\/PROVIDER_IDS.md"
+  ],
+  "fixApproach" : "The existing docs\/PROVIDER_IDS.md is ~90% complete. The remaining work is: (1) polish the preamble and tone for an integrator audience — make it crisp, non-normative, and confidence-inspiring; (2) add cross-links from README.md (in the documentation index or relevant section) and docs\/API.md (in the provider-ids section or as a see-also) pointing to docs\/PROVIDER_IDS.md. No code changes, no new files.",
+  "openQuestions" : [
+
+  ],
+  "steps" : [
+    "Review existing docs\/PROVIDER_IDS.md and refine preamble\/tone for integrator-readability",
+    "Add a cross-link to docs\/PROVIDER_IDS.md in README.md (e.g. in a documentation index or 'For Integrators' section)",
+    "Add a cross-link to docs\/PROVIDER_IDS.md in docs\/API.md (e.g. in the provider-ids section or as a related-docs pointer)",
+    "Run npm run build:web to verify no static-build breakage from link changes"
+  ],
+  "stopsForOperatorApproval" : false,
+  "summary" : "Polish docs\/PROVIDER_IDS.md preamble\/tone and cross-link from README.md and docs\/API.md",
+  "uiStateNotes" : [
+
+  ],
+  "verificationCommand" : "npm run build:web"
+}
