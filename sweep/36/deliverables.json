@@ -1,14 +1,14 @@
 [
   {
     "nonGoals" : [
-      "No test changes in this deliverable",
-      "No UI wiring or consumer changes",
-      "No changes to SsmlAttrDef, SsmlTagDef, SSML_TAGS, or any other module",
-      "No caching or performance optimizations"
+      "No changes to getTagDef",
+      "No caching layer",
+      "No callers wired up (UI integration is out of scope)",
+      "No new types or schema changes"
     ],
-    "objective" : "Add exported getAttrDef(tagName, attrName) function to tags.ts",
+    "objective" : "Implement and export getAttrDef(tagName, attrName) — case-insensitive attribute lookup on the existing SSML tag registry.",
     "orderIndex" : 0,
-    "planText" : "In apps\/web\/src\/lib\/ssml\/tags.ts, add the exported function getAttrDef(tagName: string, attrName: string): SsmlAttrDef | undefined after the existing getTagDef function. The implementation: call getTagDef(tagName); if falsy, return undefined; otherwise return def.attributes.find((a) => a.name.toLowerCase() === attrName.toLowerCase()). No other changes to the file. Ensure the function is exported alongside the existing exports.",
+    "planText" : "Add the exported function `getAttrDef(tagName: string, attrName: string): SsmlAttrDef | undefined` to tags.ts after `getTagDef`. Delegate to `getTagDef` for case-insensitive tag resolution; on miss return `undefined`. On hit, do `def.attributes.find((a) => a.name.toLowerCase() === attrName.toLowerCase())` and return the result (the matched `SsmlAttrDef` or `undefined`). No caching, no other modules touched.",
     "riskClass" : "low",
     "size" : "xs",
     "targetFiles" : [
@@ -18,14 +18,14 @@
   },
   {
     "nonGoals" : [
-      "No changes to tags.ts in this deliverable",
-      "No new helper functions or exports",
-      "No changes to existing test blocks",
-      "No UI or integration tests"
+      "No new test file",
+      "No integration\/e2e tests",
+      "No UI or component tests",
+      "No changes to existing test cases outside the new describe block"
     ],
-    "objective" : "Add four vitest test cases for getAttrDef in tags.test.ts",
+    "objective" : "Add four vitest test cases covering known attribute, case-insensitive match, unknown tag, and known-tag\/unknown-attribute for getAttrDef.",
     "orderIndex" : 1,
-    "planText" : "In apps\/web\/src\/lib\/ssml\/tags.test.ts: (a) add getAttrDef to the existing import from '.\/tags', (b) inside the top-level describe('SSML Tag Registry', ...), add a new nested describe('getAttrDef', ...) block with four it-cases: (1) known attribute (tag 'break', attr 'time') returns the correct SsmlAttrDef with name 'time', (2) case-insensitive match (tag 'BREAK', attr 'TIME') returns the same result as the exact-case lookup, (3) unknown tag (e.g. 'nonexistent') returns undefined, (4) known tag ('break') with unknown attribute (e.g. 'nonexistent') returns undefined.",
+    "planText" : "In tags.test.ts, add `getAttrDef` to the existing import from `.\/tags`. Inside the top-level `describe('SSML Tag Registry', ...)`, add a nested `describe('getAttrDef', ...)` with four `it` cases: (a) `getAttrDef('break', 'time')` returns the correct `SsmlAttrDef` with `name: 'time'`; (b) `getAttrDef('BREAK', 'TIME')` returns the same result as the exact-case call; (c) `getAttrDef('nonexistent', 'time')` returns `undefined`; (d) `getAttrDef('break', 'nonexistent')` returns `undefined`. Use vitest assertions (`expect`). No other describe blocks or files modified.",
     "riskClass" : "low",
     "size" : "xs",
     "targetFiles" : [
