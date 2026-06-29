@@ -1,0 +1,29 @@
+ISSUE issue:iksnae/vokda#36: Add getAttrDef(tagName, attrName) lookup to the SSML tag registry
+
+## Context
+
+The SSML tag registry (`apps/web/src/lib/ssml/tags.ts`) exposes case-insensitive lookups for tags — `getTagDef(tagName)` and `isTagSupportedByProvider(tagName, providerId)`. The toolbar and validator also need to resolve a **single attribute definition** for a tag (e.g. the `time` attribute of `break`, or `interpret-as` of `say-as`) without hand-scanning `def.attributes` at each call site.
+
+There is no such helper today.
+
+## Task
+
+Add an exported function to `apps/web/src/lib/ssml/tags.ts`:
+
+```ts
+export function getAttrDef(tagName: string, attrName: string): SsmlAttrDef | undefined
+```
+
+It should resolve the tag (case-insensitive — reuse `getTagDef`), then find that tag's attribute by name (case-insensitive), returning the matching `SsmlAttrDef` or `undefined`.
+
+## Acceptance criteria
+
+- [ ] `getAttrDef` is exported from `apps/web/src/lib/ssml/tags.ts`.
+- [ ] Case-insensitive on **both** the tag name and the attribute name (consistent with `getTagDef`).
+- [ ] Returns the matching `SsmlAttrDef`; returns `undefined` when the tag is unknown **or** the tag has no such attribute.
+- [ ] Unit tests added to `apps/web/src/lib/ssml/tags.test.ts`, in the existing `vitest` style, covering: a known attribute (e.g. `break`/`time`), a case-insensitive match (e.g. `BREAK`/`TIME`), an unknown tag, and a known tag with an unknown attribute.
+- [ ] `npm run test` passes.
+
+## Out of scope
+
+UI wiring; no changes to existing tag definitions or other modules. Keep the change to `tags.ts` + `tags.test.ts`.
