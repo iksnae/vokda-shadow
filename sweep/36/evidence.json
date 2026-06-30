@@ -11,6 +11,6 @@
     "rcpt-build-verify-sweep-build-36",
     "rcpt-build-commit-sweep-build-36"
   ],
-  "rounds" : 24,
+  "rounds" : 23,
   "verifyPassed" : false
 }
