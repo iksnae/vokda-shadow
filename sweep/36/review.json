@@ -1,7 +1,7 @@
 {
   "checklist" : [
     {
-      "detail" : "the implementor finished in 24 round(s)",
+      "detail" : "the implementor finished in 23 round(s)",
       "id" : "build-completed",
       "label" : "Build completed",
       "result" : {
