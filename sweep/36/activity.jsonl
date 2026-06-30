@@ -433,3 +433,5 @@
 {"id":"36-10","ticketId":"36","phase":"fix-review","outcome":{"parked":{}},"detail":"parked — nothing to do yet","at":804514018.438738}
 {"at":804514065.106226,"id":"36-11","detail":"working fix-review","ticketId":"36","outcome":{"running":{}},"phase":"fix-review"}
 {"outcome":{"parked":{}},"ticketId":"36","phase":"fix-review","id":"36-12","detail":"parked — nothing to do yet","at":804514068.155334}
+{"at":804514116.826269,"ticketId":"36","phase":"fix-review","detail":"working fix-review","outcome":{"running":{}},"id":"36-13"}
+{"outcome":{"blocked":{}},"id":"36-14","phase":"fix-review","detail":"blocked — parked with no progress, escalated for a human","at":804514125.733378,"ticketId":"36"}
