@@ -1,17 +1,17 @@
 {
   "checklist" : [
     {
-      "detail" : "ran all 24 round(s) without finishing — deliverable left partial",
+      "detail" : "the implementor finished in 23 round(s)",
       "id" : "build-completed",
       "label" : "Build completed",
       "result" : {
-        "fail" : {
+        "pass" : {
 
         }
       }
     },
     {
-      "detail" : "1 file(s) changed: apps\/web\/.svelte-kit\/tsconfig.json",
+      "detail" : "2 file(s) changed: apps\/web\/src\/lib\/ssml\/tags.ts, apps\/web\/src\/lib\/ssml\/tags.test.ts",
       "id" : "change-present",
       "label" : "Change is visible",
       "result" : {
@@ -25,7 +25,7 @@
       "id" : "on-target",
       "label" : "Changed the deliverable's target files",
       "result" : {
-        "fail" : {
+        "pass" : {
 
         }
       }
@@ -103,13 +103,13 @@
     "rcpt-build-commit-sweep-build-36"
   ],
   "failureReasons" : [
-    "Implementation did not complete — the build used all 24 round(s) without finishing. COMPLETE the deliverable; if it is large, finish the highest-priority target file first rather than leaving every file partial.",
-    "None of the changed files are deliverable target files — changed: apps\/web\/.svelte-kit\/tsconfig.json; expected to change at least one of: apps\/web\/src\/lib\/ssml\/tags.test.ts, apps\/web\/src\/lib\/ssml\/tags.ts."
+    "Verification failed — the project test command was RED."
   ],
   "filesReviewed" : [
-    "apps\/web\/.svelte-kit\/tsconfig.json"
+    "apps\/web\/src\/lib\/ssml\/tags.ts",
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts"
   ],
-  "outcome" : "blocked",
+  "outcome" : "needsFix",
   "rubricId" : "",
   "rubricVersion" : 0
 }
