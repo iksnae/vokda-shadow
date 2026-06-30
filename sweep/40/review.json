@@ -51,17 +51,17 @@
       }
     },
     {
-      "detail" : "Created docs\/PROVIDER_IDS.md with: stable-contract language ('you can hard-code providerId values...We treat a breaking ID change the same way we'd treat a breaking API change'), a deprecation cycle that requires both old and new IDs served concurrently for at least one minor release cycle, a CHANGELOG expectation ('Every addition, deprecation, or removal is recorded in the CHANGELOG under a Providers heading'), readable integrator-focused prose, and links from both README.md and docs\/API.md. No code changes — correct for a docs deliverable.",
+      "detail" : "Created docs\/PROVIDER_IDS.md with canonical provider ID table, stability contract (immutable, never reassigned), deprecation policy (5-step process), changelog expectation. Linked from README.md and docs\/API.md. No code changes. Minor deviation: acceptance criteria called for deprecation policy covering 'renames with both old and new IDs served concurrently'; the delivered doc takes an 'immutable IDs' stance and frames deprecation around provider unavailability rather than renames. The mechanism (deprecated ID stays valid on read paths, new ID can be added) effectively supports the same outcome.",
       "id" : "implements-the-approved-plan",
       "label" : "Implements the approved plan",
       "result" : {
         "score" : {
-          "_0" : 1
+          "_0" : 0.9
         }
       }
     },
     {
-      "detail" : "Exactly three documentation-only files changed: docs\/PROVIDER_IDS.md (new, the primary deliverable), README.md (one-line link addition), docs\/API.md (one-line 'See also' link). No other files touched; no source code edits.",
+      "detail" : "Only 3 documentation files changed: new docs\/PROVIDER_IDS.md, one-line link addition in README.md, small 'See Also' section in docs\/API.md. No source code changes, no unrelated churn. Exactly matches the plan's scope.",
       "id" : "minimal-and-scoped",
       "label" : "Minimal and scoped",
       "result" : {
@@ -71,7 +71,7 @@
       }
     },
     {
-      "detail" : "The new file is 85 lines of substantive, real documentation including a canonical provider-IDs table, a three-phase deprecation cycle, a stability contract section, and actionable integrator guidance. No placeholder\/empty text. No tests were modified — verification passed on docs-only changes.",
+      "detail" : "Documentation is substantive (~63 lines, well-structured with 5 sections including a full provider table). No placeholder\/empty text. No tests were modified — verify command passed on a docs-only diff. Real, actionable content for integrators.",
       "id" : "no-fake-or-test-gaming",
       "label" : "No test-gaming \/ faking",
       "result" : {
@@ -81,7 +81,7 @@
       }
     },
     {
-      "detail" : "Documentation is accurate and describes a reasonable, well-scoped stability contract and deprecation policy. No misleading claims, no security-sensitive information exposed, no correctness risks. Safe to surface in a PR.",
+      "detail" : "Documentation is a policy statement, not executable code. No security or correctness risk. Links are valid relative paths. Deprecation behavior described (400 with provider_deprecated error code) is reasonable. No misleading or dangerous claims.",
       "id" : "safe-to-advance",
       "label" : "Safe to advance",
       "result" : {
@@ -96,33 +96,33 @@
       "label" : "Judge confidence",
       "result" : {
         "score" : {
-          "_0" : 1
+          "_0" : 0.92
         }
       }
     }
   ],
   "committed" : true,
-  "confidence" : 1,
+  "confidence" : 0.92,
   "correlationId" : "sweep-build-40",
   "dimensions" : [
     {
       "dimension" : "implements-the-approved-plan",
-      "evidence" : "Created docs\/PROVIDER_IDS.md with: stable-contract language ('you can hard-code providerId values...We treat a breaking ID change the same way we'd treat a breaking API change'), a deprecation cycle that requires both old and new IDs served concurrently for at least one minor release cycle, a CHANGELOG expectation ('Every addition, deprecation, or removal is recorded in the CHANGELOG under a Providers heading'), readable integrator-focused prose, and links from both README.md and docs\/API.md. No code changes — correct for a docs deliverable.",
-      "score" : 1
+      "evidence" : "Created docs\/PROVIDER_IDS.md with canonical provider ID table, stability contract (immutable, never reassigned), deprecation policy (5-step process), changelog expectation. Linked from README.md and docs\/API.md. No code changes. Minor deviation: acceptance criteria called for deprecation policy covering 'renames with both old and new IDs served concurrently'; the delivered doc takes an 'immutable IDs' stance and frames deprecation around provider unavailability rather than renames. The mechanism (deprecated ID stays valid on read paths, new ID can be added) effectively supports the same outcome.",
+      "score" : 0.9
     },
     {
       "dimension" : "minimal-and-scoped",
-      "evidence" : "Exactly three documentation-only files changed: docs\/PROVIDER_IDS.md (new, the primary deliverable), README.md (one-line link addition), docs\/API.md (one-line 'See also' link). No other files touched; no source code edits.",
+      "evidence" : "Only 3 documentation files changed: new docs\/PROVIDER_IDS.md, one-line link addition in README.md, small 'See Also' section in docs\/API.md. No source code changes, no unrelated churn. Exactly matches the plan's scope.",
       "score" : 1
     },
     {
       "dimension" : "no-fake-or-test-gaming",
-      "evidence" : "The new file is 85 lines of substantive, real documentation including a canonical provider-IDs table, a three-phase deprecation cycle, a stability contract section, and actionable integrator guidance. No placeholder\/empty text. No tests were modified — verification passed on docs-only changes.",
+      "evidence" : "Documentation is substantive (~63 lines, well-structured with 5 sections including a full provider table). No placeholder\/empty text. No tests were modified — verify command passed on a docs-only diff. Real, actionable content for integrators.",
       "score" : 1
     },
     {
       "dimension" : "safe-to-advance",
-      "evidence" : "Documentation is accurate and describes a reasonable, well-scoped stability contract and deprecation policy. No misleading claims, no security-sensitive information exposed, no correctness risks. Safe to surface in a PR.",
+      "evidence" : "Documentation is a policy statement, not executable code. No security or correctness risk. Links are valid relative paths. Deprecation behavior described (400 with provider_deprecated error code) is reasonable. No misleading or dangerous claims.",
       "score" : 1
     }
   ],
