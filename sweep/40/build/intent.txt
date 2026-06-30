@@ -1,0 +1,25 @@
+ISSUE issue:iksnae/vokda#40: Documented provider-id stability & deprecation policy (docs/PROVIDER_IDS.md)
+
+## What
+
+Create `docs/PROVIDER_IDS.md` — a documented stability contract for Vokda's provider identifiers.
+
+## Why
+
+Downstream consumers (e.g. Khaos Machine) map their canonical provider IDs to Vokda's dialect. Without a documented policy, renames or new providers can silently break dispatch with no signal. A stability guarantee turns defensive diffing into a precise, low-noise drift signal.
+
+## Acceptance criteria
+
+1. **`docs/PROVIDER_IDS.md` exists** and documents:
+   - That provider IDs are a **stable contract** — consumers can depend on them
+   - A **deprecation policy**: renames go through a deprecation window with **both** old and new IDs served concurrently
+   - A **changelog expectation**: provider-id changes are announced
+
+2. **Readable, non-normative**, aimed at integrators building against the API
+
+3. Optionally linked from the main README or API docs index
+
+## Out of scope
+
+- Version stamps on catalog artifacts (`generatedAt` already exists on `providers.json`)
+- Any code changes
