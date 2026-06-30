@@ -1,0 +1,11 @@
+{
+  "acceptanceCriteria" : [
+
+  ],
+  "outOfScope" : [
+
+  ],
+  "priority" : "medium",
+  "problemStatement" : "docs: add a glossary of core API terms (docs\/GLOSSARY.md)",
+  "userValue" : "The plan correctly delivers all acceptance criteria: creates docs\/GLOSSARY.md with all 9 term definitions in integrator-facing prose, cross-links where specified, and adds a README pointer — a clean, no-code docs addition."
+}
