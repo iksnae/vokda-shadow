@@ -1,7 +1,7 @@
 {
   "checklist" : [
     {
-      "detail" : "the implementor finished in 6 round(s)",
+      "detail" : "the implementor finished in 19 round(s)",
       "id" : "build-completed",
       "label" : "Build completed",
       "result" : {
@@ -31,7 +31,7 @@
       }
     },
     {
-      "detail" : "tags.ts exports getAttrDef (line ~\"export function getAttrDef\") which delegates to getTagDef and does case-insensitive attribute lookup; tags.test.ts has a describe('getAttrDef') block with 4 tests covering exact match, case-insensitive, unknown tag, and unknown attribute.",
+      "detail" : "tags.ts lines 158-162: exported function getAttrDef(tagName, attrName) is present, delegates to getTagDef (case-insensitive) then finds attribute via a.name.toLowerCase() === attrName.toLowerCase(), returns SsmlAttrDef | undefined.",
       "id" : "acceptance-already-met",
       "label" : "Acceptance already met",
       "result" : {
@@ -41,7 +41,7 @@
       }
     },
     {
-      "detail" : "Specific functions: getAttrDef in tags.ts; test block describe('getAttrDef') in tags.test.ts with specific test cases like 'known attribute (tag break, attr time)', 'case-insensitive match (tag BREAK, attr TIME)', etc.",
+      "detail" : "tags.ts:158-162 — the exact getAttrDef implementation; tags.test.ts:16 imports getAttrDef; tags.test.ts lines ~92-115 contain the describe('getAttrDef') block with 4 targeted tests.",
       "id" : "citation-concrete",
       "label" : "Citation is concrete",
       "result" : {
@@ -51,7 +51,7 @@
       }
     },
     {
-      "detail" : "All 5 acceptance criteria are satisfied: getAttrDef exported, case-insensitive on both tag and attr name, returns SsmlAttrDef|undefined, tests cover all specified cases, and npm run test passes (green). No partial overlap — the function and tests are complete.",
+      "detail" : "All 5 acceptance criteria met: (1) getAttrDef exported from tags.ts:158, (2) case-insensitive on both tag and attr via .toLowerCase(), (3) returns undefined for unknown tag or unknown attr, (4) 4 unit tests in tags.test.ts covering all cases, (5) npm run test passes green.",
       "id" : "no-remaining-work",
       "label" : "No remaining work",
       "result" : {
@@ -77,17 +77,17 @@
   "dimensions" : [
     {
       "dimension" : "acceptance-already-met",
-      "evidence" : "tags.ts exports getAttrDef (line ~\"export function getAttrDef\") which delegates to getTagDef and does case-insensitive attribute lookup; tags.test.ts has a describe('getAttrDef') block with 4 tests covering exact match, case-insensitive, unknown tag, and unknown attribute.",
+      "evidence" : "tags.ts lines 158-162: exported function getAttrDef(tagName, attrName) is present, delegates to getTagDef (case-insensitive) then finds attribute via a.name.toLowerCase() === attrName.toLowerCase(), returns SsmlAttrDef | undefined.",
       "score" : 1
     },
     {
       "dimension" : "citation-concrete",
-      "evidence" : "Specific functions: getAttrDef in tags.ts; test block describe('getAttrDef') in tags.test.ts with specific test cases like 'known attribute (tag break, attr time)', 'case-insensitive match (tag BREAK, attr TIME)', etc.",
+      "evidence" : "tags.ts:158-162 — the exact getAttrDef implementation; tags.test.ts:16 imports getAttrDef; tags.test.ts lines ~92-115 contain the describe('getAttrDef') block with 4 targeted tests.",
       "score" : 1
     },
     {
       "dimension" : "no-remaining-work",
-      "evidence" : "All 5 acceptance criteria are satisfied: getAttrDef exported, case-insensitive on both tag and attr name, returns SsmlAttrDef|undefined, tests cover all specified cases, and npm run test passes (green). No partial overlap — the function and tests are complete.",
+      "evidence" : "All 5 acceptance criteria met: (1) getAttrDef exported from tags.ts:158, (2) case-insensitive on both tag and attr via .toLowerCase(), (3) returns undefined for unknown tag or unknown attr, (4) 4 unit tests in tags.test.ts covering all cases, (5) npm run test passes green.",
       "score" : 1
     }
   ],
