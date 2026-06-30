@@ -1,4 +1,96 @@
 {
+  "checklist" : [
+    {
+      "detail" : "the implementor finished in 10 round(s)",
+      "id" : "build-completed",
+      "label" : "Build completed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "no files were changed",
+      "id" : "change-present",
+      "label" : "Change is visible",
+      "result" : {
+        "fail" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "expected ≥1 of: apps\/web\/src\/lib\/ssml\/tags.test.ts, apps\/web\/src\/lib\/ssml\/tags.ts",
+      "id" : "on-target",
+      "label" : "Changed the deliverable's target files",
+      "result" : {
+        "fail" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "the project verify command was GREEN",
+      "id" : "verify-green",
+      "label" : "Verification passed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "committed locally on the build branch",
+      "id" : "committed",
+      "label" : "Work committed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "judge not run — the deterministic gate decided the outcome",
+      "id" : "implements-the-approved-plan",
+      "label" : "Implements the approved plan",
+      "result" : {
+        "skipped" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "judge not run — the deterministic gate decided the outcome",
+      "id" : "minimal-and-scoped",
+      "label" : "Minimal and scoped",
+      "result" : {
+        "skipped" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "judge not run — the deterministic gate decided the outcome",
+      "id" : "no-fake-or-test-gaming",
+      "label" : "No test-gaming \/ faking",
+      "result" : {
+        "skipped" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "judge not run — the deterministic gate decided the outcome",
+      "id" : "safe-to-advance",
+      "label" : "Safe to advance",
+      "result" : {
+        "skipped" : {
+
+        }
+      }
+    }
+  ],
   "committed" : true,
   "confidence" : 0,
   "correlationId" : "sweep-build-36",
