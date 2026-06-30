@@ -2,3 +2,5 @@
 {"id":"36-2","phase":"ready","ticketId":"36","outcome":{"parked":{}},"detail":"parked at ready — no build evidence produced this cycle (transient infra miss) — retrying","at":804528060.008679}
 {"phase":"ready","id":"36-3","outcome":{"running":{}},"ticketId":"36","detail":"working ready","at":804528096.735307}
 {"id":"36-4","phase":"ready","outcome":{"parked":{}},"detail":"parked at ready — no build evidence produced this cycle (transient infra miss) — retrying","at":804528133.392015,"ticketId":"36"}
+{"ticketId":"36","outcome":{"running":{}},"phase":"ready","at":804528185.36845,"detail":"working ready","id":"36-5"}
+{"phase":"ready","id":"36-6","outcome":{"parked":{}},"ticketId":"36","detail":"parked at ready — no build evidence produced this cycle (transient infra miss) — retrying","at":804528187.941026}
