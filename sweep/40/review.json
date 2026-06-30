@@ -1,7 +1,7 @@
 {
   "checklist" : [
     {
-      "detail" : "the implementor finished in 19 round(s)",
+      "detail" : "the implementor finished in 20 round(s)",
       "id" : "build-completed",
       "label" : "Build completed",
       "result" : {
@@ -51,17 +51,17 @@
       }
     },
     {
-      "detail" : "docs\/PROVIDER_IDS.md created with all three acceptance criteria: stable-contract declaration ('we treat them as a public API contract'), staged deprecation policy with grace period serving old IDs, changelog expectations section. Linked from README.md and docs\/API.md. No source code changed — correct for a docs-only deliverable.",
+      "detail" : "Covers all three acceptance criteria: stable contract documented, deprecation policy with staged process (announcement, grace period, removal), and changelog expectation. Minor divergence: plan specified renames with both old\/new IDs served concurrently, while doc takes immutable-ID approach (IDs never change on rebrand). This still achieves the stability guarantee and is a defensible design choice, but doesn't precisely match the plan's stated mechanism.",
       "id" : "implements-the-approved-plan",
       "label" : "Implements the approved plan",
       "result" : {
         "score" : {
-          "_0" : 1
+          "_0" : 0.9
         }
       }
     },
     {
-      "detail" : "Only 3 documentation files touched: new docs\/PROVIDER_IDS.md (77 lines of substantive content), plus one-line link additions to README.md and docs\/API.md. No unrelated churn, no source edits, exactly the files the plan called for.",
+      "detail" : "Only three files changed: the new docs\/PROVIDER_IDS.md, a single link line in README.md, and a small 'See also' section in docs\/API.md. All are documentation-only edits exactly as the plan called for. No source code touched, no unrelated churn.",
       "id" : "minimal-and-scoped",
       "label" : "Minimal and scoped",
       "result" : {
@@ -71,7 +71,7 @@
       }
     },
     {
-      "detail" : "Documentation is real, substantive prose: active provider table (25 entries), four-stage deprecation policy with headers and HTTP status codes, changelog expectations with migration notes, scope caveats. No tests modified; verify command is a genuine pre-existing pass, not gamed.",
+      "detail" : "Content is substantive: 62+ lines with a provider ID table (10+ entries), explicit stability guarantees, a 3-stage deprecation\/removal policy with timeline, changelog expectations, and a FAQ section. No placeholder text, no tests weakened or deleted to force green.",
       "id" : "no-fake-or-test-gaming",
       "label" : "No test-gaming \/ faking",
       "result" : {
@@ -81,7 +81,7 @@
       }
     },
     {
-      "detail" : "Content is accurate, well-structured, and non-normative as specified. Provider IDs are realistic. Deprecation stages are clearly bounded with timelines. Scope section explicitly disclaims voice-level stability and pricing, avoiding overpromise. No security or correctness risk — safe to advance to operator PR.",
+      "detail" : "Documentation is accurate and poses no correctness or security risk. It sensibly describes immutable provider IDs, a 90-day deprecation window, and changelog notification expectations. No misleading or dangerous claims.",
       "id" : "safe-to-advance",
       "label" : "Safe to advance",
       "result" : {
@@ -107,22 +107,22 @@
   "dimensions" : [
     {
       "dimension" : "implements-the-approved-plan",
-      "evidence" : "docs\/PROVIDER_IDS.md created with all three acceptance criteria: stable-contract declaration ('we treat them as a public API contract'), staged deprecation policy with grace period serving old IDs, changelog expectations section. Linked from README.md and docs\/API.md. No source code changed — correct for a docs-only deliverable.",
-      "score" : 1
+      "evidence" : "Covers all three acceptance criteria: stable contract documented, deprecation policy with staged process (announcement, grace period, removal), and changelog expectation. Minor divergence: plan specified renames with both old\/new IDs served concurrently, while doc takes immutable-ID approach (IDs never change on rebrand). This still achieves the stability guarantee and is a defensible design choice, but doesn't precisely match the plan's stated mechanism.",
+      "score" : 0.9
     },
     {
       "dimension" : "minimal-and-scoped",
-      "evidence" : "Only 3 documentation files touched: new docs\/PROVIDER_IDS.md (77 lines of substantive content), plus one-line link additions to README.md and docs\/API.md. No unrelated churn, no source edits, exactly the files the plan called for.",
+      "evidence" : "Only three files changed: the new docs\/PROVIDER_IDS.md, a single link line in README.md, and a small 'See also' section in docs\/API.md. All are documentation-only edits exactly as the plan called for. No source code touched, no unrelated churn.",
       "score" : 1
     },
     {
       "dimension" : "no-fake-or-test-gaming",
-      "evidence" : "Documentation is real, substantive prose: active provider table (25 entries), four-stage deprecation policy with headers and HTTP status codes, changelog expectations with migration notes, scope caveats. No tests modified; verify command is a genuine pre-existing pass, not gamed.",
+      "evidence" : "Content is substantive: 62+ lines with a provider ID table (10+ entries), explicit stability guarantees, a 3-stage deprecation\/removal policy with timeline, changelog expectations, and a FAQ section. No placeholder text, no tests weakened or deleted to force green.",
       "score" : 1
     },
     {
       "dimension" : "safe-to-advance",
-      "evidence" : "Content is accurate, well-structured, and non-normative as specified. Provider IDs are realistic. Deprecation stages are clearly bounded with timelines. Scope section explicitly disclaims voice-level stability and pricing, avoiding overpromise. No security or correctness risk — safe to advance to operator PR.",
+      "evidence" : "Documentation is accurate and poses no correctness or security risk. It sensibly describes immutable provider IDs, a 90-day deprecation window, and changelog notification expectations. No misleading or dangerous claims.",
       "score" : 1
     }
   ],
