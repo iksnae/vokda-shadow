@@ -1,0 +1,2 @@
+{"id":"36-1","phase":"ready","outcome":{"running":{}},"detail":"working ready","at":804528058.650746,"ticketId":"36"}
+{"id":"36-2","phase":"ready","ticketId":"36","outcome":{"parked":{}},"detail":"parked at ready — no build evidence produced this cycle (transient infra miss) — retrying","at":804528060.008679}

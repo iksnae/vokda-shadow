@@ -435,3 +435,5 @@
 {"outcome":{"parked":{}},"ticketId":"36","phase":"fix-review","id":"36-12","detail":"parked — nothing to do yet","at":804514068.155334}
 {"at":804514116.826269,"ticketId":"36","phase":"fix-review","detail":"working fix-review","outcome":{"running":{}},"id":"36-13"}
 {"outcome":{"blocked":{}},"id":"36-14","phase":"fix-review","detail":"blocked — parked with no progress, escalated for a human","at":804514125.733378,"ticketId":"36"}
+{"id":"36-1","phase":"ready","outcome":{"running":{}},"detail":"working ready","at":804528058.650746,"ticketId":"36"}
+{"id":"36-2","phase":"ready","ticketId":"36","outcome":{"parked":{}},"detail":"parked at ready — no build evidence produced this cycle (transient infra miss) — retrying","at":804528060.008679}
