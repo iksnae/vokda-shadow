@@ -1,26 +1,128 @@
 {
+  "checklist" : [
+    {
+      "detail" : "the implementor finished in 24 round(s)",
+      "id" : "build-completed",
+      "label" : "Build completed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "3 file(s) changed: docs\/PROVIDER_IDS.md, README.md, docs\/API.md",
+      "id" : "change-present",
+      "label" : "Change is visible",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "expected ≥1 of: README.md, docs\/API.md, docs\/PROVIDER_IDS.md",
+      "id" : "on-target",
+      "label" : "Changed the deliverable's target files",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "the project verify command was GREEN",
+      "id" : "verify-green",
+      "label" : "Verification passed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "committed locally on the build branch",
+      "id" : "committed",
+      "label" : "Work committed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "Created docs\/PROVIDER_IDS.md with: stable-contract language ('you can hard-code providerId values...We treat a breaking ID change the same way we'd treat a breaking API change'), a deprecation cycle that requires both old and new IDs served concurrently for at least one minor release cycle, a CHANGELOG expectation ('Every addition, deprecation, or removal is recorded in the CHANGELOG under a Providers heading'), readable integrator-focused prose, and links from both README.md and docs\/API.md. No code changes — correct for a docs deliverable.",
+      "id" : "implements-the-approved-plan",
+      "label" : "Implements the approved plan",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    },
+    {
+      "detail" : "Exactly three documentation-only files changed: docs\/PROVIDER_IDS.md (new, the primary deliverable), README.md (one-line link addition), docs\/API.md (one-line 'See also' link). No other files touched; no source code edits.",
+      "id" : "minimal-and-scoped",
+      "label" : "Minimal and scoped",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    },
+    {
+      "detail" : "The new file is 85 lines of substantive, real documentation including a canonical provider-IDs table, a three-phase deprecation cycle, a stability contract section, and actionable integrator guidance. No placeholder\/empty text. No tests were modified — verification passed on docs-only changes.",
+      "id" : "no-fake-or-test-gaming",
+      "label" : "No test-gaming \/ faking",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    },
+    {
+      "detail" : "Documentation is accurate and describes a reasonable, well-scoped stability contract and deprecation policy. No misleading claims, no security-sensitive information exposed, no correctness risks. Safe to surface in a PR.",
+      "id" : "safe-to-advance",
+      "label" : "Safe to advance",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    },
+    {
+      "detail" : "at or above the confidence bar",
+      "id" : "judge-confidence",
+      "label" : "Judge confidence",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    }
+  ],
   "committed" : true,
   "confidence" : 1,
   "correlationId" : "sweep-build-40",
   "dimensions" : [
     {
       "dimension" : "implements-the-approved-plan",
-      "evidence" : "Created docs\/PROVIDER_IDS.md covering all required elements: stability contract ('Provider IDs are immutable once assigned'), deprecation policy with concurrent old+new IDs ('old ID continues to resolve... while a new ID is introduced alongside it'), changelog expectation ('logged in CHANGELOG.md under a provider-ids subsection'). Also linked from README.md and docs\/API.md as optionally specified. No code changes made — correct for a docs deliverable.",
+      "evidence" : "Created docs\/PROVIDER_IDS.md with: stable-contract language ('you can hard-code providerId values...We treat a breaking ID change the same way we'd treat a breaking API change'), a deprecation cycle that requires both old and new IDs served concurrently for at least one minor release cycle, a CHANGELOG expectation ('Every addition, deprecation, or removal is recorded in the CHANGELOG under a Providers heading'), readable integrator-focused prose, and links from both README.md and docs\/API.md. No code changes — correct for a docs deliverable.",
       "score" : 1
     },
     {
       "dimension" : "minimal-and-scoped",
-      "evidence" : "Only 3 files changed, all documentation: new docs\/PROVIDER_IDS.md, one-line link in README.md, small 'See also' section in docs\/API.md. No source code, no unrelated churn.",
+      "evidence" : "Exactly three documentation-only files changed: docs\/PROVIDER_IDS.md (new, the primary deliverable), README.md (one-line link addition), docs\/API.md (one-line 'See also' link). No other files touched; no source code edits.",
       "score" : 1
     },
     {
       "dimension" : "no-fake-or-test-gaming",
-      "evidence" : "Substantive 72-line document with canonical ID table (25 providers), concrete deprecation lifecycle steps, and explicit stability guarantees. Not placeholder text. No test files were modified; verify passed green without weakening.",
+      "evidence" : "The new file is 85 lines of substantive, real documentation including a canonical provider-IDs table, a three-phase deprecation cycle, a stability contract section, and actionable integrator guidance. No placeholder\/empty text. No tests were modified — verification passed on docs-only changes.",
       "score" : 1
     },
     {
       "dimension" : "safe-to-advance",
-      "evidence" : "Documentation accurately describes provider-ID stability contract. No source changes, no security or correctness risks. The content aligns with the approved plan and is suitable for integrator consumption.",
+      "evidence" : "Documentation is accurate and describes a reasonable, well-scoped stability contract and deprecation policy. No misleading claims, no security-sensitive information exposed, no correctness risks. Safe to surface in a PR.",
       "score" : 1
     }
   ],
