@@ -1,21 +1,21 @@
 {
   "checklist" : [
     {
-      "detail" : "the implementor finished in 23 round(s)",
+      "detail" : "ran all 24 round(s) without finishing — deliverable left partial",
       "id" : "build-completed",
       "label" : "Build completed",
       "result" : {
-        "pass" : {
+        "fail" : {
 
         }
       }
     },
     {
-      "detail" : "2 file(s) changed: apps\/web\/src\/lib\/ssml\/tags.ts, apps\/web\/src\/lib\/ssml\/tags.test.ts",
+      "detail" : "no files were changed",
       "id" : "change-present",
       "label" : "Change is visible",
       "result" : {
-        "pass" : {
+        "fail" : {
 
         }
       }
@@ -25,7 +25,7 @@
       "id" : "on-target",
       "label" : "Changed the deliverable's target files",
       "result" : {
-        "pass" : {
+        "fail" : {
 
         }
       }
@@ -103,13 +103,13 @@
     "rcpt-build-commit-sweep-build-36"
   ],
   "failureReasons" : [
-    "Verification failed — the project test command was RED."
+    "Implementation did not complete — the build used all 24 round(s) without finishing. COMPLETE the deliverable; if it is large, finish the highest-priority target file first rather than leaving every file partial.",
+    "No files were changed."
   ],
   "filesReviewed" : [
-    "apps\/web\/src\/lib\/ssml\/tags.ts",
-    "apps\/web\/src\/lib\/ssml\/tags.test.ts"
+
   ],
-  "outcome" : "needsFix",
+  "outcome" : "blocked",
   "rubricId" : "",
   "rubricVersion" : 0
 }
