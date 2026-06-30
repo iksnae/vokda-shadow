@@ -1,7 +1,7 @@
 {
   "checklist" : [
     {
-      "detail" : "the implementor finished in 10 round(s)",
+      "detail" : "the implementor finished in 17 round(s)",
       "id" : "build-completed",
       "label" : "Build completed",
       "result" : {
@@ -11,11 +11,11 @@
       }
     },
     {
-      "detail" : "no files were changed",
+      "detail" : "2 file(s) changed: apps\/web\/src\/lib\/ssml\/tags.ts, apps\/web\/src\/lib\/ssml\/tags.test.ts",
       "id" : "change-present",
       "label" : "Change is visible",
       "result" : {
-        "fail" : {
+        "pass" : {
 
         }
       }
@@ -25,27 +25,27 @@
       "id" : "on-target",
       "label" : "Changed the deliverable's target files",
       "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "the project verify command was RED",
+      "id" : "verify-green",
+      "label" : "Verification passed",
+      "result" : {
         "fail" : {
 
         }
       }
     },
     {
-      "detail" : "the project verify command was GREEN",
-      "id" : "verify-green",
-      "label" : "Verification passed",
-      "result" : {
-        "pass" : {
-
-        }
-      }
-    },
-    {
-      "detail" : "committed locally on the build branch",
+      "detail" : "verification result was not committed",
       "id" : "committed",
       "label" : "Work committed",
       "result" : {
-        "pass" : {
+        "fail" : {
 
         }
       }
@@ -91,7 +91,7 @@
       }
     }
   ],
-  "committed" : true,
+  "committed" : false,
   "confidence" : 0,
   "correlationId" : "sweep-build-36",
   "dimensions" : [
@@ -103,12 +103,13 @@
     "rcpt-build-commit-sweep-build-36"
   ],
   "failureReasons" : [
-    "No files were changed."
+    "Verification failed — the project test command was RED."
   ],
   "filesReviewed" : [
-
+    "apps\/web\/src\/lib\/ssml\/tags.ts",
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts"
   ],
-  "outcome" : "blocked",
+  "outcome" : "needsFix",
   "rubricId" : "",
   "rubricVersion" : 0
 }
