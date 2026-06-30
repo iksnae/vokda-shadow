@@ -1,0 +1,3 @@
+{"at":804555286.078405,"id":"42-1","ticketId":"42","phase":"new","outcome":{"running":{}},"detail":"working new"}
+{"stat":{"promptTokens":932,"completionTokens":388,"modelId":"deepseek:deepseek-v4-pro","costUSD":0.00067844,"latencyMs":5306},"outcome":{"note":{}},"ticketId":"42","phase":"intake","id":"42-2","at":804555291.390244,"detail":"deepseek-v4-pro · 1320 tok · 5306ms · $0.0007"}
+{"detail":"advanced to planning","phase":"new","ticketId":"42","outcome":{"advanced":{"to":"planning"}},"id":"42-3","at":804555311.474765}
