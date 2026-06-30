@@ -79,3 +79,6 @@
 {"outcome":{"advanced":{"to":"planning"}},"phase":"product","detail":"advanced to planning","ticketId":"42","at":804555670.789632,"id":"42-79"}
 {"ticketId":"42","outcome":{"running":{}},"id":"42-80","at":804555704.618172,"detail":"working planning","phase":"planning"}
 {"at":804555707.016192,"id":"42-81","ticketId":"42","phase":"planning","outcome":{"advanced":{"to":"architect"}},"detail":"advanced to architect"}
+{"at":804555742.382347,"id":"42-82","ticketId":"42","phase":"architect","outcome":{"running":{}},"detail":"working architect"}
+{"ticketId":"42","phase":"architect","stat":{"promptTokens":795,"modelId":"deepseek:deepseek-v4-pro","completionTokens":379,"latencyMs":4499,"costUSD":0.00063155},"at":804555746.88511,"outcome":{"note":{}},"detail":"deepseek-v4-pro · 1174 tok · 4499ms · $0.0006","id":"42-83"}
+{"at":804555780.073174,"phase":"architect","id":"42-84","ticketId":"42","outcome":{"advanced":{"to":"planning"}},"detail":"advanced to planning"}
