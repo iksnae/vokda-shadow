@@ -1,7 +1,7 @@
 {
   "checklist" : [
     {
-      "detail" : "the implementor finished in 21 round(s)",
+      "detail" : "the implementor finished in 19 round(s)",
       "id" : "build-completed",
       "label" : "Build completed",
       "result" : {
@@ -51,17 +51,17 @@
       }
     },
     {
-      "detail" : "The doc covers stability contract, deprecation policy (announcement, grace period, sunset), and changelog expectation. However, the acceptance criteria explicitly requires documenting that 'renames go through a deprecation window with both old and new IDs served concurrently'. The doc separately notes that adding new providers is non-breaking and that deprecated IDs continue to work during the grace period, but it never explicitly states that during a rename both old and new IDs are served concurrently. An integrator must infer this from the combination of the two separate statements rather than seeing it called out directly.",
+      "detail" : "docs\/PROVIDER_IDS.md created with all three acceptance criteria: stable-contract declaration ('we treat them as a public API contract'), staged deprecation policy with grace period serving old IDs, changelog expectations section. Linked from README.md and docs\/API.md. No source code changed — correct for a docs-only deliverable.",
       "id" : "implements-the-approved-plan",
       "label" : "Implements the approved plan",
       "result" : {
         "score" : {
-          "_0" : 0.85
+          "_0" : 1
         }
       }
     },
     {
-      "detail" : "Only 3 documentation files changed: docs\/PROVIDER_IDS.md (new), README.md (one bullet link added), docs\/API.md ('See also' section added). No source code touched, no unrelated churn.",
+      "detail" : "Only 3 documentation files touched: new docs\/PROVIDER_IDS.md (77 lines of substantive content), plus one-line link additions to README.md and docs\/API.md. No unrelated churn, no source edits, exactly the files the plan called for.",
       "id" : "minimal-and-scoped",
       "label" : "Minimal and scoped",
       "result" : {
@@ -71,7 +71,7 @@
       }
     },
     {
-      "detail" : "The new PROVIDER_IDS.md is 55 lines of substantive, real documentation covering the full provider table, stability contract, deprecation policy, and integrator expectations. No tests were altered or removed. No placeholder content.",
+      "detail" : "Documentation is real, substantive prose: active provider table (25 entries), four-stage deprecation policy with headers and HTTP status codes, changelog expectations with migration notes, scope caveats. No tests modified; verify command is a genuine pre-existing pass, not gamed.",
       "id" : "no-fake-or-test-gaming",
       "label" : "No test-gaming \/ faking",
       "result" : {
@@ -81,7 +81,7 @@
       }
     },
     {
-      "detail" : "The documentation is accurate: it lists 25 real providers with correct IDs, the stability guarantees are reasonable and match project norms, the deprecation policy is well-structured, and no security or correctness risks are introduced. Safe to advance to PR.",
+      "detail" : "Content is accurate, well-structured, and non-normative as specified. Provider IDs are realistic. Deprecation stages are clearly bounded with timelines. Scope section explicitly disclaims voice-level stability and pricing, avoiding overpromise. No security or correctness risk — safe to advance to operator PR.",
       "id" : "safe-to-advance",
       "label" : "Safe to advance",
       "result" : {
@@ -96,33 +96,33 @@
       "label" : "Judge confidence",
       "result" : {
         "score" : {
-          "_0" : 0.9
+          "_0" : 0.95
         }
       }
     }
   ],
   "committed" : true,
-  "confidence" : 0.9,
+  "confidence" : 0.95,
   "correlationId" : "sweep-build-40",
   "dimensions" : [
     {
       "dimension" : "implements-the-approved-plan",
-      "evidence" : "The doc covers stability contract, deprecation policy (announcement, grace period, sunset), and changelog expectation. However, the acceptance criteria explicitly requires documenting that 'renames go through a deprecation window with both old and new IDs served concurrently'. The doc separately notes that adding new providers is non-breaking and that deprecated IDs continue to work during the grace period, but it never explicitly states that during a rename both old and new IDs are served concurrently. An integrator must infer this from the combination of the two separate statements rather than seeing it called out directly.",
-      "score" : 0.85
+      "evidence" : "docs\/PROVIDER_IDS.md created with all three acceptance criteria: stable-contract declaration ('we treat them as a public API contract'), staged deprecation policy with grace period serving old IDs, changelog expectations section. Linked from README.md and docs\/API.md. No source code changed — correct for a docs-only deliverable.",
+      "score" : 1
     },
     {
       "dimension" : "minimal-and-scoped",
-      "evidence" : "Only 3 documentation files changed: docs\/PROVIDER_IDS.md (new), README.md (one bullet link added), docs\/API.md ('See also' section added). No source code touched, no unrelated churn.",
+      "evidence" : "Only 3 documentation files touched: new docs\/PROVIDER_IDS.md (77 lines of substantive content), plus one-line link additions to README.md and docs\/API.md. No unrelated churn, no source edits, exactly the files the plan called for.",
       "score" : 1
     },
     {
       "dimension" : "no-fake-or-test-gaming",
-      "evidence" : "The new PROVIDER_IDS.md is 55 lines of substantive, real documentation covering the full provider table, stability contract, deprecation policy, and integrator expectations. No tests were altered or removed. No placeholder content.",
+      "evidence" : "Documentation is real, substantive prose: active provider table (25 entries), four-stage deprecation policy with headers and HTTP status codes, changelog expectations with migration notes, scope caveats. No tests modified; verify command is a genuine pre-existing pass, not gamed.",
       "score" : 1
     },
     {
       "dimension" : "safe-to-advance",
-      "evidence" : "The documentation is accurate: it lists 25 real providers with correct IDs, the stability guarantees are reasonable and match project norms, the deprecation policy is well-structured, and no security or correctness risks are introduced. Safe to advance to PR.",
+      "evidence" : "Content is accurate, well-structured, and non-normative as specified. Provider IDs are realistic. Deprecation stages are clearly bounded with timelines. Scope section explicitly disclaims voice-level stability and pricing, avoiding overpromise. No security or correctness risk — safe to advance to operator PR.",
       "score" : 1
     }
   ],
