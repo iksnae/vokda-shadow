@@ -1,0 +1,26 @@
+{
+  "apiOrSchemaChanges" : [
+
+  ],
+  "confidence" : 0.98,
+  "failingTest" : "",
+  "fileMap" : [
+    "docs\/GLOSSARY.md — create — new integrator-facing glossary of 9 core API\/domain terms",
+    "README.md — modify — add one-line pointer to GLOSSARY.md in the Product Docs list"
+  ],
+  "fixApproach" : "Create a new `docs\/GLOSSARY.md` file with 9 integrator-facing term definitions (Provider, Provider ID, Voice, Dialect, Catalog, Capability, Job, SSML tag, Steering), each 1–3 sentences of descriptive prose. Cross-link Provider ID to `docs\/PROVIDER_IDS.md` (forward-looking) and SSML tag to `docs\/DISCOVERY.md#ssml-editor`. Then add a one-line pointer to the glossary in `README.md`'s Product Docs list. No code changes.",
+  "openQuestions" : [
+
+  ],
+  "steps" : [
+    "Create `docs\/GLOSSARY.md` with a title (`# Glossary`), a brief preamble, and 1–3 sentence definitions for each of the 9 terms: Provider, Provider ID, Voice, Dialect, Catalog, Capability, Job, SSML tag, Steering. Use cross-links: Provider ID → `PROVIDER_IDS.md`, SSML tag → `DISCOVERY.md#ssml-editor`.",
+    "Edit `README.md`: add `- Glossary: `docs\/GLOSSARY.md`` to the Product Docs bullet list.",
+    "Run `npm run test` (and optionally `npm run build:web`) to confirm no breakage from the docs-only addition."
+  ],
+  "stopsForOperatorApproval" : false,
+  "summary" : "Add `docs\/GLOSSARY.md` with 9 core term definitions and link it from README.md",
+  "uiStateNotes" : [
+
+  ],
+  "verificationCommand" : "npm run test"
+}
