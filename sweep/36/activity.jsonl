@@ -441,3 +441,5 @@
 {"id":"36-4","phase":"ready","outcome":{"parked":{}},"detail":"parked at ready — no build evidence produced this cycle (transient infra miss) — retrying","at":804528133.392015,"ticketId":"36"}
 {"ticketId":"36","outcome":{"running":{}},"phase":"ready","at":804528185.36845,"detail":"working ready","id":"36-5"}
 {"phase":"ready","id":"36-6","outcome":{"parked":{}},"ticketId":"36","detail":"parked at ready — no build evidence produced this cycle (transient infra miss) — retrying","at":804528187.941026}
+{"at":804528242.60298,"detail":"working ready","outcome":{"running":{}},"ticketId":"36","phase":"ready","id":"36-7"}
+{"id":"36-8","phase":"ready","outcome":{"parked":{}},"detail":"parked at ready — no build evidence produced this cycle (transient infra miss) — retrying","at":804528247.028254,"ticketId":"36"}
