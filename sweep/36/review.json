@@ -11,7 +11,7 @@
       }
     },
     {
-      "detail" : "1 file(s) changed: apps\/web\/src\/lib\/ssml\/tags.ts",
+      "detail" : "2 file(s) changed: apps\/web\/src\/lib\/ssml\/tags.ts, apps\/web\/src\/lib\/ssml\/tags.test.ts",
       "id" : "change-present",
       "label" : "Change is visible",
       "result" : {
@@ -106,7 +106,8 @@
     "Verification failed — the project test command was RED."
   ],
   "filesReviewed" : [
-    "apps\/web\/src\/lib\/ssml\/tags.ts"
+    "apps\/web\/src\/lib\/ssml\/tags.ts",
+    "apps\/web\/src\/lib\/ssml\/tags.test.ts"
   ],
   "outcome" : "needsFix",
   "rubricId" : "",
