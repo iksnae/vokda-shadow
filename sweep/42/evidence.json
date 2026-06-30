@@ -1,0 +1,17 @@
+{
+  "commitRef" : "4791f5c641261083de698f3a8df4773ddda276bf",
+  "committed" : true,
+  "correlationId" : "sweep-build-42",
+  "filesChanged" : [
+    "docs\/GLOSSARY.md",
+    "README.md"
+  ],
+  "implementCompleted" : true,
+  "receiptIds" : [
+    "rcpt-build-implement-sweep-build-42",
+    "rcpt-build-verify-sweep-build-42",
+    "rcpt-build-commit-sweep-build-42"
+  ],
+  "rounds" : 14,
+  "verifyPassed" : true
+}
