@@ -1,0 +1,35 @@
+[
+  {
+    "nonGoals" : [
+      "Do NOT create docs\/PROVIDER_IDS.md (forward-looking reference only)",
+      "Do NOT create a standalone SSML doc",
+      "Do NOT include per-provider tables or exhaustive catalog data",
+      "Do NOT change any source code, configuration, or CI"
+    ],
+    "objective" : "Create docs\/GLOSSARY.md with 9 integrator-facing core API term definitions (Provider, Provider ID, Voice, Dialect, Catalog, Capability, Job, SSML tag, Steering), each 1–3 sentences, with forward-looking cross-links to docs\/PROVIDER_IDS.md and docs\/DISCOVERY.md#ssml-editor.",
+    "orderIndex" : 0,
+    "planText" : "Create a new file `docs\/GLOSSARY.md`. Write a title (`# Glossary`), a one-sentence preamble, then 9 sections — one per term — each with the term as a heading and 1–3 sentences of descriptive, integrator-facing prose grounded in the project's actual models (SCHEMA.md, SYNTHESIS_API.md, DISCOVERY.md). For Provider ID, include a forward-looking cross-link to `docs\/PROVIDER_IDS.md`. For SSML tag, cross-link to `docs\/DISCOVERY.md#ssml-editor`. No code changes, no tables, no exhaustive provider lists.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "docs\/GLOSSARY.md"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT reorder or reword any existing README sections or bullets",
+      "Do NOT add glossary content to README itself",
+      "Do NOT change any source code, configuration, or CI"
+    ],
+    "objective" : "Add a one-line glossary pointer to README.md's Product Docs bullet list.",
+    "orderIndex" : 1,
+    "planText" : "In `README.md`, locate the `## Product Docs` section and its bullet list. Add a new bullet `- Glossary: [docs\/GLOSSARY.md](docs\/GLOSSARY.md)` (or the project's existing link style) among the existing documentation links. Ensure the link is consistent with the other bullet entries in that list.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "README.md"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]
