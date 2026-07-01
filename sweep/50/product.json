@@ -1,0 +1,24 @@
+{
+  "acceptanceCriteria" : [
+    "A new module at apps\/web\/src\/lib\/prepare-for-synthesis.ts exports SynthesisChunk interface and prepareForSynthesis function with the specified signature",
+    "Calling prepareForSynthesis(text, maxLength) normalizes the input via normalizeText first, then splits with chunkText using the given maxLength",
+    "Each returned SynthesisChunk includes wordCount computed via the existing wordCount helper on that chunk's text",
+    "Empty string or whitespace-only input returns an empty array []",
+    "A maxLength <= 0 throws (delegating to chunkText's existing guard)",
+    "Every chunk's text.length is <= maxLength (inherited from chunkText's guarantee)",
+    "The chunks' text values, when rejoined in order, reproduce the normalized input's content exactly",
+    "The implementation imports and calls chunkText, normalizeText, and wordCount — no duplicated logic",
+    "A vitest test suite covers: empty\/whitespace input, single chunk under limit, multi-chunk splitting, correct per-chunk wordCount, maxLength invariant per chunk, and non-positive maxLength throwing",
+    "npm run build:web and npm run test both pass with zero failures"
+  ],
+  "outOfScope" : [
+    "Wiring prepareForSynthesis into the dispatch\/HTTP path or any provider integration",
+    "Provider-specific maxLength lookups or defaults",
+    "Modifying chunkText, normalizeText, or wordCount implementations",
+    "Any UI or API surface beyond the exported function and its test suite",
+    "Performance optimization beyond what the composed functions already provide"
+  ],
+  "priority" : "medium",
+  "problemStatement" : "Callers who need to dispatch text to an AI provider currently have to manually chain three separate utilities — normalizeText, then chunkText, then compute word counts per chunk — to turn raw input into provider-ready pieces. There is no single entry point that expresses the \"clean this text and give me provider-sized chunks\" intent, leading to repeated boilerplate and the risk of callers skipping normalization or word-count annotation.",
+  "userValue" : "Developers integrating with AI providers get a single, obvious call that delivers chunked, word-counted, provider-safe text. This eliminates the cognitive overhead of remembering the correct utility sequence and prevents subtle bugs from omitted normalization or inconsistent word-count computation across call sites."
+}
