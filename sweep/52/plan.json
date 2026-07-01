@@ -1,0 +1,32 @@
+{
+  "apiOrSchemaChanges" : [
+
+  ],
+  "confidence" : 0.92,
+  "failingTest" : "chunkText drops consecutive punctuation characters — existing guarantee chunks.join('') === trimmedOriginal is violated",
+  "fileMap" : [
+    "apps\/web\/src\/lib\/chunk-text.ts — modify — fix sentence-segmentation regex to capture consecutive delimiter runs without dropping characters",
+    "apps\/web\/src\/lib\/chunk-text.test.ts — modify — add regression tests for ellipses, ?!, . . ., hard-split interaction, and property-based join check"
+  ],
+  "fixApproach" : "Modify the sentence-boundary regex in `chunkText` so that (a) the trailing delimiter capture uses `[.!?]+` (one or more) instead of `[.!?]` (exactly one), and (b) segments consisting solely of delimiters\/spaces are not skipped. The core change is in the regex that tokenizes the trimmed input into sentence segments — currently it requires each segment to start with a non-delimiter and only captures one trailing delimiter, so any additional consecutive delimiters (as in `...`, `?!`, or `. . .`) are silently discarded. After the fix, every input character is assigned to exactly one segment, and the existing chunk-packing logic (which already respects maxLength and preserves inter-sentence whitespace on the front of the next chunk) naturally yields correct chunks whose join equals the trimmed input.",
+  "openQuestions" : [
+
+  ],
+  "steps" : [
+    "Read the current implementation of `apps\/web\/src\/lib\/chunk-text.ts` to understand the exact sentence-segmentation regex and chunk-packing loop.",
+    "Read the existing test file (likely `apps\/web\/src\/lib\/chunk-text.test.ts` or co-located) to understand test structure and existing coverage.",
+    "Modify the sentence-segmentation regex to capture consecutive delimiter runs (`[.!?]+`) and to not require segments to begin with a non-delimiter character — ensuring every character of the trimmed input is assigned to a segment.",
+    "Verify that the chunk-packing loop still works correctly with the modified segments — no changes needed to packing logic if segments are correct.",
+    "Add regression test cases for the three reproductions from the issue: `chunkText('Wait... what?', 8)`, `chunkText('Really?! No way.', 9)`, `chunkText('End. . . done.', 6)`.",
+    "Add at least one property-based test that asserts `chunks.join('') === input.trim()` for a range of punctuation-heavy inputs.",
+    "Add at least one hard-split interaction test where a punctuation run straddles a maxLength boundary.",
+    "Run `npm run build:web` to confirm no type\/build errors.",
+    "Run `npm run test` to confirm all tests pass (including new regression tests)."
+  ],
+  "stopsForOperatorApproval" : false,
+  "summary" : "Fix chunkText sentence-segmentation regex to capture consecutive punctuation runs (..., ?!, !!!, . . .) so no characters are dropped, restoring the exact-reconstruction guarantee.",
+  "uiStateNotes" : [
+
+  ],
+  "verificationCommand" : "npm run build:web && npm run test"
+}
