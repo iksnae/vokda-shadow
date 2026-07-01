@@ -565,3 +565,6 @@
 {"at":804597130.735525,"ticketId":"48","id":"48-565","outcome":{"note":{}},"phase":"review","detail":"✓ shipped — auto-merged PR https:\/\/github.com\/iksnae\/vokda\/pull\/49 (71356e2d)"}
 {"phase":"review","ticketId":"48","detail":"✓ issue #48 closed — shipped","at":804597131.17532,"id":"48-566","outcome":{"note":{}}}
 {"id":"48-567","outcome":{"advanced":{"to":"done"}},"ticketId":"48","phase":"review","detail":"advanced to done","at":804597133.821327}
+{"outcome":{"running":{}},"at":804598293.377807,"detail":"working new","id":"50-568","ticketId":"50","phase":"new"}
+{"stat":{"completionTokens":278,"promptTokens":1173,"modelId":"deepseek:deepseek-v4-pro","latencyMs":5549,"costUSD":0.00062251},"ticketId":"50","outcome":{"note":{}},"id":"50-569","phase":"intake","at":804598299.110757,"detail":"deepseek-v4-pro · 1451 tok · 5549ms · $0.0006"}
+{"ticketId":"50","outcome":{"advanced":{"to":"product"}},"detail":"advanced to product","at":804598303.636896,"id":"50-570","phase":"new"}
