@@ -1,0 +1,28 @@
+{
+  "apiOrSchemaChanges" : [
+    "export interface SynthesisChunk { text: string; wordCount: number; }",
+    "export function prepareForSynthesis(text: string, maxLength: number): SynthesisChunk[]"
+  ],
+  "confidence" : 0.98,
+  "failingTest" : "N\/A — new module, no pre-existing failing test; acceptance criteria define the required test cases",
+  "fileMap" : [
+    "apps\/web\/src\/lib\/prepare-for-synthesis.ts — create — new composition module exporting SynthesisChunk interface and prepareForSynthesis function",
+    "apps\/web\/src\/lib\/prepare-for-synthesis.test.ts — create — vitest test suite for all acceptance criteria"
+  ],
+  "fixApproach" : "Create a new module `apps\/web\/src\/lib\/prepare-for-synthesis.ts` that imports and composes the three existing utilities. The function `prepareForSynthesis(text, maxLength)` first normalizes via `normalizeText`, returns `[]` for empty\/whitespace input, splits via `chunkText`, then maps each chunk into a `SynthesisChunk` with `wordCount` from the shared helper. Invalid `maxLength <= 0` throws (delegating to `chunkText`'s existing contract). A co-located vitest suite (`prepare-for-synthesis.test.ts`) covers all acceptance criteria: empty\/whitespace, single chunk, multi-chunk splitting, per-chunk wordCount correctness, the no-chunk-exceeds-maxLength invariant, and non-positive maxLength throws.",
+  "openQuestions" : [
+
+  ],
+  "steps" : [
+    "Create apps\/web\/src\/lib\/prepare-for-synthesis.ts: import normalizeText\/wordCount from text-utilities, import chunkText, define SynthesisChunk interface, implement prepareForSynthesis (normalize → guard empty → chunk → map with wordCount), throw on maxLength <= 0",
+    "Create apps\/web\/src\/lib\/prepare-for-synthesis.test.ts: vitest suite covering empty\/whitespace input returns [], single chunk under limit, multi-chunk split, per-chunk wordCount accuracy, invariant that every chunk.text.length <= maxLength, non-positive maxLength throws",
+    "Run npm run test to verify all tests pass",
+    "Run npm run build:web to verify no build errors"
+  ],
+  "stopsForOperatorApproval" : false,
+  "summary" : "Add prepareForSynthesis module composing normalizeText + chunkText + wordCount with vitest suite",
+  "uiStateNotes" : [
+
+  ],
+  "verificationCommand" : "npm run test && npm run build:web"
+}
