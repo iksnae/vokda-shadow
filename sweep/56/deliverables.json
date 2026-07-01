@@ -1,0 +1,50 @@
+[
+  {
+    "nonGoals" : [
+      "Do not modify docs\/VISION.md",
+      "Do not touch any other specs\/ files",
+      "Do not change README or any code"
+    ],
+    "objective" : "Delete duplicate specs\/VISION.md — docs\/VISION.md is canonical",
+    "orderIndex" : 0,
+    "planText" : "Delete the file specs\/VISION.md. Confirm docs\/VISION.md exists and remains the single canonical copy. Run npm run build:web to verify no broken references (e.g. import or link to the deleted file).",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "specs\/VISION.md"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do not change any other docs\/ files",
+      "Do not alter process\/workflow logic or structure",
+      "Do not touch README"
+    ],
+    "objective" : "Correct stale figures in docs\/voice-discovery-process.md",
+    "orderIndex" : 1,
+    "planText" : "Update docs\/voice-discovery-process.md: replace '130 voices' with '550 voices', replace '8 providers' with '25 providers'. Cross-reference CLAUDE.md for any outdated script names, workflow steps, or tool references and refresh them. Run npm run build:web to confirm no regressions.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "docs\/voice-discovery-process.md"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do not modify any code, config, or infra files",
+      "Do not change CLAUDE.md, PRD.md, or any docs\/ file",
+      "Do not add or remove actual project files — docs-only change"
+    ],
+    "objective" : "Rewrite README.md to reflect current architecture, stack, layout, commands, docs, CI\/CD, and add live URLs + Node version + feature sections",
+    "orderIndex" : 2,
+    "planText" : "Ground-truth README.md against CLAUDE.md. Update §Stack: replace 'Catalog data: app-owned module (phase 1), API-backed later' with static voices.json catalog, SAM-deployed Synthesis API (9 provider adapters), Amplify Gen2 backend (Cognito + AppSync + DynamoDB), S3 audio storage. Update §Repo Layout: replace packages\/shared with packages\/sdk (@vokda\/sdk); add sdks\/, scripts\/, specs\/, extensions\/ directories. Update §Quick Start: add Node >=20 prerequisite, npm run dev:api, npm test, npm run check:web, npm run build:web, npm run build:sdk. Update §Product Docs: expand from ~7 entries to full list — VISION.md, DISCOVERY.md, SYNTHESIS_API.md, VOICE_CATALOG_EXPORT.md, GITHUB_SETUP.md, AMPLIFY_SETUP.md, voice-discovery-process.md, and note subdirectories. Update §CI\/CD: add specific checks (typecheck, Svelte check, catalog freshness, build). Add new sections: Live URLs (app + API endpoints), Node version requirement block (>=20), and a brief synthesis\/SSML\/steering feature mention. Run npm run build:web to confirm no regressions.",
+    "riskClass" : "medium",
+    "size" : "m",
+    "targetFiles" : [
+      "README.md"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]
