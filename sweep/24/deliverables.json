@@ -1,0 +1,101 @@
+[
+  {
+    "nonGoals" : [
+      "Do NOT modify any TypeScript code, handler logic, or seed data",
+      "Do NOT change any existing schema fields or remove anything",
+      "Do NOT add new endpoints"
+    ],
+    "objective" : "Add Capabilities schema object and SynthesisJobStatus enum to the OpenAPI specification, and extend Provider and Voice component schemas with an optional `capabilities` field.",
+    "orderIndex" : 0,
+    "planText" : "Open `openapi.yaml`. 1) Add a `SynthesisJobStatus` enum schema under `components\/schemas` with values: `pending`, `running`, `completed`, `failed`, `cancelled`. 2) Add a `Capabilities` object schema with properties: `maxTextLength` (integer, nullable), `supportsInstructions` (boolean), `supportsStreaming` (boolean), `outputFormats` (array of strings). 3) Extend the `Provider` component schema by adding an optional `capabilities` property referencing `$ref: '#\/components\/schemas\/Capabilities'`. 4) Extend the `Voice` component schema by adding an optional `capabilities` property referencing `$ref: '#\/components\/schemas\/Capabilities'` (with a description noting: inherits from provider unless overridden at voice level). Validate the spec with a YAML\/OpenAPI linter if available.",
+    "riskClass" : "low",
+    "size" : "s",
+    "targetFiles" : [
+      "openapi.yaml"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT change any existing type fields or remove anything",
+      "Do NOT populate runtime data — only type declarations",
+      "Do NOT modify any endpoint handlers or serialization logic"
+    ],
+    "objective" : "Add `capabilities` optional property to the Provider and Voice TypeScript type definitions used across the codebase.",
+    "orderIndex" : 1,
+    "planText" : "1) Define a `Capabilities` interface: `{ maxTextLength: number | null; supportsInstructions: boolean; supportsStreaming: boolean; outputFormats: string[]; }`. 2) Define a `SynthesisJobStatus` enum or string union: `'pending' | 'running' | 'completed' | 'failed' | 'cancelled'`. 3) Add an optional `capabilities?: Capabilities` field to the existing `Provider` type\/interface. 4) Add an optional `capabilities?: Capabilities` field to the existing `Voice` type\/interface. 5) Ensure the types are exported and importable by endpoint handlers and test files. Run `npm run test` to confirm no type errors.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "packages\/shared\/src\/types.ts",
+      "apps\/web\/src\/lib\/types.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT change endpoint handlers or serialization",
+      "Do NOT add new providers",
+      "Do NOT alter existing provider fields like id, name, or sampleRate"
+    ],
+    "objective" : "Populate `capabilities` data for every active provider in the seed\/static provider data source.",
+    "orderIndex" : 2,
+    "planText" : "Open the provider seed data file (likely `apps\/web\/src\/lib\/data\/providers.ts` or the static JSON source). For each provider record, add a `capabilities` block matching the Capabilities type: `maxTextLength` (provider-appropriate limit or null), `supportsInstructions` (true for SSML-capable providers), `supportsStreaming` (true for streaming-capable providers), `outputFormats` (array of supported output MIME types like `['audio\/mpeg']`, `['audio\/wav']`, etc.). At minimum cover `openai` and every other active provider. If voice-level overrides are needed, annotate specific voice records in the voices data file with their own `capabilities` block only where they differ from the provider default. Run `npm run test`.",
+    "riskClass" : "low",
+    "size" : "s",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/data\/providers.ts",
+      "apps\/web\/src\/lib\/data\/voices.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT change the response shape beyond adding `capabilities`",
+      "Do NOT modify voice endpoint logic",
+      "Do NOT add new query parameters or filtering"
+    ],
+    "objective" : "Update the `\/providers.json` SvelteKit endpoint handler to serialize the `capabilities` field in each provider response object.",
+    "orderIndex" : 3,
+    "planText" : "Locate the `\/providers.json` route handler in `apps\/web\/src\/routes\/providers.json\/+server.ts`. Ensure the handler reads provider data that now includes the `capabilities` field (from deliverable 2) and that the JSON serialization passes it through unchanged. If the handler currently picks\/excludes fields explicitly, add `capabilities` to the inclusion list. No inheritance logic is needed at the provider level. Run `npm run test` to verify.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "apps\/web\/src\/routes\/providers.json\/+server.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT change the Voice type or seed data (already done in deliverables 1-2)",
+      "Do NOT modify the provider endpoint",
+      "Do NOT break existing voice fields"
+    ],
+    "objective" : "Update the `\/api\/v1\/voices.json` SvelteKit endpoint handler to serialize `capabilities` per voice, applying the inheritance rule: voice inherits its provider's capabilities unless the voice has its own explicit `capabilities` override.",
+    "orderIndex" : 4,
+    "planText" : "Open the voices.json route handler. For each voice, look up its parent provider's `capabilities`. If the voice record has its own non-null `capabilities` field, use it as-is. Otherwise, assign the provider's `capabilities` to the voice in the serialized response. Ensure the merge happens at serialization time only — do not mutate seed data. The output must include `capabilities` on every voice object. Run `npm run test`.",
+    "riskClass" : "medium",
+    "size" : "s",
+    "targetFiles" : [
+      "apps\/web\/src\/routes\/api\/v1\/voices.json\/+server.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT introduce integration\/e2e test frameworks if not already established",
+      "Do NOT change production code beyond what is needed for test assertions",
+      "Do NOT test external APIs"
+    ],
+    "objective" : "Add or update tests verifying that every provider and voice response includes a well-formed capabilities block, OpenAPI spec validates, and SynthesisJobStatus values round-trip correctly.",
+    "orderIndex" : 5,
+    "planText" : "1) Add unit tests asserting that each provider in the catalog has a `capabilities` object with all four required keys (`maxTextLength`, `supportsInstructions`, `supportsStreaming`, `outputFormats`) and correct types. 2) Add unit tests asserting each voice in the catalog has a `capabilities` object, and that voice-level overrides take precedence over provider defaults. 3) Add a test verifying the `SynthesisJobStatus` enum is importable and contains exactly `['pending', 'running', 'completed', 'failed', 'cancelled']`. 4) If an OpenAPI validation script or linter hook exists, add a check that the spec parses without errors. 5) Run `npm run test` — all existing tests must still pass.",
+    "riskClass" : "medium",
+    "size" : "m",
+    "targetFiles" : [
+      "apps\/web\/tests\/catalog.test.ts",
+      "apps\/web\/src\/__tests__\/catalog.test.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]

@@ -1,0 +1,39 @@
+ISSUE issue:iksnae/vokda#50: feat: add prepareForSynthesis that composes normalizeText + chunkText (build on delivered utils)
+
+## What
+
+Add a `prepareForSynthesis(text, maxLength)` function that turns raw input into provider-ready chunks by **composing the existing text utilities** — it normalizes, splits to size, and annotates each chunk with its word count. Ship it with a vitest suite.
+
+## Why
+
+We already have the building blocks (`normalizeText`, `wordCount`, `chunkText`), but nothing ties them into the one call a caller actually wants before dispatch: "clean this text and give me provider-sized pieces." This is the integration layer.
+
+## Reuse (do NOT reimplement)
+
+This deliverable must **import and reuse** the already-shipped utilities — it should add composition, not duplicate logic:
+- `chunkText(text: string, maxLength: number): string[]` from `apps/web/src/lib/chunk-text.ts`
+- `normalizeText(text: string): string` and `wordCount(text: string): number` from `apps/web/src/lib/text-utilities` (its barrel `index.ts`)
+
+## Behavior / acceptance criteria
+
+1. **A new module** (e.g. `apps/web/src/lib/prepare-for-synthesis.ts`) exports:
+   ```ts
+   export interface SynthesisChunk { text: string; wordCount: number; }
+   export function prepareForSynthesis(text: string, maxLength: number): SynthesisChunk[]
+   ```
+2. **Semantics:**
+   - Normalizes the input with `normalizeText` FIRST, then splits with `chunkText(normalized, maxLength)`.
+   - Returns one `SynthesisChunk` per piece, where `wordCount` is computed via the shared `wordCount` helper on that chunk's text.
+   - Empty or whitespace-only input → `[]`.
+   - `maxLength <= 0` → throws (mirror `chunkText`'s contract).
+   - **Invariant:** every `chunk.text.length <= maxLength`.
+   - **Invariant:** the chunks' text, rejoined, reproduces the normalized input's content in order.
+3. **It genuinely delegates** — `chunkText`, `normalizeText`, and `wordCount` are imported and called, not reinvented.
+4. **Unit tests (vitest)** cover: empty/whitespace, single chunk (under limit), multi-chunk splitting, correct per-chunk `wordCount`, the no-chunk-exceeds-maxLength invariant, and that a non-positive `maxLength` throws.
+5. **Verification is green** — `npm run build:web` and `npm run test` both pass.
+
+## Out of scope
+
+- Wiring `prepareForSynthesis` into the actual dispatch/HTTP path (this is the composition helper + tests only).
+- Provider-specific `maxLength` lookups (the caller passes it).
+- Changing `chunkText` or the `text-utilities` module.

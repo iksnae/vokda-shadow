@@ -1,1 +1,0 @@
-{"evidenceReceiptIds":["rcpt-build-implement-sweep-build-25","rcpt-build-verify-sweep-build-25","rcpt-build-commit-sweep-build-25"],"confidence":0,"rubricVersion":0,"correlationId":"sweep-build-25","rubricId":"","failureReasons":[],"committed":true,"filesReviewed":["apps\/web\/static\/api\/v1\/voices.json"],"dimensions":[],"outcome":"blocked"}

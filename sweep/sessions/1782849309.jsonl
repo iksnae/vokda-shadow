@@ -3,3 +3,4 @@
 {"phase":"review","outcome":{"note":{}},"detail":"verify passed","at":804542162.91466,"ticketId":"36","id":"36-3"}
 {"detail":"✓ flagged complete — acceptance already satisfied by existing code (no PR; citation posted)","at":804542162.930719,"id":"36-4","phase":"review","ticketId":"36","outcome":{"note":{}}}
 {"phase":"review","outcome":{"advanced":{"to":"done"}},"detail":"advanced to done","at":804542168.912625,"ticketId":"36","id":"36-5"}
+{"ticketId":"40","phase":"ready","outcome":{"running":{}},"id":"40-6","detail":"working ready","at":804543270.782044}

@@ -1,0 +1,11 @@
+{
+  "acceptanceCriteria" : [
+
+  ],
+  "outOfScope" : [
+
+  ],
+  "priority" : "medium",
+  "problemStatement" : "Expose per-provider\/voice capabilities + limits in the public catalog contract",
+  "userValue" : "Plan directly addresses all requested capabilities (maxTextLength, supportsInstructions, supportsStreaming, outputFormats) plus the status enum at both provider and voice levels with sensible inheritance, is purely additive with no breaking changes, and covers both catalog endpoints and OpenAPI schemas."
+}

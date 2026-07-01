@@ -1,0 +1,36 @@
+ISSUE issue:iksnae/vokda#48: feat: add a text-utilities module for synthesis prep (normalizeText, wordCount, truncateWords)
+
+## What
+
+Add a small, self-contained **text utilities** module (under the web app's `lib`, alongside the existing `chunk-text` util) with three pure functions — each in its own file — a barrel `index` that re-exports them, and a focused vitest suite. These are building blocks for preparing text before synthesis.
+
+## Deliverables (multi-file)
+
+1. **`normalizeText(text: string): string`** — collapse all runs of whitespace (spaces, tabs, newlines) to a single space and trim the ends.
+2. **`wordCount(text: string): number`** — the number of whitespace-separated tokens.
+3. **`truncateWords(text: string, maxWords: number): string`** — keep the first `maxWords` words.
+4. A **barrel `index`** that re-exports all three from the module.
+5. **Unit tests (vitest)** for each function.
+
+## Behavior / acceptance criteria
+
+- `normalizeText`:
+  - Empty or whitespace-only → `""`.
+  - Internal runs of any whitespace → a single space; leading/trailing trimmed. (e.g. `"  a\n\n b\t c "` → `"a b c"`.)
+- `wordCount`:
+  - Empty or whitespace-only → `0`.
+  - Counts whitespace-separated tokens on the normalized text (e.g. `"a  b\nc"` → `3`).
+- `truncateWords(text, maxWords)`:
+  - Operates on the normalized text; joins the kept words with single spaces.
+  - Returns the first `maxWords` words; appends a single `…` (U+2026) **only when** truncation actually dropped words.
+  - `maxWords <= 0` → `""`.
+  - Fewer words than `maxWords` → returns the normalized text unchanged (no ellipsis).
+  - **Invariant:** the returned text (minus a trailing `…`) never has more than `maxWords` words.
+- All three are exported from the module's barrel `index`.
+- **Verification is green** — `npm run build:web` and `npm run test` both pass.
+
+## Out of scope
+
+- Wiring these into the dispatch/synthesis path (standalone utilities + tests only).
+- SSML-aware tokenization or language-specific word segmentation.
+- Reusing/refactoring the existing `chunk-text` util.
