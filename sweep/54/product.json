@@ -1,0 +1,11 @@
+{
+  "acceptanceCriteria" : [
+
+  ],
+  "outOfScope" : [
+
+  ],
+  "priority" : "medium",
+  "problemStatement" : "feat: add estimateReadingTime(text) to text-utilities (build on wordCount)",
+  "userValue" : "Plan directly satisfies all acceptance criteria: composes on wordCount, uses Math.ceil with default 200 wpm, and covers the four required test cases."
+}
