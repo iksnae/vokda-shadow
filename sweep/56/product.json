@@ -1,0 +1,11 @@
+{
+  "acceptanceCriteria" : [
+
+  ],
+  "outOfScope" : [
+
+  ],
+  "priority" : "medium",
+  "problemStatement" : "make sure that the readme is up to date",
+  "userValue" : "Plan directly fulfills the request to refresh README and related docs by grounding them against CLAUDE.md, correcting stale metrics, removing a duplicate VISION.md, and adding missing operational sections — all docs-only, zero product risk."
+}
