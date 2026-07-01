@@ -1,0 +1,35 @@
+[
+  {
+    "nonGoals" : [
+      "Do not create the test file",
+      "Do not wire into any dispatch\/HTTP pipeline",
+      "Do not modify chunkText, normalizeText, or wordCount",
+      "Do not add provider-specific maxLength lookups"
+    ],
+    "objective" : "Create prepareForSynthesis composition module that imports and composes normalizeText + chunkText + wordCount",
+    "orderIndex" : 0,
+    "planText" : "Create apps\/web\/src\/lib\/prepare-for-synthesis.ts. Import normalizeText and wordCount from the text-utilities barrel at '..\/lib\/text-utilities'. Import chunkText from '.\/chunk-text'. Export the SynthesisChunk interface ({ text: string; wordCount: number }). Export the prepareForSynthesis(text: string, maxLength: number): SynthesisChunk[] function with this flow: normalize input via normalizeText → pass normalized text to chunkText(normalized, maxLength) → map each chunk to { text: chunk, wordCount: wordCount(chunk) } → return the array. Empty\/whitespace input naturally returns [] because chunkText returns [] for empty strings. Non-positive maxLength is delegated to chunkText's existing throw. Verify with npm run build:web for type checking and compilation, and npm run test to confirm existing tests still pass.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/prepare-for-synthesis.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do not modify the prepareForSynthesis module unless a bug is found that must be fixed",
+      "Do not add integration or E2E tests",
+      "Do not test the underlying normalizeText\/chunkText\/wordCount utilities directly"
+    ],
+    "objective" : "Create vitest suite for prepareForSynthesis covering all acceptance criteria from issue #50",
+    "orderIndex" : 1,
+    "planText" : "Create apps\/web\/src\/lib\/prepare-for-synthesis.test.ts as a vitest suite (import { describe, it, expect } from 'vitest'). Import prepareForSynthesis from '.\/prepare-for-synthesis'. Cover six acceptance criteria: (1) empty\/whitespace returns [] — test empty string, spaces-only, tabs\/newlines; (2) single chunk under limit returns one SynthesisChunk with correct wordCount; (3) multi-chunk splitting returns multiple elements and chunks.join('') reconstructs the normalized input; (4) each chunk's wordCount field matches the actual word count of chunk.text; (5) invariant that every chunk.text.length <= maxLength; (6) non-positive maxLength (0, -1, -Infinity) throws. Use representative English prose as test input. Run npm run test to verify all new tests pass alongside existing suite.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/prepare-for-synthesis.test.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]
