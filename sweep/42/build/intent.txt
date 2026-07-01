@@ -1,0 +1,29 @@
+ISSUE issue:iksnae/vokda#42: docs: add a glossary of core API terms (docs/GLOSSARY.md)
+
+## What
+
+Add `docs/GLOSSARY.md` — a concise, integrator-facing glossary that defines Vokda's core API/domain terms in one place.
+
+## Why
+
+Integrators (and the SDKs/docs) use terms like *provider*, *voice*, *dialect*, and *SSML tag* throughout the API and docs, but there's no single authoritative definition list. A glossary lowers onboarding friction and keeps terminology consistent across the API, SDKs, and docs.
+
+## Acceptance criteria
+
+1. **`docs/GLOSSARY.md` exists** and defines, each in 1–3 sentences, at least these terms:
+   - **Provider** — a TTS backend Vokda dispatches to
+   - **Provider ID** — the stable identifier for a provider (cross-link to `docs/PROVIDER_IDS.md`)
+   - **Voice** — a selectable synthesis voice offered by a provider
+   - **Dialect** — Vokda's normalized request/response shape vs. a provider's native shape
+   - **Catalog** — the published metadata of providers/voices/capabilities
+   - **Capability** — a per-provider feature flag (e.g. streaming, max text length, output formats)
+   - **Job** — a single synthesis request and its lifecycle/status
+   - **SSML tag** — a markup element controlling synthesis (cross-link to the SSML docs)
+   - **Steering** — provider parameters that shape voice expression
+2. **Integrator-focused and non-normative** — descriptive prose, no code required.
+3. **Linked** from the main README or docs index (a one-line pointer).
+
+## Out of scope
+
+- Any code changes.
+- Exhaustive per-provider tables (the catalog already carries those).
