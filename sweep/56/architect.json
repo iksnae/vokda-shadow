@@ -1,0 +1,19 @@
+{
+  "components" : [
+
+  ],
+  "confidence" : 0.8,
+  "constraints" : [
+
+  ],
+  "contractChanges" : [
+
+  ],
+  "openQuestions" : [
+
+  ],
+  "risks" : [
+
+  ],
+  "summary" : "Docs-only change: README ground-truthed against CLAUDE.md, stale figures corrected, duplicate VISION.md pruned — zero structural risk, CI-verifiable."
+}
