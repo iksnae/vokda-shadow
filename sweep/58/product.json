@@ -1,0 +1,22 @@
+{
+  "acceptanceCriteria" : [
+    "Export `truncateWords(text: string, maxWords: number): string` from the text-utilities module.",
+    "When text has <= maxWords words, return the text unchanged with no trailing ellipsis.",
+    "When text has > maxWords words, return the first maxWords words joined by single spaces, immediately followed by the single character `…` (no leading space).",
+    "When maxWords <= 0, return an empty string.",
+    "When input is empty or whitespace-only, return an empty string.",
+    "Reuse the module's existing word tokenization (normalizeText) — do not introduce a second splitter.",
+    "All existing tests for `wordCount` and `estimateReadingTime` continue to pass with zero changes to their implementation or behavior.",
+    "New tests for `truncateWords` cover: maxWords=0, negative maxWords, empty\/whitespace input, fewer words than max, exactly maxWords, more than maxWords, text with excess internal whitespace, and single-word truncation."
+  ],
+  "outOfScope" : [
+    "Character-based truncation (word-based only).",
+    "i18n \/ locale-aware segmentation.",
+    "Configurable ellipsis string (always `…`).",
+    "HTML-aware or markup-safe truncation.",
+    "Streaming or async operation."
+  ],
+  "priority" : "medium",
+  "problemStatement" : "Consumers across the web app need to display hard-capped text previews (cards, list summaries, notification snippets). Without a shared word-based truncation utility, each UI surface must roll its own — leading to inconsistent splitting rules, varied ellipsis handling, and subtle whitespace bugs that erode polish.",
+  "userValue" : "One predictable truncation primitive means designers and developers get the same behavior everywhere: same tokenization as wordCount\/estimateReadingTime, same ellipsis, same edge-case handling. This eliminates an entire class of \"preview looks wrong\" UI defects and reduces boilerplate in every feature that shows abbreviated text."
+}
