@@ -1,7 +1,7 @@
 {
   "checklist" : [
     {
-      "detail" : "the implementor finished in 23 round(s)",
+      "detail" : "the implementor finished in 14 round(s)",
       "id" : "build-completed",
       "label" : "Build completed",
       "result" : {
@@ -41,74 +41,104 @@
       }
     },
     {
-      "detail" : "verification result was not committed",
+      "detail" : "committed locally on the build branch",
       "id" : "committed",
       "label" : "Work committed",
       "result" : {
-        "fail" : {
+        "pass" : {
 
         }
       }
     },
     {
-      "detail" : "judge not run — the deterministic gate decided the outcome",
+      "detail" : "Function signature, sentence-boundary split, hard-split, invariants, error on maxLength<=0, and all specified test categories are present. Minor note: the implementation trims input before checking maxLength, so '  hi  ' with maxLength 10 returns ['hi'] not ['  hi  '], but the plan's own invariant explicitly scopes to non-whitespace content, making this consistent.",
       "id" : "implements-the-approved-plan",
       "label" : "Implements the approved plan",
       "result" : {
-        "skipped" : {
-
+        "score" : {
+          "_0" : 0.95
         }
       }
     },
     {
-      "detail" : "judge not run — the deterministic gate decided the outcome",
+      "detail" : "Only two new files added — chunk-text.ts and chunk-text.test.ts — both in apps\/web\/src\/lib\/ as the plan called for; zero changes to existing files or unrelated code.",
       "id" : "minimal-and-scoped",
       "label" : "Minimal and scoped",
       "result" : {
-        "skipped" : {
-
+        "score" : {
+          "_0" : 1
         }
       }
     },
     {
-      "detail" : "judge not run — the deterministic gate decided the outcome",
+      "detail" : "The chunking logic performs real sentence detection and hard-splitting; tests assert genuine behavioral invariants (no chunk > maxLength, content preservation). No test was deleted or weakened, and no expected value is hard-coded to bypass logic.",
       "id" : "no-fake-or-test-gaming",
       "label" : "No test-gaming \/ faking",
       "result" : {
-        "skipped" : {
-
+        "score" : {
+          "_0" : 1
         }
       }
     },
     {
-      "detail" : "judge not run — the deterministic gate decided the outcome",
+      "detail" : "Pure function with no side effects, proper input validation (throws on maxLength<=0), and no wiring into other systems. No security, correctness, or regression risk — the new utility is self-contained and well-tested.",
       "id" : "safe-to-advance",
       "label" : "Safe to advance",
       "result" : {
-        "skipped" : {
-
+        "score" : {
+          "_0" : 1
+        }
+      }
+    },
+    {
+      "detail" : "at or above the confidence bar",
+      "id" : "judge-confidence",
+      "label" : "Judge confidence",
+      "result" : {
+        "score" : {
+          "_0" : 0.95
         }
       }
     }
   ],
-  "committed" : false,
-  "confidence" : 0,
+  "committed" : true,
+  "confidence" : 0.95,
   "correlationId" : "sweep-build-45",
   "dimensions" : [
-
+    {
+      "dimension" : "implements-the-approved-plan",
+      "evidence" : "Function signature, sentence-boundary split, hard-split, invariants, error on maxLength<=0, and all specified test categories are present. Minor note: the implementation trims input before checking maxLength, so '  hi  ' with maxLength 10 returns ['hi'] not ['  hi  '], but the plan's own invariant explicitly scopes to non-whitespace content, making this consistent.",
+      "score" : 0.95
+    },
+    {
+      "dimension" : "minimal-and-scoped",
+      "evidence" : "Only two new files added — chunk-text.ts and chunk-text.test.ts — both in apps\/web\/src\/lib\/ as the plan called for; zero changes to existing files or unrelated code.",
+      "score" : 1
+    },
+    {
+      "dimension" : "no-fake-or-test-gaming",
+      "evidence" : "The chunking logic performs real sentence detection and hard-splitting; tests assert genuine behavioral invariants (no chunk > maxLength, content preservation). No test was deleted or weakened, and no expected value is hard-coded to bypass logic.",
+      "score" : 1
+    },
+    {
+      "dimension" : "safe-to-advance",
+      "evidence" : "Pure function with no side effects, proper input validation (throws on maxLength<=0), and no wiring into other systems. No security, correctness, or regression risk — the new utility is self-contained and well-tested.",
+      "score" : 1
+    }
   ],
   "evidenceReceiptIds" : [
     "rcpt-build-implement-sweep-build-45",
-    "rcpt-build-verify-sweep-build-45"
+    "rcpt-build-verify-sweep-build-45",
+    "rcpt-build-commit-sweep-build-45"
   ],
   "failureReasons" : [
-    "The work passed verification but was not committed."
+    "review passed but the merge gate refused — work is on the build branch, not delivered (see ship-ledger)"
   ],
   "filesReviewed" : [
     "apps\/web\/src\/lib\/chunk-text.ts",
     "apps\/web\/src\/lib\/chunk-text.test.ts"
   ],
-  "outcome" : "needsFix",
-  "rubricId" : "",
-  "rubricVersion" : 0
+  "outcome" : "needsOperator",
+  "rubricId" : "build-review",
+  "rubricVersion" : 1
 }
