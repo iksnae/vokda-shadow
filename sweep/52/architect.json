@@ -1,0 +1,19 @@
+{
+  "components" : [
+
+  ],
+  "confidence" : 0.8,
+  "constraints" : [
+
+  ],
+  "contractChanges" : [
+
+  ],
+  "openQuestions" : [
+
+  ],
+  "risks" : [
+
+  ],
+  "summary" : "Regex fix from [.!?] to [.!?]+ plus allowing delimiter-only segments is the correct minimal change to restore exact-reconstruction; chunk-packing loop is unaffected and the test plan covers regressions, property invariants, and boundary cases."
+}
