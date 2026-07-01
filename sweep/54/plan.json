@@ -1,0 +1,29 @@
+{
+  "apiOrSchemaChanges" : [
+
+  ],
+  "confidence" : 0.95,
+  "failingTest" : "text-utilities › estimateReadingTime › should return 0 for empty\/whitespace-only input (test not yet written, TDD starting point)",
+  "fileMap" : [
+    "apps\/web\/src\/lib\/text-utilities.ts (or equivalent path from #48) — modify — add estimateReadingTime function",
+    "apps\/web\/src\/lib\/text-utilities.test.ts (or equivalent path from #48) — modify — add unit tests for estimateReadingTime",
+    "apps\/web\/src\/lib\/index.ts (barrel export, if one exists) — modify — ensure estimateReadingTime is re-exported alongside wordCount"
+  ],
+  "fixApproach" : "Add estimateReadingTime(text, wordsPerMinute = 200): number to the text-utilities module. It delegates to the existing wordCount for tokenization, computes Math.ceil(wordCount \/ wpm), and returns 0 for empty\/whitespace-only input. Exported alongside wordCount. Unit tests cover the four acceptance criteria cases.",
+  "openQuestions" : [
+    "Exact file path for the text-utilities module from #48 — need to confirm it's apps\/web\/src\/lib\/text-utilities.ts or similar before editing"
+  ],
+  "steps" : [
+    "Locate the text-utilities source file (created in #48) and its companion test file",
+    "Implement estimateReadingTime(text, wordsPerMinute=200): number — call wordCount, divide by wpm, Math.ceil, floor at 0",
+    "Re-export estimateReadingTime from any barrel\/index file alongside wordCount",
+    "Add unit tests: empty string → 0, whitespace-only → 0, 200 words @ 200 wpm → 1, 201 words @ 200 wpm → 2, custom wpm (e.g. 100 words @ 50 wpm → 2)",
+    "Run npm run test and confirm all existing + new tests pass"
+  ],
+  "stopsForOperatorApproval" : false,
+  "summary" : "Add estimateReadingTime(text, wordsPerMinute?) to text-utilities, composing on wordCount with Math.ceil rounding and a default 200 wpm",
+  "uiStateNotes" : [
+
+  ],
+  "verificationCommand" : "npm run test"
+}
