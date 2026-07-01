@@ -108,3 +108,5 @@ letionTokens":167,"modelId":"deepseek:deepseek-v4-pro","costUSD":0.00409141,"lat
 {"detail":"working architect","at":804599353.752113,"id":"50-676","ticketId":"50","phase":"architect","outcome":{"running":{}}}
 {"detail":"deepseek-v4-pro · 1238 tok · 8934ms · $0.0007","ticketId":"50","phase":"architect","id":"50-677","outcome":{"note":{}},"at":804599362.695995,"stat":{"costUSD":0.0006571300000000001,"completionTokens":389,"promptTokens":849,"latencyMs":8934,"modelId":"deepseek:deepseek-v4-pro"}}
 {"at":804599365.297368,"id":"50-678","outcome":{"advanced":{"to":"planning"}},"ticketId":"50","phase":"architect","detail":"advanced to planning"}
+{"outcome":{"running":{}},"ticketId":"50","detail":"working planning","id":"50-679","phase":"planning","at":804599399.161927}
+{"at":804599401.384445,"detail":"advanced to planned","id":"50-680","ticketId":"50","phase":"planning","outcome":{"advanced":{"to":"planned"}}}
