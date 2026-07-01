@@ -1,0 +1,35 @@
+[
+  {
+    "nonGoals" : [
+      "Do not change the chunk-packing loop or algorithm",
+      "Do not change any function signatures or exports",
+      "Do not touch prepareForSynthesis or any other caller",
+      "Do not add or modify tests in this deliverable"
+    ],
+    "objective" : "Fix the sentence-segmentation regex in chunkText to capture consecutive punctuation runs (..., ?!, !!!, . . .) so no characters are silently dropped.",
+    "orderIndex" : 0,
+    "planText" : "Modify the sentence-boundary regex in `chunkText` (line 69 of `apps\/web\/src\/lib\/chunk-text.ts`) so that the trailing delimiter capture uses `[.!?]+` (one or more) instead of `[.!?]` (exactly one), and ensure segments consisting solely of delimiters\/spaces are not skipped. This restores the exact-reconstruction guarantee by assigning every character of the trimmed input to exactly one segment. The chunk-packing loop, function signatures, and all other files remain untouched.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/chunk-text.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do not modify chunk-text.ts implementation in this deliverable",
+      "Do not add tests for unrelated chunkText behavior",
+      "Do not touch other test files or test infrastructure"
+    ],
+    "objective" : "Add regression tests validating the punctuation-run fix, the exact-reconstruction property, and hard-split edge cases.",
+    "orderIndex" : 1,
+    "planText" : "Add regression test cases to `apps\/web\/src\/lib\/chunk-text.test.ts` covering: (a) the three issue reproductions — `chunkText('Wait... what?', 8)`, `chunkText('Really?! No way.', 9)`, `chunkText('End. . . done.', 6)`; (b) a property-based test asserting `chunks.join('') === input.trim()` for a range of punctuation-heavy inputs; (c) a hard-split interaction test where a punctuation run straddles a maxLength boundary. Run `npm run test` to confirm all tests pass.",
+    "riskClass" : "low",
+    "size" : "s",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/chunk-text.test.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]
