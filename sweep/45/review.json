@@ -1,11 +1,11 @@
 {
   "checklist" : [
     {
-      "detail" : "ran all 24 round(s) without finishing — deliverable left partial",
+      "detail" : "the implementor finished in 23 round(s)",
       "id" : "build-completed",
       "label" : "Build completed",
       "result" : {
-        "fail" : {
+        "pass" : {
 
         }
       }
@@ -31,11 +31,11 @@
       }
     },
     {
-      "detail" : "the project verify command was RED",
+      "detail" : "the project verify command was GREEN",
       "id" : "verify-green",
       "label" : "Verification passed",
       "result" : {
-        "fail" : {
+        "pass" : {
 
         }
       }
@@ -99,17 +99,16 @@
   ],
   "evidenceReceiptIds" : [
     "rcpt-build-implement-sweep-build-45",
-    "rcpt-build-verify-sweep-build-45",
-    "rcpt-build-commit-sweep-build-45"
+    "rcpt-build-verify-sweep-build-45"
   ],
   "failureReasons" : [
-    "Implementation did not complete — the build used all 24 round(s) without finishing. COMPLETE the deliverable; if it is large, finish the highest-priority target file first rather than leaving every file partial."
+    "The work passed verification but was not committed."
   ],
   "filesReviewed" : [
     "apps\/web\/src\/lib\/chunk-text.ts",
     "apps\/web\/src\/lib\/chunk-text.test.ts"
   ],
-  "outcome" : "blocked",
+  "outcome" : "needsFix",
   "rubricId" : "",
   "rubricVersion" : 0
 }
