@@ -1,0 +1,19 @@
+{
+  "components" : [
+
+  ],
+  "confidence" : 0.8,
+  "constraints" : [
+
+  ],
+  "contractChanges" : [
+
+  ],
+  "openQuestions" : [
+
+  ],
+  "risks" : [
+
+  ],
+  "summary" : "Three pure utility functions in apps\/web\/src\/lib\/text-utilities\/, following the existing chunk-text.ts pattern with barrel export and comprehensive Vitest suite — no structural risk, fully consistent with the codebase."
+}
