@@ -1,0 +1,2 @@
+{"phase":"new","id":"59-1","ticketId":"59","outcome":{"running":{}},"detail":"working new","at":804622988.059373}
+{"phase":"new","id":"59-2","ticketId":"59","detail":"parked at new — no intake classification produced this cycle (transient model miss) — retrying","outcome":{"parked":{}},"at":804622992.759895}
