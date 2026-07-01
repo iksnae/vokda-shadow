@@ -1,0 +1,18 @@
+ISSUE issue:iksnae/vokda#54: feat: add estimateReadingTime(text) to text-utilities (build on wordCount)
+
+## Problem
+The text-utilities module (delivered in #48) exposes `wordCount`. A common companion for synthesis/UX is an estimated reading time. Add it as a small pure function that composes on the existing `wordCount`.
+
+## Acceptance criteria
+- Export `estimateReadingTime(text: string, wordsPerMinute?: number): number` from the same text-utilities module as `wordCount`.
+- Returns whole **minutes**, rounded up (`Math.ceil`), minimum `0` for empty/whitespace-only input.
+- Default `wordsPerMinute` = 200; a caller-supplied rate overrides it.
+- Implemented in terms of the existing `wordCount` (reuse, do not re-tokenize).
+- Unit tests cover: empty string → 0, exact-boundary rounding (e.g. 200 words @ 200wpm → 1; 201 → 2), and a custom wpm.
+
+## Out of scope
+- No i18n/locale-aware word segmentation; reuse whatever `wordCount` already does.
+- No UI wiring.
+
+## Definition of done
+Function exported, all new + existing tests green, no changes to `wordCount`'s behavior.
