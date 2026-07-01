@@ -222,3 +222,6 @@
 {"at":804610492.438934,"id":"54-222","ticketId":"54","phase":"review","detail":"✓ issue #54 closed — shipped","outcome":{"note":{}}}
 {"outcome":{"note":{}},"phase":"review","at":804610510.95046,"detail":"✓ closeout recorded (facts + reflection)","id":"54-223","ticketId":"54"}
 {"phase":"review","at":804610513.652853,"detail":"advanced to done","id":"54-224","outcome":{"advanced":{"to":"done"}},"ticketId":"54"}
+{"at":804610943.088303,"id":"56-225","ticketId":"56","phase":"new","outcome":{"running":{}},"detail":"working new"}
+{"outcome":{"note":{}},"phase":"intake","at":804610953.567996,"stat":{"costUSD":0.0005992100000000001,"latencyMs":10303,"completionTokens":409,"modelId":"deepseek:deepseek-v4-pro","promptTokens":553},"detail":"deepseek-v4-pro · 962 tok · 10303ms · $0.0006","ticketId":"56","id":"56-226"}
+{"outcome":{"advanced":{"to":"planning"}},"detail":"advanced to planning","id":"56-227","ticketId":"56","phase":"new","at":804610965.474154}
