@@ -1,0 +1,35 @@
+[
+  {
+    "nonGoals" : [
+      "Do NOT wire into synthesis\/constraints\/dispatch or any call site",
+      "Do NOT modify voice-utils.ts, constraints.ts, or any existing file",
+      "Do NOT handle Unicode sentence boundaries beyond ASCII .?!",
+      "Do NOT read provider limits — caller passes maxLength"
+    ],
+    "objective" : "Create the pure, zero-dependency `chunkText(text: string, maxLength: number): string[]` utility module with JSDoc header — implementing throw-on-invalid-maxLength, empty\/whitespace→[], under-limit single chunk, sentence-boundary greedy packing, and hard-split for over-long sentences.",
+    "orderIndex" : 0,
+    "planText" : "Create `apps\/web\/src\/lib\/chunk-text.ts`:\n\n1. Add a module-level JSDoc block describing the utility.\n2. Export `function chunkText(text: string, maxLength: number): string[]`.\n3. Guard: if `maxLength <= 0`, throw `new Error('maxLength must be a positive number')`.\n4. Trim input; if the result is empty, return `[]`.\n5. If `text.length <= maxLength`, return `[text]`.\n6. Split into sentence segments using regex `\/[.!?](?=\\s|$)\/` that keeps delimiters attached to their sentences (e.g., `'Hello. World!'` → `['Hello.', ' World!']`). Use `match` with a pattern that captures sentences including their terminating punctuation.\n7. Greedily pack sentences into chunks: start a new chunk only when adding the next sentence would make the chunk exceed `maxLength`.\n8. Hard-split: if a single sentence exceeds `maxLength`, slice it into `maxLength`-sized substrings, preserving all characters.\n9. The function must be pure — no side effects, no imports, no module-level state.\n\nVerify with `npm run test` (all existing 259 tests must still pass) and `npm run build:web`.",
+    "riskClass" : "low",
+    "size" : "s",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/chunk-text.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT modify chunk-text.ts (only add tests)",
+      "Do NOT add integration tests or wire to SvelteKit routes\/components",
+      "Do NOT test performance benchmarks"
+    ],
+    "objective" : "Write co-located vitest tests covering all specified edge cases and invariants for the chunkText utility.",
+    "orderIndex" : 1,
+    "planText" : "Create `apps\/web\/src\/lib\/chunk-text.test.ts` with vitest imports (`describe`, `it`, `expect`) and `import { chunkText } from '.\/chunk-text'`.\n\nTest cases:\n1. **Empty string** `''` → `[]`\n2. **Whitespace-only** `'   '` → `[]` (trimmed to empty)\n3. **Under-limit single chunk** — text shorter than maxLength → `[text]`\n4. **Exactly-at-limit** — text.length === maxLength → `[text]`\n5. **Multi-sentence packing** — `'Hello. World!'` with maxLength 7 → `['Hello.', ' World!']` (or appropriate boundary chunking)\n6. **Over-long single sentence hard-split** — a sentence > maxLength is sliced into maxLength pieces, no character loss\n7. **Invariant: no chunk exceeds maxLength** — use a property-check loop across varied inputs\n8. **Invariant: content preservation** — `chunks.join('') === original` (character-level reconstruction)\n9. **maxLength <= 0 throws** — `expect(() => chunkText('text', 0)).toThrow()` and `expect(() => chunkText('text', -1)).toThrow()`\n10. **Mixed: normal sentences + one over-long sentence** — combination works correctly\n\nRun `npm run test` — all new + existing tests must pass.",
+    "riskClass" : "low",
+    "size" : "s",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/chunk-text.test.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]
