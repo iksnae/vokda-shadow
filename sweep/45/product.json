@@ -1,0 +1,23 @@
+{
+  "acceptanceCriteria" : [
+    "A new module `apps\/web\/src\/lib\/chunk-text.ts` exports a single named function `chunkText(text: string, maxLength: number): string[]`, following repo conventions (JSDoc, no default export, pure function).",
+    "Empty string or whitespace-only input returns an empty array `[]`.",
+    "Input whose length ≤ `maxLength` returns a single-element array `[text]` with the input unchanged.",
+    "When text exceeds `maxLength`, it is split at sentence boundaries (`.`, `!`, `?` followed by whitespace), packing consecutive sentences into a chunk until the next sentence would cause the chunk to exceed `maxLength`.",
+    "A single sentence longer than `maxLength` is hard-split into `maxLength`-sized pieces; no characters are dropped.",
+    "No returned chunk ever has `.length > maxLength`.",
+    "Concatenating all returned chunks reproduces the input's non-whitespace content in order — no content is lost or reordered.",
+    "Passing `maxLength <= 0` throws a clear, descriptive error.",
+    "A colocated Vitest suite (`apps\/web\/src\/lib\/chunk-text.test.ts`) covers at minimum: empty\/whitespace input, single-chunk (under limit), multi-sentence packing at boundaries, an over-long single sentence hard-split, the no-chunk-exceeds-maxLength invariant, and the content-preservation invariant.",
+    "`npm run build:web` and `npm run test` both pass green."
+  ],
+  "outOfScope" : [
+    "Wiring `chunkText` into the synthesis dispatch path or any caller (this is the standalone utility + tests only).",
+    "Looking up provider-specific `maxTextLength` values (caller passes `maxLength` directly).",
+    "Language-specific sentence segmentation beyond basic `.`, `!`, `?` punctuation boundaries.",
+    "Any stateful behavior, side effects, or I\/O — the function is pure."
+  ],
+  "priority" : "medium",
+  "problemStatement" : "Callers who need to send text to synthesis providers have no safe, reusable way to split input that exceeds a provider's maximum text length. Without this, long-form content is either silently truncated (losing content) or rejected by the provider, leaving users with no path to synthesize extended text.",
+  "userValue" : "A well-tested, sentence-aware chunker gives any caller a reliable building block to break long text into provider-sized pieces without cutting mid-word, dropping content, or scrambling order. This unlocks long-form synthesis across the platform and eliminates ad-hoc, error-prone truncation that today loses user content."
+}
