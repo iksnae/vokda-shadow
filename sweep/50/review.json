@@ -1,0 +1,144 @@
+{
+  "checklist" : [
+    {
+      "detail" : "the implementor finished in 22 round(s)",
+      "id" : "build-completed",
+      "label" : "Build completed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "2 file(s) changed: apps\/web\/src\/lib\/prepare-for-synthesis.ts, apps\/web\/src\/lib\/prepare-for-synthesis.test.ts",
+      "id" : "change-present",
+      "label" : "Change is visible",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "expected ≥1 of: apps\/web\/src\/lib\/prepare-for-synthesis.test.ts, apps\/web\/src\/lib\/prepare-for-synthesis.ts",
+      "id" : "on-target",
+      "label" : "Changed the deliverable's target files",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "the project verify command was GREEN",
+      "id" : "verify-green",
+      "label" : "Verification passed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "committed locally on the build branch",
+      "id" : "committed",
+      "label" : "Work committed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "New module prepare-for-synthesis.ts composes normalizeText → chunkText → wordCount exactly as specified; exports SynthesisChunk interface and prepareForSynthesis function; test suite covers all 6 acceptance criteria (empty\/whitespace, single chunk, multi-chunk, wordCount, maxLength invariant, non-positive throw).",
+      "id" : "implements-the-approved-plan",
+      "label" : "Implements the approved plan",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    },
+    {
+      "detail" : "Only two files added: the new module and its test file. No changes to any existing files, no unrelated churn.",
+      "id" : "minimal-and-scoped",
+      "label" : "Minimal and scoped",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    },
+    {
+      "detail" : "Genuinely imports and delegates to normalizeText, chunkText, wordCount; tests exercise real behavior with varied inputs and invariants, no weakened or removed tests, no hard-coded expected values.",
+      "id" : "no-fake-or-test-gaming",
+      "label" : "No test-gaming \/ faking",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    },
+    {
+      "detail" : "Pure composition of already-shipped utilities; no side effects, no changes to existing code, no security or regression risk.",
+      "id" : "safe-to-advance",
+      "label" : "Safe to advance",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    },
+    {
+      "detail" : "at or above the confidence bar",
+      "id" : "judge-confidence",
+      "label" : "Judge confidence",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    }
+  ],
+  "committed" : true,
+  "confidence" : 1,
+  "correlationId" : "sweep-build-50",
+  "dimensions" : [
+    {
+      "dimension" : "implements-the-approved-plan",
+      "evidence" : "New module prepare-for-synthesis.ts composes normalizeText → chunkText → wordCount exactly as specified; exports SynthesisChunk interface and prepareForSynthesis function; test suite covers all 6 acceptance criteria (empty\/whitespace, single chunk, multi-chunk, wordCount, maxLength invariant, non-positive throw).",
+      "score" : 1
+    },
+    {
+      "dimension" : "minimal-and-scoped",
+      "evidence" : "Only two files added: the new module and its test file. No changes to any existing files, no unrelated churn.",
+      "score" : 1
+    },
+    {
+      "dimension" : "no-fake-or-test-gaming",
+      "evidence" : "Genuinely imports and delegates to normalizeText, chunkText, wordCount; tests exercise real behavior with varied inputs and invariants, no weakened or removed tests, no hard-coded expected values.",
+      "score" : 1
+    },
+    {
+      "dimension" : "safe-to-advance",
+      "evidence" : "Pure composition of already-shipped utilities; no side effects, no changes to existing code, no security or regression risk.",
+      "score" : 1
+    }
+  ],
+  "evidenceReceiptIds" : [
+    "rcpt-build-implement-sweep-build-50",
+    "rcpt-build-verify-sweep-build-50",
+    "rcpt-build-commit-sweep-build-50"
+  ],
+  "failureReasons" : [
+
+  ],
+  "filesReviewed" : [
+    "apps\/web\/src\/lib\/prepare-for-synthesis.ts",
+    "apps\/web\/src\/lib\/prepare-for-synthesis.test.ts"
+  ],
+  "outcome" : "pass",
+  "rubricId" : "build-review",
+  "rubricVersion" : 1
+}
