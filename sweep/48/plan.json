@@ -1,0 +1,33 @@
+{
+  "apiOrSchemaChanges" : [
+
+  ],
+  "confidence" : 0.98,
+  "failingTest" : "None yet — new module with green-field tests (issue #48)",
+  "fileMap" : [
+    "apps\/web\/src\/lib\/text-utilities\/normalize-text.ts — create — pure normalizeText function",
+    "apps\/web\/src\/lib\/text-utilities\/word-count.ts — create — pure wordCount function",
+    "apps\/web\/src\/lib\/text-utilities\/truncate-words.ts — create — pure truncateWords function",
+    "apps\/web\/src\/lib\/text-utilities\/index.ts — create — barrel re-export",
+    "apps\/web\/src\/lib\/text-utilities\/index.test.ts — create — Vitest test suite"
+  ],
+  "fixApproach" : "Create three pure-function utility files in a new `apps\/web\/src\/lib\/text-utilities\/` directory, each exporting a single named function with JSDoc, following the existing `chunk-text.ts` pattern (no imports, single export, JSDoc). Add a barrel `index.ts` re-exporting all three. Add a co-located `index.test.ts` Vitest suite covering all acceptance criteria: empty\/whitespace-only inputs, normalization collapses, word counting, truncation with ellipsis only when words are dropped, and the maxWords invariant.",
+  "openQuestions" : [
+
+  ],
+  "steps" : [
+    "Create `apps\/web\/src\/lib\/text-utilities\/normalize-text.ts` — export `normalizeText(text: string): string` collapsing all whitespace runs to single space and trimming",
+    "Create `apps\/web\/src\/lib\/text-utilities\/word-count.ts` — export `wordCount(text: string): number` counting whitespace-separated tokens on normalized text",
+    "Create `apps\/web\/src\/lib\/text-utilities\/truncate-words.ts` — export `truncateWords(text: string, maxWords: number): string` keeping first maxWords words, appending `…` only when truncation occurs",
+    "Create `apps\/web\/src\/lib\/text-utilities\/index.ts` — barrel re-export of all three functions",
+    "Create `apps\/web\/src\/lib\/text-utilities\/index.test.ts` — Vitest suite covering all edge cases from acceptance criteria",
+    "Run `npm run build:web` to confirm no compilation or bundling errors",
+    "Run `npm run test` to confirm all tests pass including the new suite"
+  ],
+  "stopsForOperatorApproval" : false,
+  "summary" : "Add a text-utilities module (normalizeText, wordCount, truncateWords) under apps\/web\/src\/lib with barrel export and Vitest suite",
+  "uiStateNotes" : [
+
+  ],
+  "verificationCommand" : "npm run build:web && npm run test"
+}
