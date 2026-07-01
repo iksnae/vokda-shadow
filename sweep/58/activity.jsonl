@@ -235,3 +235,5 @@
 {"phase":"review","at":804618601.243518,"id":"58-235","outcome":{"parked":{}},"ticketId":"58","detail":"parked at review — no review verdict produced this cycle (transient) — retrying"}
 {"outcome":{"running":{}},"at":804618636.512726,"phase":"review","id":"58-236","ticketId":"58","detail":"working review"}
 {"id":"58-237","phase":"review","at":804618637.659859,"detail":"parked at review — no review verdict produced this cycle (transient) — retrying","ticketId":"58","outcome":{"parked":{}}}
+{"ticketId":"58","detail":"working review","at":804618672.656733,"id":"58-238","outcome":{"running":{}},"phase":"review"}
+{"at":804618673.828844,"id":"58-239","detail":"parked at review — no review verdict produced this cycle (transient) — retrying","ticketId":"58","phase":"review","outcome":{"parked":{}}}
