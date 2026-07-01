@@ -1,0 +1,34 @@
+{
+  "apiOrSchemaChanges" : [
+
+  ],
+  "confidence" : 0.9,
+  "failingTest" : "N\/A — documentation maintenance task, not triggered by a test failure",
+  "fileMap" : [
+    "README.md — modify — Update Stack, Repo Layout, Quick Start, Product Docs, CI\/CD; add live URLs, Node version, missing commands, SDK mention",
+    "docs\/voice-discovery-process.md — modify — Correct stale figures: 130→550 voices, 8→25 providers; align workflow descriptions",
+    "specs\/VISION.md — delete — Duplicate of docs\/VISION.md; canonical copy in docs\/ is current"
+  ],
+  "fixApproach" : "Ground-truth README.md against CLAUDE.md: rewrite Stack, Repo Layout, Quick Start, Product Docs, and CI\/CD sections; add live URLs, Node version, full command set. Update docs\/voice-discovery-process.md stale figures (130→550 voices, 8→25 providers). Remove duplicate specs\/VISION.md (docs\/VISION.md is canonical). No code changes — docs only, verified by passing the existing CI build.",
+  "openQuestions" : [
+    "Should specs\/VISION.md be deleted outright or retained as a redirect stub pointing to docs\/VISION.md?",
+    "Does voice-discovery-process.md have additional stale content beyond voice\/provider counts (e.g., outdated script names or workflows)?"
+  ],
+  "steps" : [
+    "Update README.md § Stack: replace 'Catalog data: app-owned module (phase 1), API-backed later' with current architecture — static voices.json catalog, SAM-deployed Synthesis API (9 provider adapters), Amplify Gen2 backend (Cognito + AppSync + DynamoDB), S3 audio storage",
+    "Update README.md § Repo Layout: replace packages\/shared with packages\/sdk (@vokda\/sdk); add sdks\/, scripts\/, specs\/, extensions\/ directories",
+    "Update README.md § Quick Start: add Node >=20 prerequisite, npm run dev:api, npm test, npm run check:web, npm run build:web, npm run build:sdk",
+    "Update README.md § Product Docs: expand from 7 to full list — VISION.md, DISCOVERY.md, SYNTHESIS_API.md, VOICE_CATALOG_EXPORT.md, GITHUB_SETUP.md, AMPLIFY_SETUP.md, voice-discovery-process.md, and note subdirectories",
+    "Update README.md § CI\/CD: add specific checks run (typecheck, Svelte check, catalog freshness, build)",
+    "Add new sections to README.md: Live URLs (app + API), Node version requirement block, brief synthesis\/SSML\/steering feature mention",
+    "Update docs\/voice-discovery-process.md: correct voice count 130→550, provider count 8→25, and refresh any outdated script\/workflow references per CLAUDE.md",
+    "Delete specs\/VISION.md (duplicate of docs\/VISION.md which is current and canonical)",
+    "Run npm run build:web to confirm no regressions"
+  ],
+  "stopsForOperatorApproval" : false,
+  "summary" : "Update README.md to reflect current architecture and fix stale voice-discovery-process.md + duplicate specs\/VISION.md",
+  "uiStateNotes" : [
+
+  ],
+  "verificationCommand" : "npm run build:web"
+}
