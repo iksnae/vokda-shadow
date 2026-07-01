@@ -1,0 +1,3 @@
+{"detail":"working new","at":804557847.248548,"ticketId":"45","id":"45-1","phase":"new","outcome":{"running":{}}}
+{"phase":"intake","stat":{"costUSD":0.0006479100000000001,"promptTokens":1043,"latencyMs":4071,"completionTokens":333,"modelId":"deepseek:deepseek-v4-pro"},"ticketId":"45","id":"45-2","detail":"deepseek-v4-pro · 1376 tok · 4071ms · $0.0006","outcome":{"note":{}},"at":804557851.326306}
+{"outcome":{"advanced":{"to":"product"}},"at":804557855.727419,"phase":"new","id":"45-3","ticketId":"45","detail":"advanced to product"}
