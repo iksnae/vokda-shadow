@@ -2,3 +2,5 @@
 {"phase":"new","id":"59-2","ticketId":"59","detail":"parked at new — no intake classification produced this cycle (transient model miss) — retrying","outcome":{"parked":{}},"at":804622992.759895}
 {"at":804623042.868798,"ticketId":"59","detail":"working new","outcome":{"running":{}},"id":"59-3","phase":"new"}
 {"outcome":{"parked":{}},"id":"59-4","detail":"parked at new — no intake classification produced this cycle (transient model miss) — retrying","at":804623058.078388,"phase":"new","ticketId":"59"}
+{"at":804623097.577882,"id":"59-5","phase":"new","outcome":{"running":{}},"detail":"working new","ticketId":"59"}
+{"outcome":{"parked":{}},"id":"59-6","detail":"parked at new — no intake classification produced this cycle (transient model miss) — retrying","at":804623101.714119,"phase":"new","ticketId":"59"}
