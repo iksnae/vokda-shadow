@@ -1,0 +1,48 @@
+[
+  {
+    "nonGoals" : [
+      "Do NOT implement wordCount, truncateWords, barrel exports, or tests"
+    ],
+    "objective" : "Create the `normalizeText` pure function — collapses all whitespace runs to a single space, trims, returns \"\" for empty\/whitespace-only input. Heavy JSDoc following the `chunk-text.ts` pattern.",
+    "orderIndex" : 0,
+    "planText" : "Create `apps\/web\/src\/lib\/text-utilities\/normalize-text.ts` with a single named export `normalizeText(text: string): string`. Implementation: replace all whitespace runs (`\/\\s+\/g`) with a single space, then `.trim()`. Return `\"\"` when the result is empty or input is only whitespace. Add JSDoc block with `@param`, `@returns`, `@example` matching the style in `apps\/web\/src\/lib\/chunk-text.ts`.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/text-utilities\/normalize-text.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT create the barrel index.ts or test file in this deliverable"
+    ],
+    "objective" : "Create `wordCount` and `truncateWords` pure functions, each importing `normalizeText` from deliverable 0. Both follow the `chunk-text.ts` JSDoc pattern.",
+    "orderIndex" : 1,
+    "planText" : "1. Create `word-count.ts`: import `normalizeText` from `.\/normalize-text`. Export `wordCount(text: string): number`. Implementation: normalize the input, if result is `\"\"` return `0`, otherwise split on spaces and return the length. JSDoc with `@param`, `@returns`, `@example`. 2. Create `truncate-words.ts`: import `normalizeText` from `.\/normalize-text`. Export `truncateWords(text: string, maxWords: number): string`. Implementation: normalize the input. If `maxWords <= 0` or normalized is `\"\"`, return `\"\"`. Split on spaces. If word count <= maxWords, return the normalized text unchanged (no ellipsis). Otherwise join the first maxWords words with spaces and append `…`. JSDoc with `@param`, `@returns`, `@example`.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/text-utilities\/word-count.ts",
+      "apps\/web\/src\/lib\/text-utilities\/truncate-words.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT modify any files outside `apps\/web\/src\/lib\/text-utilities\/`",
+      "Do NOT wire these utilities into synthesis, SSML, or any other module",
+      "Do NOT refactor `chunk-text.ts` or any existing code"
+    ],
+    "objective" : "Create barrel `index.ts` re-exporting all three functions, and a comprehensive `index.test.ts` Vitest suite covering every acceptance-criteria edge case.",
+    "orderIndex" : 2,
+    "planText" : "1. Create `index.ts`: barrel that re-exports `normalizeText`, `wordCount`, and `truncateWords` from their respective files. 2. Create `index.test.ts`: Vitest suite importing from `.\/index` (or directly from each source file). Structure with `describe` blocks per function, `it` blocks per edge case, explicit imports from `vitest` (`describe`, `it`, `expect`). Cover: (a) normalizeText — empty string, whitespace-only, leading\/trailing spaces, multiple internal spaces, tabs\/newlines, mixed whitespace; (b) wordCount — empty, whitespace-only, single word, multiple words with varied whitespace, newlines; (c) truncateWords — maxWords=0, maxWords negative, empty text, whitespace-only text, fewer words than max (no ellipsis), exactly maxWords (no ellipsis), more words (ellipsis appended). Run `npm run test` to confirm all pass.",
+    "riskClass" : "low",
+    "size" : "s",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/text-utilities\/index.ts",
+      "apps\/web\/src\/lib\/text-utilities\/index.test.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]
