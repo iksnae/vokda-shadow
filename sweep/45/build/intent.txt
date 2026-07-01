@@ -1,0 +1,29 @@
+ISSUE issue:iksnae/vokda#45: feat: add a sentence-aware text chunker for synthesis input (chunkText)
+
+## What
+
+Add a pure, exported function `chunkText(text: string, maxLength: number): string[]` that splits a long synthesis input into ordered chunks, each **no longer than `maxLength`**, preferring to break at **sentence boundaries** and only hard-splitting when a single sentence exceeds the limit. Ship it with a focused unit-test suite.
+
+## Why
+
+Providers advertise a `maxTextLength` capability, but callers currently have no safe way to split input that exceeds it. A well-tested chunker lets dispatch break long text into provider-sized pieces without cutting mid-word or losing content — a reusable building block for long-form synthesis.
+
+## Behavior / acceptance criteria
+
+1. **A new module** exports `chunkText(text, maxLength)` (place it with the other shared utilities and follow the repo's TypeScript conventions).
+2. **Semantics:**
+   - Empty or whitespace-only input → returns `[]`.
+   - Input already within `maxLength` → returns a single chunk equal to the input.
+   - Longer input is split at sentence boundaries (`.`, `!`, `?` followed by whitespace); consecutive sentences are packed into a chunk until adding the next would exceed `maxLength`.
+   - A single sentence longer than `maxLength` is hard-split into `maxLength`-sized pieces (never dropping characters).
+   - **Invariant:** no returned chunk has length `> maxLength`.
+   - **Invariant:** concatenating the chunks reproduces the input's non-whitespace content in order (no content lost or reordered).
+   - `maxLength <= 0` throws a clear error.
+3. **Unit tests (vitest)** cover, at minimum: empty/whitespace input, single-chunk (under limit), multi-sentence packing at boundaries, an over-long single sentence (hard split), the no-chunk-exceeds-maxLength invariant, and the content-preservation invariant.
+4. **Verification is green** — `npm run build:web` and `npm run test` both pass.
+
+## Out of scope
+
+- Wiring `chunkText` into the dispatch/synthesis path (this is the standalone utility + tests only).
+- Provider-specific limit lookups (the caller passes `maxLength`).
+- Language-specific sentence segmentation beyond basic `.?!` boundaries.
