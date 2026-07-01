@@ -229,3 +229,5 @@
 {"id":"58-229","ticketId":"58","detail":"running verify…","outcome":{"note":{}},"phase":"building","at":804618179.276876}
 {"id":"58-230","ticketId":"58","detail":"⚠️ build failed before producing evidence: commitFailed(reason: \"add failed: timed out\")","outcome":{"note":{}},"phase":"building","at":804618481.076702}
 {"outcome":{"advanced":{"to":"review"}},"at":804618483.707673,"phase":"ready","id":"58-231","ticketId":"58","detail":"advanced to review"}
+{"id":"58-232","ticketId":"58","phase":"review","detail":"working review","outcome":{"running":{}},"at":804618517.128294}
+{"at":804618536.193249,"ticketId":"58","outcome":{"parked":{}},"id":"58-233","phase":"review","detail":"parked at review — no review verdict produced this cycle (transient) — retrying"}
