@@ -1,0 +1,33 @@
+[
+  {
+    "nonGoals" : [
+      "Do NOT modify normalize-text.ts, word-count.ts, truncate-words.ts, or any existing test cases",
+      "Do NOT add tests in this deliverable"
+    ],
+    "objective" : "Implement estimateReadingTime(text, wordsPerMinute?) composing on wordCount with Math.ceil rounding and default 200 wpm, then re-export from the barrel.",
+    "orderIndex" : 0,
+    "planText" : "Create apps\/web\/src\/lib\/text-utilities\/estimate-reading-time.ts:\n- Import { wordCount } from '.\/word-count'\n- Export function estimateReadingTime(text: string, wordsPerMinute: number = 200): number\n- Call wordCount(text); if 0 return 0; else return Math.ceil(wordCount \/ wordsPerMinute)\nThen in apps\/web\/src\/lib\/text-utilities\/index.ts add:\n- export { estimateReadingTime } from '.\/estimate-reading-time'",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/text-utilities\/estimate-reading-time.ts",
+      "apps\/web\/src\/lib\/text-utilities\/index.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  },
+  {
+    "nonGoals" : [
+      "Do NOT modify existing describe blocks for normalizeText, wordCount, or truncateWords",
+      "Do NOT change the implementation in this deliverable"
+    ],
+    "objective" : "Add unit tests for estimateReadingTime covering empty, whitespace-only, default-wpm boundary cases, and a custom wpm scenario.",
+    "orderIndex" : 1,
+    "planText" : "In apps\/web\/src\/lib\/text-utilities\/index.test.ts:\n- Import { estimateReadingTime } from '.\/index' alongside existing imports\n- Add a new describe('estimateReadingTime', ...) block with these focused it cases:\n  1. empty string → 0\n  2. whitespace-only input → 0\n  3. 200 words @ default 200 wpm → 1\n  4. 201 words @ default 200 wpm → 2\n  5. custom wpm: 100 words @ 50 wpm → 2\n- Build the 200-word and 201-word test strings programmatically (e.g. Array(200).fill('word').join(' '))",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/text-utilities\/index.test.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]
