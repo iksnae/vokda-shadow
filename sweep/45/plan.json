@@ -1,0 +1,27 @@
+{
+  "apiOrSchemaChanges" : [
+
+  ],
+  "confidence" : 0.97,
+  "failingTest" : "none (new module; tests don't exist yet)",
+  "fileMap" : [
+    "apps\/web\/src\/lib\/chunk-text.ts — create — new pure utility module",
+    "apps\/web\/src\/lib\/chunk-text.test.ts — create — co-located vitest tests"
+  ],
+  "fixApproach" : "Create a pure `chunkText(text: string, maxLength: number): string[]` function that: (1) guards maxLength<=0 with a throw, (2) returns [] for empty\/whitespace input, (3) returns [text] if within limit, (4) splits at `\/[.!?]\\s+\/` sentence boundaries, greedily packing sentences into chunks ≤ maxLength, and (5) hard-splits any single sentence > maxLength into maxLength-sized pieces. Write co-located vitest tests covering empty\/whitespace, under-limit, multi-sentence packing, over-long single-sentence hard-split, invariant checks (no chunk exceeds limit, content preservation).",
+  "openQuestions" : [
+
+  ],
+  "steps" : [
+    "Create `apps\/web\/src\/lib\/chunk-text.ts` with JSDoc header and exported `chunkText(text, maxLength)` implementing the specified semantics",
+    "Create `apps\/web\/src\/lib\/chunk-text.test.ts` with vitest imports covering: empty input, whitespace-only, under-limit single-chunk, multi-sentence packing, over-long single-sentence hard-split, no-chunk-exceeds-maxLength invariant, content-preservation invariant, maxLength<=0 throws",
+    "Run `npm run test` (vitest) to confirm all tests pass",
+    "Run `npm run build:web` to confirm the build succeeds with the new module"
+  ],
+  "stopsForOperatorApproval" : false,
+  "summary" : "Add `chunkText` utility and co-located vitest tests at `apps\/web\/src\/lib\/chunk-text.ts` \/ `.test.ts`",
+  "uiStateNotes" : [
+
+  ],
+  "verificationCommand" : "npm run test && npm run build:web"
+}
