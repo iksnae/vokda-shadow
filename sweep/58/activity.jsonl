@@ -237,3 +237,5 @@
 {"id":"58-237","phase":"review","at":804618637.659859,"detail":"parked at review — no review verdict produced this cycle (transient) — retrying","ticketId":"58","outcome":{"parked":{}}}
 {"ticketId":"58","detail":"working review","at":804618672.656733,"id":"58-238","outcome":{"running":{}},"phase":"review"}
 {"at":804618673.828844,"id":"58-239","detail":"parked at review — no review verdict produced this cycle (transient) — retrying","ticketId":"58","phase":"review","outcome":{"parked":{}}}
+{"at":804618709.011365,"ticketId":"58","outcome":{"running":{}},"id":"58-240","phase":"review","detail":"working review"}
+{"id":"58-241","ticketId":"58","detail":"blocked — parked with no progress, escalated for a human","outcome":{"blocked":{}},"phase":"review","at":804618713.01201}
