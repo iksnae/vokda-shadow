@@ -1,0 +1,144 @@
+{
+  "checklist" : [
+    {
+      "detail" : "the implementor finished in 19 round(s)",
+      "id" : "build-completed",
+      "label" : "Build completed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "2 file(s) changed: apps\/web\/src\/lib\/chunk-text.test.ts, apps\/web\/src\/lib\/chunk-text.ts",
+      "id" : "change-present",
+      "label" : "Change is visible",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "expected ≥1 of: apps\/web\/src\/lib\/chunk-text.test.ts, apps\/web\/src\/lib\/chunk-text.ts",
+      "id" : "on-target",
+      "label" : "Changed the deliverable's target files",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "the project verify command was GREEN",
+      "id" : "verify-green",
+      "label" : "Verification passed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "committed locally on the build branch",
+      "id" : "committed",
+      "label" : "Work committed",
+      "result" : {
+        "pass" : {
+
+        }
+      }
+    },
+    {
+      "detail" : "Regex changed from `[^.!?\\s][^.!?]*[.!?]?` to `(?:[^.!?\\s][^.!?]*[.!?]*|[.!?]+)` — captures runs of consecutive punctuation as trailing delimiters or standalone runs, exactly addressing the root cause. Tests cover all three reproductions plus a 10-input property-based reconstruction check.",
+      "id" : "implements-the-approved-plan",
+      "label" : "Implements the approved plan",
+      "result" : {
+        "score" : {
+          "_0" : 0.95
+        }
+      }
+    },
+    {
+      "detail" : "Only the two files named in the plan (chunk-text.ts and chunk-text.test.ts) were changed; the production fix is a single regex line plus comment updates, and the test additions are purely additive with no unrelated churn.",
+      "id" : "minimal-and-scoped",
+      "label" : "Minimal and scoped",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    },
+    {
+      "detail" : "Tests assert `chunks.join('') === original` and per-chunk `length <= maxLength` — real behavioral verification. No existing tests were weakened, deleted, or hard-coded; the regex fix addresses the genuine segmentation defect.",
+      "id" : "no-fake-or-test-gaming",
+      "label" : "No test-gaming \/ faking",
+      "result" : {
+        "score" : {
+          "_0" : 1
+        }
+      }
+    },
+    {
+      "detail" : "The `[.!?]*` greedily captures trailing delimiters and `[.!?]+` handles standalone runs; edge cases (leading punctuation, no-space runs, mixed whitespace) all reconstruct correctly. Minor residual risk: standalone-delimiter alternative could produce many tiny segments for spaced-punctuation inputs, but packing still enforces maxLength. No regression risk for normal text.",
+      "id" : "safe-to-advance",
+      "label" : "Safe to advance",
+      "result" : {
+        "score" : {
+          "_0" : 0.9
+        }
+      }
+    },
+    {
+      "detail" : "at or above the confidence bar",
+      "id" : "judge-confidence",
+      "label" : "Judge confidence",
+      "result" : {
+        "score" : {
+          "_0" : 0.93
+        }
+      }
+    }
+  ],
+  "committed" : true,
+  "confidence" : 0.93,
+  "correlationId" : "sweep-build-52",
+  "dimensions" : [
+    {
+      "dimension" : "implements-the-approved-plan",
+      "evidence" : "Regex changed from `[^.!?\\s][^.!?]*[.!?]?` to `(?:[^.!?\\s][^.!?]*[.!?]*|[.!?]+)` — captures runs of consecutive punctuation as trailing delimiters or standalone runs, exactly addressing the root cause. Tests cover all three reproductions plus a 10-input property-based reconstruction check.",
+      "score" : 0.95
+    },
+    {
+      "dimension" : "minimal-and-scoped",
+      "evidence" : "Only the two files named in the plan (chunk-text.ts and chunk-text.test.ts) were changed; the production fix is a single regex line plus comment updates, and the test additions are purely additive with no unrelated churn.",
+      "score" : 1
+    },
+    {
+      "dimension" : "no-fake-or-test-gaming",
+      "evidence" : "Tests assert `chunks.join('') === original` and per-chunk `length <= maxLength` — real behavioral verification. No existing tests were weakened, deleted, or hard-coded; the regex fix addresses the genuine segmentation defect.",
+      "score" : 1
+    },
+    {
+      "dimension" : "safe-to-advance",
+      "evidence" : "The `[.!?]*` greedily captures trailing delimiters and `[.!?]+` handles standalone runs; edge cases (leading punctuation, no-space runs, mixed whitespace) all reconstruct correctly. Minor residual risk: standalone-delimiter alternative could produce many tiny segments for spaced-punctuation inputs, but packing still enforces maxLength. No regression risk for normal text.",
+      "score" : 0.9
+    }
+  ],
+  "evidenceReceiptIds" : [
+    "rcpt-build-implement-sweep-build-52",
+    "rcpt-build-verify-sweep-build-52",
+    "rcpt-build-commit-sweep-build-52"
+  ],
+  "failureReasons" : [
+
+  ],
+  "filesReviewed" : [
+    "apps\/web\/src\/lib\/chunk-text.test.ts",
+    "apps\/web\/src\/lib\/chunk-text.ts"
+  ],
+  "outcome" : "pass",
+  "rubricId" : "build-review",
+  "rubricVersion" : 1
+}
