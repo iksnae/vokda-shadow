@@ -1,0 +1,26 @@
+{
+  "acceptanceCriteria" : [
+    "normalizeText collapses all whitespace runs to a single space and trims ends (e.g. \"  a\\n\\n b\\t c \" → \"a b c\")",
+    "normalizeText returns empty string for empty or whitespace-only input",
+    "wordCount returns 0 for empty or whitespace-only input",
+    "wordCount returns the number of whitespace-separated tokens on normalized text (e.g. \"a  b\\nc\" → 3)",
+    "truncateWords returns the first maxWords words joined by single spaces, operating on normalized text",
+    "truncateWords appends … (U+2026) only when words were actually dropped",
+    "truncateWords returns empty string when maxWords <= 0",
+    "truncateWords returns the normalized text unchanged (no ellipsis) when word count ≤ maxWords",
+    "The returned text from truncateWords, minus a trailing …, never exceeds maxWords words",
+    "All three functions are exported from a barrel index at apps\/web\/src\/lib\/text-utilities\/index.ts",
+    "npm run build:web passes with no errors",
+    "npm run test passes with all new tests green"
+  ],
+  "outOfScope" : [
+    "Wiring these utilities into the synthesis\/dispatch pipeline",
+    "SSML-aware tokenization or language-specific word segmentation",
+    "Refactoring or reusing the existing chunk-text utility",
+    "Any integration beyond standalone functions and their tests",
+    "Performance optimization beyond reasonable O(n) behavior"
+  ],
+  "priority" : "medium",
+  "problemStatement" : "Synthesis features need clean, predictable text inputs, but every developer who touches the synthesis path currently has to invent (or copy-paste) their own whitespace normalization, word counting, and word truncation logic. There is no shared, tested module for these fundamental text-prep operations, which leads to inconsistent behavior across synthesis entry points and wasted effort re-solving the same micro-problems.",
+  "userValue" : "Developers building synthesis features get three small, reliable, well-tested utilities they can reach for immediately — no reinventing normalization, no yak-shaving over \"what counts as a word,\" no off-by-one ellipsis bugs. This keeps synthesis work focused on synthesis, not on text munging."
+}
