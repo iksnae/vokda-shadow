@@ -1,0 +1,22 @@
+[
+  {
+    "nonGoals" : [
+      "Do NOT add new features",
+      "Do NOT refactor truncateWords",
+      "Do NOT add estimateReadingTime",
+      "Do NOT modify any other module",
+      "Do NOT change the existing tokenization strategy"
+    ],
+    "objective" : "Verify existing `truncateWords` implementation passes all tests and has no undiscovered consumers; confirm issue #58 is complete.",
+    "orderIndex" : 0,
+    "planText" : "Run `npm run test` to confirm the existing `truncateWords` implementation (16+ test cases in `apps\/web\/src\/lib\/text-utilities\/index.test.ts`) passes green alongside all other module tests. Confirm there are zero external consumers of `truncateWords` beyond the module's own barrel export. If tests pass and no unexpected consumers exist, the issue can be closed as already-complete with no code changes.",
+    "riskClass" : "low",
+    "size" : "xs",
+    "targetFiles" : [
+      "apps\/web\/src\/lib\/text-utilities\/index.test.ts",
+      "apps\/web\/src\/lib\/text-utilities\/truncate-words.ts",
+      "apps\/web\/src\/lib\/text-utilities\/index.ts"
+    ],
+    "verificationCommand" : "npm run test"
+  }
+]
