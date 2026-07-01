@@ -231,3 +231,5 @@
 {"detail":"advanced to review","at":804618483.707673,"ticketId":"58","phase":"ready","id":"58-231","outcome":{"advanced":{"to":"review"}}}
 {"ticketId":"58","phase":"review","at":804618517.128294,"id":"58-232","outcome":{"running":{}},"detail":"working review"}
 {"at":804618536.193249,"id":"58-233","detail":"parked at review — no review verdict produced this cycle (transient) — retrying","ticketId":"58","phase":"review","outcome":{"parked":{}}}
+{"phase":"review","detail":"working review","at":804618600.042992,"id":"58-234","ticketId":"58","outcome":{"running":{}}}
+{"id":"58-235","ticketId":"58","detail":"parked at review — no review verdict produced this cycle (transient) — retrying","outcome":{"parked":{}},"phase":"review","at":804618601.243518}
