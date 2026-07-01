@@ -1,2 +1,4 @@
 {"phase":"new","id":"59-1","ticketId":"59","outcome":{"running":{}},"detail":"working new","at":804622988.059373}
 {"phase":"new","id":"59-2","ticketId":"59","detail":"parked at new — no intake classification produced this cycle (transient model miss) — retrying","outcome":{"parked":{}},"at":804622992.759895}
+{"at":804623042.868798,"ticketId":"59","detail":"working new","outcome":{"running":{}},"id":"59-3","phase":"new"}
+{"outcome":{"parked":{}},"id":"59-4","detail":"parked at new — no intake classification produced this cycle (transient model miss) — retrying","at":804623058.078388,"phase":"new","ticketId":"59"}
