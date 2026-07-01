@@ -1,0 +1,11 @@
+{
+  "acceptanceCriteria" : [
+
+  ],
+  "outOfScope" : [
+
+  ],
+  "priority" : "medium",
+  "problemStatement" : "bug: chunkText drops runs of consecutive punctuation (ellipses, ?!) — violates exact-reconstruction guarantee",
+  "userValue" : "Fix directly targets the regex root cause to restore exact-reconstruction guarantee, with minimal, surgical changes that preserve all existing contracts and add thorough regression coverage."
+}
